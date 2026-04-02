@@ -1,0 +1,426 @@
+{
+  "name": "Test 1",
+  "type": "listening",
+  "parts": [
+    {
+      "title": "Part 1: Questions 1–10",
+      "instructions": "Complete the notes below. Write ONE WORD AND/OR A NUMBER for each answer.",
+      "layout": "listening-notes-table",
+      "audio": "/sounds/listening1.1/part1.mp3",
+      "audioPreventSeekBack": true,
+      "notesTable": {
+        "columns": [
+          "NAME OF RESTAURANT",
+          "LOCATION",
+          "REASON FOR RECOMMENDATION",
+          "OTHER COMMENTS"
+        ],
+        "rows": [
+          [
+            { "type": "text", "content": "The Junction" },
+            { "type": "text", "content": "Greyson Street, near the station" },
+            {
+              "type": "segments",
+              "parts": [
+                { "type": "text", "text": "Good for people who are especially keen on " },
+                { "type": "input", "id": "q1" }
+              ]
+            },
+            {
+              "type": "segments",
+              "parts": [
+                { "type": "text", "text": "Quite expensive.\nThe " },
+                { "type": "input", "id": "q2" },
+                { "type": "text", "text": " is a good place for a drink" }
+              ]
+            }
+          ],
+          [
+            { "type": "text", "content": "Paloma" },
+            { "type": "text", "content": "In Bow Street next to the cinema" },
+            {
+              "type": "segments",
+              "parts": [
+                { "type": "input", "id": "q3" },
+                { "type": "text", "text": " food, good for sharing" }
+              ]
+            },
+            {
+              "type": "segments",
+              "parts": [
+                {
+                  "type": "text",
+                  "text": "Staff are very friendly\n\nNeed to pay £50 deposit\n\nA limited selection of"
+                },
+                { "type": "input", "id": "q4" },
+                { "type": "text", "text": " food on the menu" }
+              ]
+            }
+          ],
+          [
+            {
+              "type": "segments",
+              "parts": [
+                { "type": "text", "text": "The " },
+                { "type": "input", "id": "q5" }
+              ]
+            },
+            {
+              "type": "segments",
+              "parts": [
+                { "type": "text", "text": "At the top of a" },
+                { "type": "input", "id": "q6" }
+              ]
+            },
+            {
+              "type": "segments",
+              "parts": [
+                { "type": "text", "text": "Famous chef.\nAll the " },
+                { "type": "input", "id": "q7" },
+                { "type": "text", "text": " are very good.\nOnly uses " },
+                { "type": "input", "id": "q8" },
+                { "type": "text", "text": " ingredients" }
+              ]
+            },
+            {
+              "type": "segments",
+              "parts": [
+                { "type": "text", "text": "Set lunch costs £" },
+                { "type": "input", "id": "q9" },
+                { "type": "text", "text": " per person.\nPortions of probably " },
+                { "type": "input", "id": "q10" },
+                { "type": "text", "text": " size" }
+              ]
+            }
+          ]
+        ]
+      },
+      "questions": [
+        {
+          "id": "q1",
+          "type": "input",
+          "question": "Good for people who are especially keen on ___",
+          "answer": "fish"
+        },
+        {
+          "id": "q2",
+          "type": "input",
+          "question": "The ___ is a good place for a drink",
+          "answer": "roof"
+        },
+        {
+          "id": "q3",
+          "type": "input",
+          "question": "___ food, good for sharing",
+          "answer": "spanish"
+        },
+        {
+          "id": "q4",
+          "type": "input",
+          "question": "A limited selection of ___ food on the menu",
+          "answer": "vegetarian"
+        },
+        {
+          "id": "q5",
+          "type": "input",
+          "question": "The ___ (restaurant name)",
+          "answer": "audley"
+        },
+        {
+          "id": "q6",
+          "type": "input",
+          "question": "At the top of a ___",
+          "answer": "hotel"
+        },
+        {
+          "id": "q7",
+          "type": "input",
+          "question": "All the ___ are very good",
+          "answer": "reviews"
+        },
+        {
+          "id": "q8",
+          "type": "input",
+          "question": "Only uses ___ ingredients",
+          "answer": "local"
+        },
+        {
+          "id": "q9",
+          "type": "input",
+          "question": "Set lunch costs £___ per person",
+          "answer": "30"
+        },
+        {
+          "id": "q10",
+          "type": "input",
+          "question": "Portions of probably ___ size",
+          "answer": "average"
+        }
+      ]
+    },
+    {
+      "title": "Part 2: Questions 11–20",
+      "instructions": "Choose the correct letter, A, B or C.",
+      "audio": "/sounds/listening1.1/part2.mp3",
+      "audioPreventSeekBack": true,
+      "questions": [
+        {
+          "id": "q11",
+          "type": "radio",
+          "question": "11. Heather says pottery differs from other art forms because",
+          "options": [
+            "A. It lasts longer in the ground.",
+            "B. It is practised by more people.",
+            "C. It can be repaired more easily."
+          ],
+          "answer": "A. It lasts longer in the ground."
+        },
+        {
+          "id": "q12",
+          "type": "radio",
+          "question": "12. Archaeologists sometimes identify the use of ancient pottery from",
+          "options": [
+            "A. The clay it was made with.",
+            "B. The marks that are on it.",
+            "C. The basic shape of it."
+          ],
+          "answer": "B. The marks that are on it."
+        },
+        {
+          "id": "q13",
+          "type": "radio",
+          "question": "13. Some people join Heather’s pottery class because they want to",
+          "options": [
+            "A. Create an item that looks very old.",
+            "B. Find something that they are good at.",
+            "C. Make something that will outlive them."
+          ],
+          "answer": "C. Make something that will outlive them."
+        },
+        {
+          "id": "q14",
+          "type": "radio",
+          "question": "14. What does Heather value most about being a potter?",
+          "options": [
+            "A. Its calming effect",
+            "B. Its messy nature",
+            "C. Its physical benefits"
+          ],
+          "answer": "A. Its calming effect"
+        },
+        {
+          "id": "q15",
+          "type": "radio",
+          "question": "15. Most of the visitors to Edelman Pottery",
+          "options": [
+            "A. Bring friends to join courses.",
+            "B. Have never made a pot before.",
+            "C. Try to learn techniques too quickly."
+          ],
+          "answer": "B. Have never made a pot before."
+        },
+        {
+          "id": "q16",
+          "type": "radio",
+          "question": "16. Heather reminds her visitors that they should",
+          "options": [
+            "A. Put on their aprons.",
+            "B. Change their clothes.",
+            "C. Take off their jewellery."
+          ],
+          "answer": "C. Take off their jewellery."
+        },
+        {
+          "id": "q17_18",
+          "type": "checkbox",
+          "points": 2,
+          "question": "17–18. Which TWO things does Heather explain about kilns?",
+          "options": [
+            "A. What their function is",
+            "B. When they were invented",
+            "C. Ways of keeping them safe",
+            "D. Where to put one in your home",
+            "E. What some people use instead of one"
+          ],
+          "answer": ["A. What their function is", "E. What some people use instead of one"]
+        },
+        {
+          "id": "q19_20",
+          "type": "checkbox",
+          "points": 2,
+          "question": "19–20. Which points does Heather make about a potter’s tools?",
+          "options": [
+            "A. Some are hard to hold.",
+            "B. Some are worth buying.",
+            "C. Some are essential items.",
+            "D. Some have memorable names.",
+            "E. Some are available for use by participants."
+          ],
+          "answer": ["C. Some are essential items.", "E. Some are available for use by participants."]
+        }
+      ]
+    },
+    {
+      "title": "Part 3: Questions 21–30",
+      "instructions": "Choose the correct letter, A, B or C.",
+      "audio": "/sounds/listening1.1/part3.mp3",
+      "audioPreventSeekBack": true,
+      "questions": [
+        {
+          "id": "q21_22",
+          "type": "checkbox",
+          "points": 2,
+          "question": "21–22. Which TWO things do the students both believe are responsible for the increase in loneliness?",
+          "options": [
+            "A. Social media",
+            "B. Smaller nuclear families",
+            "C. Urban design",
+            "D. Longer lifespans",
+            "E. A mobile workforce"
+          ],
+          "answer": ["C. Urban design", "E. A mobile workforce"]
+        },
+        {
+          "id": "q23_24",
+          "type": "checkbox",
+          "points": 2,
+          "question": "23–24. Which TWO health risks associated with loneliness do the students agree are based on solid evidence?",
+          "options": [
+            "A. A weakened immune system",
+            "B. Dementia",
+            "C. Cancer",
+            "D. Obesity",
+            "E. Cardiovascular disease"
+          ],
+          "answer": ["A. A weakened immune system", "C. Cancer"]
+        },
+        {
+          "id": "q25_26",
+          "type": "checkbox",
+          "points": 2,
+          "question": "25–26. Which TWO opinions do both the students express about the evolutionary theory of loneliness?",
+          "options": [
+            "A. It has little practical relevance.",
+            "B. It needs further investigation.",
+            "C. It is misleading.",
+            "D. It should be more widely accepted.",
+            "E. It is difficult to understand."
+          ],
+          "answer": ["A. It has little practical relevance.", "B. It needs further investigation."]
+        },
+        {
+          "id": "q27",
+          "type": "radio",
+          "question": "27. When comparing loneliness to depression, the students",
+          "options": [
+            "A. Doubt that there will ever be a medical cure for loneliness.",
+            "B. Claim that the link between loneliness and mental health is overstated.",
+            "C. Express frustration that loneliness is not taken more seriously."
+          ],
+          "answer": "A. Doubt that there will ever be a medical cure for loneliness."
+        },
+        {
+          "id": "q28",
+          "type": "radio",
+          "question": "28. Why do the students decide to start their presentation with an example from their own experience?",
+          "options": [
+            "A. To explain how difficult loneliness can be",
+            "B. To highlight a situation that most students will recognise",
+            "C. To emphasise that feeling lonely is more common for men than women"
+          ],
+          "answer": "B. To highlight a situation that most students will recognise"
+        },
+        {
+          "id": "q29",
+          "type": "radio",
+          "question": "29. The students agree that talking to strangers is a good strategy for dealing with loneliness because",
+          "options": [
+            "A. It creates a sense of belonging.",
+            "B. It builds self-confidence.",
+            "C. It makes people feel more positive."
+          ],
+          "answer": "A. It creates a sense of belonging."
+        },
+        {
+          "id": "q30",
+          "type": "radio",
+          "question": "30. The students find it difficult to understand why solitude is considered to be",
+          "options": [
+            "A. Similar to loneliness.",
+            "B. Necessary for mental health.",
+            "C. An enjoyable experience."
+          ],
+          "answer": "C. An enjoyable experience."
+        }
+      ]
+    },
+    {
+      "title": "Part 4: Questions 31–40",
+      "instructions": "Complete the notes below. Write ONE WORD ONLY for each answer.",
+      "audio": "/sounds/listening1.1/part4.mp3",
+      "audioPreventSeekBack": true,
+      "questions": [
+        {
+          "id": "q31",
+          "type": "input",
+          "question": "Pollution from ___ on the river bank (industrial context).",
+          "answer": "factories"
+        },
+        {
+          "id": "q32",
+          "type": "input",
+          "question": "In 1957, the River Thames was declared biologically ___",
+          "answer": "dead"
+        },
+        {
+          "id": "q33",
+          "type": "input",
+          "question": "Seals and even a ___ have been seen in the River Thames.",
+          "answer": "whale"
+        },
+        {
+          "id": "q34",
+          "type": "input",
+          "question": "Riverside warehouses are converted to restaurants and ___",
+          "answer": "apartments"
+        },
+        {
+          "id": "q35",
+          "type": "input",
+          "question": "In Los Angeles, plans to build a riverside ___",
+          "answer": "park"
+        },
+        {
+          "id": "q36",
+          "type": "input",
+          "question": "Display ___ projects (Los Angeles).",
+          "answer": "art"
+        },
+        {
+          "id": "q37",
+          "type": "input",
+          "question": "In Paris, ___ are created on the sides of the river every summer.",
+          "answer": "beaches"
+        },
+        {
+          "id": "q38",
+          "type": "input",
+          "question": "Over 2 billion passengers already travel by ___ in cities around the world.",
+          "answer": "ferry"
+        },
+        {
+          "id": "q39",
+          "type": "input",
+          "question": "Goods can be moved by barges and electric ___ (instead of only road transport).",
+          "answer": "bikes"
+        },
+        {
+          "id": "q40",
+          "type": "input",
+          "question": "…or future ___ (transport).",
+          "answer": "drones"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+.lnt-wrapper {
+  overflow-x: auto;
+  margin: 20px 0 32px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lnt-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.lnt-table th,
+.lnt-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.lnt-table th {
+  background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-mid) 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lnt-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.lnt-input {
+  display: inline-block;
+  min-width: 5.5rem;
+  max-width: 100%;
+  padding: 8px 10px;
+  margin: 0 2px;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  vertical-align: baseline;
+}
+
+.lnt-input:focus {
+  outline: none;
+  border-color: var(--crimson);
+  box-shadow: 0 0 0 3px var(--crimson-glow);
+}
+
+.lnt-segments {
+  display: inline;
+}
+
+.lnt-text {
+  white-space: pre-line;
+}
+
+@media only screen and (max-width: 768px) {
+  .lnt-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .lnt-table,
+  .lnt-table tbody,
+  .lnt-table tr,
+  .lnt-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .lnt-table tr {
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lnt-table td {
+    border: none;
+    padding: 10px 0 10px 0;
+    position: relative;
+    padding-left: 0;
+    text-align: left;
+  }
+
+  .lnt-table td::before {
+    content: attr(data-lnt-label);
+    display: block;
+    font-weight: 700;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--crimson);
+    margin-bottom: 8px;
+  }
+}

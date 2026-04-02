@@ -1,0 +1,418 @@
+/* ==========================================================================
+   ADMIN PAGE
+   ========================================================================== */
+
+/* ── Password Gate ── */
+.admin-gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fdf0f0 0%, #f4f6fb 50%, #fdf0f0 100%);
+  padding: 24px;
+}
+
+.admin-gate-box {
+  background: #fff;
+  padding: 48px 40px;
+  border-radius: 20px;
+  box-shadow: 0 16px 60px rgba(15,23,42,0.18);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  border: 1px solid rgba(168,16,17,0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-gate-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--crimson), var(--crimson-light));
+}
+
+.admin-gate-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.admin-gate-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.admin-gate-box p {
+  color: var(--text2);
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.15) !important;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60%  { transform: translateX(-6px); }
+  40%, 80%  { transform: translateX(6px); }
+}
+
+.gate-error {
+  margin-top: 10px;
+  color: #dc2626;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.gate-hint {
+  margin-top: 20px;
+  font-size: 0.78rem;
+  color: var(--text3);
+}
+
+/* ── Admin Page ── */
+.admin-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 36px 28px 80px;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.admin-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 6px;
+}
+
+.admin-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.15;
+}
+
+.admin-danger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #fff;
+  color: #dc2626;
+  border: 1.5px solid rgba(239,68,68,0.3);
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-danger-btn:hover {
+  background: #fff5f5;
+  border-color: #ef4444;
+  box-shadow: 0 4px 16px rgba(239,68,68,0.2);
+}
+
+/* ── Stats Row ── */
+.admin-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.admin-stat-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: fadeUp 0.4s ease-out both;
+}
+
+.admin-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-stat-card.total {
+  background: linear-gradient(135deg, var(--navy3), var(--navy2));
+  border-color: rgba(168,16,17,0.2);
+}
+
+.admin-stat-card.total .admin-stat-num,
+.admin-stat-card.total .admin-stat-label {
+  color: #fff;
+}
+
+.admin-stat-card.total .admin-stat-label {
+  opacity: 0.6;
+}
+
+.admin-stat-icon {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.admin-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.admin-stat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text3);
+}
+
+/* ── Add Form ── */
+.admin-form {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-form::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--crimson), var(--crimson-light), var(--gold));
+}
+
+.admin-form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.admin-form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 160px;
+}
+
+.admin-field label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text2);
+  margin-bottom: 6px;
+}
+
+.form-select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: auto;
+}
+
+.form-select:focus {
+  border-color: var(--crimson);
+  box-shadow: 0 0 0 3px var(--crimson-glow);
+}
+
+.admin-success {
+  margin-top: 16px;
+  background: #edfaf5;
+  border: 1px solid rgba(13,124,89,0.25);
+  color: #0d7c59;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ── Toolbar ── */
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.admin-filter-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.admin-filter-tab {
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--text2);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.admin-filter-tab:hover {
+  border-color: var(--crimson-border);
+  color: var(--crimson);
+}
+
+.admin-filter-tab.active {
+  background: linear-gradient(135deg, var(--crimson), var(--crimson-light));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: var(--shadow-red);
+}
+
+/* ── List ── */
+.admin-list-header {
+  font-size: 0.82rem;
+  color: var(--text3);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.admin-tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.admin-test-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: fadeUp 0.35s ease-out both;
+}
+
+.admin-test-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-test-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.admin-test-skill-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--navy2);
+  background: var(--bg2);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.admin-delete-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.admin-delete-btn:hover {
+  background: #fdecea;
+  color: #dc2626;
+}
+
+.admin-test-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--navy);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.admin-test-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text3);
+}
+
+.admin-empty {
+  text-align: center;
+  padding: 60px 24px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px dashed var(--border2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .admin-page { padding: 24px 16px 60px; }
+  .admin-form { padding: 20px 18px; }
+  .admin-form-row { flex-direction: column; }
+  .admin-topbar { flex-direction: column; }
+}

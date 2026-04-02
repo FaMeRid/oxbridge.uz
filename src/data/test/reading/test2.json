@@ -1,0 +1,418 @@
+{
+  "id": 2,
+  "title": "Reading Test 2",
+  "description": "Academic Reading - Fishbourne Roman Palace & Insect Decision-Making & Innovation Fear",
+  "level": "Band 6-7",
+  "duration": 3600,
+  "totalQuestions": 40,
+  "difficulty": "Medium",
+  "passages": [
+    {
+      "id": 1,
+      "title": "Fishbourne Roman Palace",
+      "text": "The largest Roman villa in Britain, Fishbourne Roman Palace is in the village of Fishbourne in West Sussex, England. This large palace was built in the 1st century AD, around thirty years after the Roman conquest of Britain on the site of Roman army grain stores which had been established after the invasion, in the reign of the Roman Emperor Claudius in 43 AD. The rectangular palace was built around formal gardens, the northern half of which have been reconstructed. There were extensive alterations in the 2nd and 3rd centuries AD, with many of the original black and white mosaic floors being overlaid with more sophisticated coloured ones, including a perfectly preserved mosaic of a dolphin in the north wing. More alterations were in progress when the palace burnt down in around 270AD after which it was abandoned.\n\nLocal people had long believed that a Roman palace once existed in the area. However, it was not until 1960 that the archaeologist Barry Cunliffe, of Oxford University, first systematically excavated the site, after workmen had accidentally uncovered a wall while they were laying a water main. The Roman villa excavated by Cunliffe's team was so grand that it became known as Fishbourne Roman Palace, and a museum was erected to preserve some of the remains. It is administered by the Sussex Archaeological Society.\n\nIn its day, the completed palace would have comprised four large wings with colonnaded fronts. The north and east wings consisted of suites of private rooms built around courtyards, with a monumental entrance in the middle of the east wing. In the north-east corner there was an assembly hall. The west wing contained state rooms, a large ceremonial reception room, and a gallery. The south wing contained the owner's private apartments. The palace included as many as 50 mosaic floors, under-floor central heating and a bathhouse. In size, Fishbourne Palace would have been approximately equivalent to some of the great Roman palaces of Italy, and was by far the largest known Roman residence north of the European Alps, at about 500 feet (150m) square. A team of volunteers and professional archaeologists are involved in an ongoing archaeological excavation on the site of nearby, possibly military, buildings.\n\nThe first buildings to be erected on the site were constructed in the early part of the conquest in 43 AD. Later, two timber buildings were constructed, one with clay and mortar floors and plaster walls, which appears to have been a house of some comfort. These buildings were demolished in the 60s AD and replaced by a substantial stone house, which included colonnades, and a bath suite. It has been suggested that the palaces itself, incorporating the previous house in its south-east corner, was constructed around 73-75 AD. However, Dr Miles Russell, of Bournemouth University, reinterpreted the ground plan and the collection of objects found and has suggested that, given the extremely close parallels with the imperial palace of Domitian in Rome, its construction may more plausibly date to after 92 AD.\n\nWith regard to who lived in Fishbourne Palace, there are a number of theories; for example, one proposed by Professor Cunliffe is that, in its early phase, the palace was the residence of Tiberius Claudius Cogidubnus, a local chieftain who supported the Romans and who may have been installed as king of a number of territories following the first stage of the conquest. Cogidubnus is known from a reference to his loyalty in Agricola, a work by the Roman writer Tacitus, and from an inscription commemorating a temple dedicated to the gods Neptune and Minerva found in the nearby city of Chichester. Another theory is that it was built for Sallustius Lucullus, a Roman governor of Britain of the late 1st century, who may have been the son of the British prince Adminius. Two inscriptions recording the presence of Lucullus have been found in Chichester, and the redating by Miles Russell of the palace was designed for Lucullus, then it may have been only in use for a few years, as the Roman historian Suetonius records that Lucullus was executed by the Emperor Domitian in or shortly after 93 AD.\n\nAdditional theories suggest that either Verica, a British king of the Roman Empire in the years preceding the Claudian invasion, was owner of the palace, or Tiberius Claudius Catuarus, following the recent discovery of a gold ring belonging to him. The palace outlasted the original owner, whoever he was, and was extensively re-planned early in the 2nd century AD, and subdivided into a series of lesser apartments. Further redevelopment was begun in the late 3rd century AD, but these alterations were incomplete when the north wing was destroyed in a fire around 270 AD. The damage was too great repair, and the palace was abandoned and later dismantled.\n\nA modern museum had been built by the Sussex Archaeological Society, incorporating most of the visible remains, including one wing of the palace. The gardens have been re-planted using authentic plants from the Roman period."
+    },
+    {
+      "id": 2,
+      "title": "Insect decision-making",
+      "text": "It has long been held that decision made collectively by large groups of people are more likely to turn out to be accurate than decisions made by individuals. The idea goes back to the 'jury theorem' of Nicolas de Condorcet, an 18th-century French philosopher who was one of the first to apply mathematics to the social sciences. Condorcet's theory describes collective decisions, outlining how democratic decisions tend to outperform dictatorial ones. If, for example, each member of a jury has only partial information, the majority decision is more likely to be correct than a decision arrived at by a single juror. Moreover, the probability of a correct decision increases with the size of the jury.\n\nNow it is becoming clear that group decisions are also extremely valuable for the success of social animals, such as ants bees, birds and dolphins. Bees make collective decisions, and they do it well, according to Christian List of the London School of Economics, who has studied group decision-making in humans and animals. Researchers led by Dr List looked at colonies once the original colony reaches a certain size. The queen goes off with about two-thirds of the worker bees to live in a new home or nest, leaving a daughter queen in the colony with the remaining workers. Among the bees that depart are some that have searched for and found some new nest sites, and reported back using a characteristic body movement known as a 'waggle dance' to indicate to the other bees the suitable places they have located. The longer the dance, the better the site. After a while, other bees start to visit the sites signaled by their companions to see for themselves and, on their return, also perform more waggle dances. The process eventually leads to a consensus on the best site and the breakaway swarm migrates. The decision is remarkably reliable, with the bees choosing the best site even when there are only small differences between alternative sites.\n\nBut exactly how do bees reach such a robust consensus? To find out, Dr List and his colleagues used a computer-generated model of the decision-making process. By experimenting with it they found that, when bees in the model were very good at finding nesting sites but did not share their information, this dramatically slowed down the migration, leaving the swarm homeless and vulnerable. Conversely, bees in the model blindly following the waggle dances of others without first checking. The researchers concluded that the ability of bees to identify successfully and quickly the best site depends on both the bees' interdependence in communicating the whereabouts of the bees site, and their independence in confirming this information for themselves.\n\nAnother situation in which collective decisions are taken occurs when animals are either isolated from crucial sources of information or dominated by other members of the group. José Halloy of the Free University of Brussels in Belgium used robotic cockroaches to subvert the behaviour of living cockroaches and control their decision-making process. In his experiment, the artificial bugs were introduced to the live ones and soon became sufficiently socially integrated that they were perceived by the real cockroaches as equals. By manipulating the robots, which were in the minority, Halloy was able to persuade the living cockroaches to choose an inappropriate shelter—even one which they had rejected before being infiltrated by the robots."
+    },
+    {
+      "id": 3,
+      "title": "Fear of the Unknown",
+      "text": "American companies fear that innovation is the secret of success—and that they cannot innovate. In the small Umagic office in midtown Manhattan, a team of 30 computer programmers are working on setting up websites that will allow subscribers to feed in details about themselves and their problems and to receive advice from 'virtual' versions of personalities regarded as experts in their fields: for example, a well-known dietician, a celebrity fitness trainer, a psychologist well known in the media for her work on parent-child relationships. Umagic Systems is a young firm and it's hard to predict how far they'll go. In ten years' time, consulting a computer about your diet problems might seem natural or it might seem absurd. But the company and others like it are beginning to seriously worry large American firms, who see such half-crazy new and innovative ideas as a threat to their own future success.\n\nInnovation has become a major concern of American management. Firms have found that it is increasingly difficult to redesign existing products or to produce them more economically. The stars of American business tend today to be innovators such as Amazon (the Internet bookstore) and Wal-Mart (the supermarket chain) which have produced entirely new ideas or products that have changed their industries.\n\nOver the past 15 years, the firms which have achieved the greatest profits have been the ones which have had the most innovations. But such profits aren't easy to come by. One of the reasons for the increasing number of mergers between companies is a desperate search for new ideas. And a fortune is spent nowadays on identifying and protecting intellectual property: other people's ideas. According to the Pasadena-based Patent & License Exchange, the United States, trading in intangible assets such as intellectual property rose from $15 billion in 1990 to $100 billion in 1998, with an increasing proportion of the rewards going to small firms and individuals.\n\nAnd therein lies the terror for big companies: that innovation seems to work best outside them. Many of the large established companies have been struggling to come up with new products recently. 'In the management of creativity size is your enemy,' argues Peter Chemin, who runs Fox TV and film empire for News Corporation. 'One person managing 20 movies is never going to be as involved as one doing five movies.' He has thus tried to break down the studio into smaller units, even at the risk of incurring higher costs.\n\nIt is easier for ideas to develop outside big firms these days. In the past, if a clever scientist had an idea he wanted to commercialise, he would take it first to a big company. Now, with the banks encouraging individuals to set up new businesses through offering special loans, innovators are more likely to set up on their own. Umagic has already raised $5 million and is about to raise $25 million more. Even in capital-intensive businesses such as pharmaceuticals, entrepreneurs can conduct profitable, early-stage research, selling out to the big firms when they reach expensive, risky clinical trials.\n\nSome giants, including General Electric and Cisco, have been remarkably successful at buying up and integrating scores of small companies. But many others worry about the prices they have to pay and the difficulty in keeping hold of the people who dreamt up the ideas. 'Everybody would like to develop more ideas in-house,' says Frank and his associates reported how the insects reduce the problems associated with making a necessary swift choice. If the ants' existing nest become suddenly threatened, the insects choose certain ants to act as scouts to find a new nest.\n\nHow quickly they accomplish the transfer to a new home depends not only on how soon the best available site is found, but also on how quickly the migration there can be achieved.\n\nOnce the suitable new nest is identified, the chosen ants begin to lead others, which have made it to the new site or which may simply be in the vicinity, back to the original threatened nest. In this way, those ants which are familiar with the route can help transport, for example, the queen and young ants to the new site, and simultaneously show the way to those ants which have been left behind to guard the old nest. In this way moving processes are accomplished faster and more efficiently. Thus the dynamics of collective decision-making are closely related to the efficient implementation of those decisions. How this might apply to choices that humans make is, as yet, unclear. But it does suggest, even for humans, the importance of recruiting dynamic leaders to a cause because the most important thing about collective decision-making, as shown by these insect experiments, is to get others to follow.\n\nWill all this reorganization and culture tweaking make big firms more creative? David Post, the founder of Umagic, isn't so sure: 'He also recalls with glee the looks of total incomprehension when he tried to sell his \"virtual experts\" idea three years ago to firms such as IBM, though, as he cheerfully adds, \"of course, they could have been right.\" Apparently, innovation —unlike diet, fitness and parenting— is one area where a computer cannot tell you what to do."
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "passageId": 1,
+      "type": "true_false_not_given",
+      "questionText": "Fishbourne Palace was the first structure to be built on its site.",
+      "correctAnswer": "FALSE",
+      "explanation": "The passage states: 'The first buildings to be erected on the site were constructed in the early part of the conquest in 43 AD' - before the palace."
+    },
+    {
+      "id": 2,
+      "passageId": 1,
+      "type": "true_false_not_given",
+      "questionText": "Fishbourne Palace was renovated more than once.",
+      "correctAnswer": "TRUE",
+      "explanation": "The passage mentions 'extensive alterations in the 2nd and 3rd centuries AD' and 'was extensively re-planned early in the 2nd century AD.'"
+    },
+    {
+      "id": 3,
+      "passageId": 1,
+      "type": "true_false_not_given",
+      "questionText": "Fishbourne Palace was large in comparison with Roman palaces in Italy.",
+      "correctAnswer": "FALSE",
+      "explanation": "The passage states it was 'approximately equivalent to some of the great Roman palaces of Italy' - not larger."
+    },
+    {
+      "id": 4,
+      "passageId": 1,
+      "type": "true_false_not_given",
+      "questionText": "Research is continuing in the area close to Fishbourne Palace.",
+      "correctAnswer": "TRUE",
+      "explanation": "The passage states: 'A team of volunteers and professional archaeologists are involved in an ongoing archaeological excavation.'"
+    },
+    {
+      "id": 5,
+      "passageId": 1,
+      "type": "true_false_not_given",
+      "questionText": "Researchers agree on the identity of the person for whom Fishbourne Palace was constructed.",
+      "correctAnswer": "FALSE",
+      "explanation": "The passage mentions 'a number of theories' about who lived there - there is no agreement."
+    },
+    {
+      "id": 6,
+      "passageId": 1,
+      "type": "true_false_not_given",
+      "questionText": "Fishbourne Palace was burnt down by local people.",
+      "correctAnswer": "NOT GIVEN",
+      "explanation": "The passage states it burnt down 'in around 270 AD' but doesn't explain the cause."
+    },
+    {
+      "id": 7,
+      "passageId": 1,
+      "type": "fill_gap",
+      "questionText": "The first buildings on the site contained food for the _______.",
+      "correctAnswer": "Roman army",
+      "explanation": "The passage states: 'on the site of Roman army grain stores.'"
+    },
+    {
+      "id": 8,
+      "passageId": 1,
+      "type": "fill_gap",
+      "questionText": "The palace building surrounded _______.",
+      "correctAnswer": "gardens",
+      "explanation": "The passage states: 'The rectangular palace was built around formal gardens.'"
+    },
+    {
+      "id": 9,
+      "passageId": 1,
+      "type": "fill_gap",
+      "questionText": "In the 2nd and 3rd centuries, colour was added to the _______ of the palace.",
+      "correctAnswer": "floors",
+      "explanation": "The passage mentions 'mosaic floors being overlaid with more sophisticated coloured ones.'"
+    },
+    {
+      "id": 10,
+      "passageId": 1,
+      "type": "fill_gap",
+      "questionText": "The first part of the palace to be found was part of a _______.",
+      "correctAnswer": "wall",
+      "explanation": "The passage states: 'workmen had accidentally uncovered a wall while they were laying a water main.'"
+    },
+    {
+      "id": 11,
+      "passageId": 1,
+      "type": "fill_gap",
+      "questionText": "Sallustius Lucullus may have lived there until approximately _______ AD.",
+      "correctAnswer": "93",
+      "explanation": "The passage states: 'Lucullus was executed by the Emperor Domitian in or shortly after 93 AD.'"
+    },
+    {
+      "id": 12,
+      "passageId": 1,
+      "type": "fill_gap",
+      "questionText": "Catuarus – his _______ was found there.",
+      "correctAnswer": "gold ring",
+      "explanation": "The passage mentions 'the recent discovery of a gold ring belonging to him' regarding Tiberius Claudius Catuarus."
+    },
+    {
+      "id": 13,
+      "passageId": 1,
+      "type": "fill_gap",
+      "questionText": "A _______ has been built on the site to help protect it.",
+      "correctAnswer": "modern museum",
+      "explanation": "The passage states: 'A modern museum had been built by the Sussex Archaeological Society.'"
+    },
+    {
+      "id": 14,
+      "passageId": 2,
+      "type": "matching_heading",
+      "questionText": "Paragraph A",
+      "correctAnswer": "vii",
+      "options": ["i", "ii", "iii", "iv", "v", "vi", "vii"],
+      "explanation": "Heading vii: 'How the number of decision-makers affects the decision' matches paragraph A about Condorcet's jury theorem."
+    },
+    {
+      "id": 15,
+      "passageId": 2,
+      "type": "matching_heading",
+      "questionText": "Paragraph B",
+      "correctAnswer": "iii",
+      "options": ["i", "ii", "iii", "iv", "v", "vi", "vii"],
+      "explanation": "Heading iii: 'Signals used by certain insects to indicate a discovery' matches paragraph B about waggle dances."
+    },
+    {
+      "id": 16,
+      "passageId": 2,
+      "type": "matching_heading",
+      "questionText": "Paragraph C",
+      "correctAnswer": "vi",
+      "options": ["i", "ii", "iii", "iv", "v", "vi", "vii"],
+      "explanation": "Heading vi: 'The use of virtual scenarios in the study of insect behaviour' matches paragraph C about computer models."
+    },
+    {
+      "id": 17,
+      "passageId": 2,
+      "type": "matching_heading",
+      "questionText": "Paragraph D",
+      "correctAnswer": "i",
+      "options": ["i", "ii", "iii", "iv", "v", "vi", "vii"],
+      "explanation": "Heading i: 'The effect of man-made imitations on insects' matches paragraph D about robotic cockroaches."
+    },
+    {
+      "id": 18,
+      "passageId": 2,
+      "type": "matching_heading",
+      "questionText": "Paragraph E",
+      "correctAnswer": "iv",
+      "options": ["i", "ii", "iii", "iv", "v", "vi", "vii"],
+      "explanation": "Heading iv: 'How urgency can affect the process of finding a new home' matches paragraph E about ants relocating."
+    },
+    {
+      "id": 19,
+      "passageId": 2,
+      "type": "matching_heading",
+      "questionText": "Paragraph F",
+      "correctAnswer": "ii",
+      "options": ["i", "ii", "iii", "iv", "v", "vi", "vii"],
+      "explanation": "Heading ii: 'The need to instruct additional insect guides' matches paragraph F about instructing other ants."
+    },
+    {
+      "id": 20,
+      "passageId": 2,
+      "type": "matching_person",
+      "personName": "Certain members can influence the rest of the group to alter a previous decision",
+      "correctAnswer": "C",
+      "options": ["A", "B", "C", "D"],
+      "explanation": "José Halloy demonstrated this with robotic cockroaches influencing real ones."
+    },
+    {
+      "id": 21,
+      "passageId": 2,
+      "type": "matching_person",
+      "personName": "Individual verification of a proposed choice is important for successful decision outcome",
+      "correctAnswer": "B",
+      "options": ["A", "B", "C", "D"],
+      "explanation": "Christian List and colleagues concluded bees need both communication and independent verification."
+    },
+    {
+      "id": 22,
+      "passageId": 2,
+      "type": "matching_person",
+      "personName": "The more individuals taking part in a decision, the better the decision will be",
+      "correctAnswer": "A",
+      "options": ["A", "B", "C", "D"],
+      "explanation": "Nicolas de Condorcet's jury theorem states the probability of correct decision increases with size."
+    },
+    {
+      "id": 23,
+      "passageId": 2,
+      "type": "matching_person",
+      "personName": "The decision-making process of certain insects produces excellent results even when fine distinctions are required",
+      "correctAnswer": "B",
+      "options": ["A", "B", "C", "D"],
+      "explanation": "Christian List's research showed bees choose the best site even with small differences."
+    },
+    {
+      "id": 24,
+      "passageId": 2,
+      "type": "fill_gap",
+      "questionText": "A study of insect decision-making - the ants' existing nest become suddenly _______.",
+      "correctAnswer": "threatened",
+      "explanation": "The passage states: 'If the ants' existing nest become suddenly threatened.'"
+    },
+    {
+      "id": 25,
+      "passageId": 2,
+      "type": "fill_gap",
+      "questionText": "The insects choose certain ants to act as _______ to find a new nest.",
+      "correctAnswer": "scouts",
+      "explanation": "The passage states: 'the insects choose certain ants to act as scouts to find a new nest.'"
+    },
+    {
+      "id": 26,
+      "passageId": 2,
+      "type": "fill_gap",
+      "questionText": "It does suggest the importance of recruiting dynamic _______ to a cause.",
+      "correctAnswer": "leaders",
+      "explanation": "The passage states: 'the importance of recruiting dynamic leaders to a cause.'"
+    },
+    {
+      "id": 27,
+      "passageId": 3,
+      "type": "paragraph_info",
+      "questionText": "the methods some companies use to try to keep their most creative employees",
+      "correctAnswer": "F",
+      "explanation": "Paragraph F discusses companies trying to keep talented people."
+    },
+    {
+      "id": 28,
+      "passageId": 3,
+      "type": "paragraph_info",
+      "questionText": "a new way of getting help with your personal difficulties",
+      "correctAnswer": "A",
+      "explanation": "Paragraph A describes Umagic's virtual experts idea."
+    },
+    {
+      "id": 29,
+      "passageId": 3,
+      "type": "paragraph_info",
+      "questionText": "how much investment goes into safeguarding the ideas of individuals",
+      "correctAnswer": "C",
+      "explanation": "Paragraph C mentions 'a fortune is spent nowadays on identifying and protecting intellectual property.'"
+    },
+    {
+      "id": 30,
+      "passageId": 3,
+      "type": "paragraph_info",
+      "questionText": "two examples of companies which have succeeded through being innovative",
+      "correctAnswer": "B",
+      "explanation": "Paragraph B mentions Amazon and Wal-Mart as innovators."
+    },
+    {
+      "id": 31,
+      "passageId": 3,
+      "type": "paragraph_info",
+      "questionText": "how some innovators manage to avoid spending large sums of money on testing out their ideas",
+      "correctAnswer": "E",
+      "explanation": "Paragraph E discusses entrepreneurs conducting early-stage research before selling to big firms."
+    },
+    {
+      "id": 32,
+      "passageId": 3,
+      "type": "paragraph_info",
+      "questionText": "a commonly held opinion about product designers that needs to be proved wrong",
+      "correctAnswer": "G",
+      "explanation": "Paragraph G discusses size being an enemy of creativity according to Peter Chemin."
+    },
+    {
+      "id": 33,
+      "passageId": 3,
+      "type": "paragraph_info",
+      "questionText": "the target of one large company that has changed its business focus",
+      "correctAnswer": "F",
+      "explanation": "Paragraph F discusses companies trying to develop more ideas in-house."
+    },
+    {
+      "id": 34,
+      "passageId": 3,
+      "type": "true_false_not_given",
+      "questionText": "Umagic Systems is an example of a new innovative company.",
+      "correctAnswer": "TRUE",
+      "explanation": "The passage describes Umagic as developing new virtual expert services."
+    },
+    {
+      "id": 35,
+      "passageId": 3,
+      "type": "true_false_not_given",
+      "questionText": "Amazon and Wal-Mart have exchanged successful ideas on innovation.",
+      "correctAnswer": "NOT GIVEN",
+      "explanation": "The passage mentions both as innovators but doesn't say they exchanged ideas."
+    },
+    {
+      "id": 36,
+      "passageId": 3,
+      "type": "true_false_not_given",
+      "questionText": "Using financial rewards to encourage innovation is an outdated practice.",
+      "correctAnswer": "FALSE",
+      "explanation": "The passage mentions banks offering loans to innovators, implying financial rewards still work."
+    },
+    {
+      "id": 37,
+      "passageId": 3,
+      "type": "true_false_not_given",
+      "questionText": "IBM failed to understand David Post's 'virtual experts' idea.",
+      "correctAnswer": "TRUE",
+      "explanation": "The passage states: 'looks of total incomprehension when he tried to sell his virtual experts idea to firms such as IBM.'"
+    },
+    {
+      "id": 38,
+      "passageId": 3,
+      "type": "multiple_choice",
+      "questionText": "What point does the writer make about intellectual property?",
+      "correctAnswer": "C",
+      "options": [
+        "It can be lost when firms merge",
+        "It tends to belong to companies rather than individuals",
+        "It is valued more than it used to be",
+        "It is not usually owned by small companies"
+      ],
+      "explanation": "The passage shows intellectual property trading rose from $15 billion to $100 billion, showing increased value."
+    },
+    {
+      "id": 39,
+      "passageId": 3,
+      "type": "multiple_choice",
+      "questionText": "Peter Chemin is an example of someone who has realized that",
+      "correctAnswer": "A",
+      "options": [
+        "large companies are less innovative than small ones",
+        "other businesses are more innovative than the film business",
+        "his employees need more experience of innovation",
+        "he is the best person to encourage innovation"
+      ],
+      "explanation": "Chemin quotes: 'In the management of creativity size is your enemy' - showing large companies struggle with innovation."
+    },
+    {
+      "id": 40,
+      "passageId": 3,
+      "type": "multiple_choice",
+      "questionText": "In conclusion, the writer suggests that",
+      "correctAnswer": "D",
+      "options": [
+        "computer-based industries cannot be innovative",
+        "big firms are right to be cautious about innovation",
+        "small firms should not worry about early failures",
+        "innovation will always involve some uncertainty"
+      ],
+      "explanation": "The final paragraph suggests computers cannot tell you what to do about innovation, implying uncertainty."
+    }
+  ],
+  "correctAnswers": {
+    "1": "FALSE",
+    "2": "TRUE",
+    "3": "FALSE",
+    "4": "TRUE",
+    "5": "FALSE",
+    "6": "NOT GIVEN",
+    "7": "Roman army",
+    "8": "gardens",
+    "9": "floors",
+    "10": "wall",
+    "11": "93",
+    "12": "gold ring",
+    "13": "modern museum",
+    "14": "vii",
+    "15": "iii",
+    "16": "vi",
+    "17": "i",
+    "18": "iv",
+    "19": "ii",
+    "20": "C",
+    "21": "B",
+    "22": "A",
+    "23": "B",
+    "24": "threatened",
+    "25": "scouts",
+    "26": "leaders",
+    "27": "F",
+    "28": "A",
+    "29": "C",
+    "30": "B",
+    "31": "E",
+    "32": "G",
+    "33": "F",
+    "34": "TRUE",
+    "35": "NOT GIVEN",
+    "36": "FALSE",
+    "37": "TRUE",
+    "38": "C",
+    "39": "A",
+    "40": "D"
+  }
+}
