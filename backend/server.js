@@ -1,141 +1,87 @@
 const express = require("express");
 const cors = require("cors");
-const { createClient } = require("@supabase/supabase-js");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+// Middleware
+const authMiddleware = require("./middleware/auth");
+const errorHandler = require("./middleware/errorHandler");
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
+// Routes
+const authRoutes = require("./routes/auth");
+const studentRoutes = require("./routes/students");
+const teacherRoutes = require("./routes/teachers");
+const testRoutes = require("./routes/tests");
+const submissionRoutes = require("./routes/submissions");
+const adminRoutes = require("./routes/admin");
+
+// Utils
+const logger = require("./utils/logger");
+
+// Initialize Express
+const app = express();
+
+// ========== MIDDLEWARE ==========
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
 );
 
-// ━━━ AUTH ROUTES ━━━
-
-// Student Register
-app.post("/api/auth/register", async (req, res) => {
-  try {
-    const { email, password, name } = req.body;
-    
-    const { data, error } = await supabase
-      .from("users")
-      .insert([{ email, password, name, role: "student" }])
-      .select();
-
-    if (error) return res.status(400).json({ error: error.message });
-    res.json({ user: data[0] });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests, please try again later",
 });
 
-// Student Login
-app.post("/api/auth/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    
-    const { data, error } = await supabase
-      .from("users")
-      .select("*")
-      .eq("email", email)
-      .eq("password", password)
-      .single();
+app.use(limiter);
 
-    if (error) return res.status(400).json({ error: "Invalid credentials" });
-    res.json({ user: data });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+// ========== HEALTH CHECK ==========
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "OK",
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV,
+  });
 });
 
-// ━━━ TESTS ROUTES ━━━
+// ========== API ROUTES ==========
+app.use("/api/auth", authRoutes);
+app.use("/api/students", authMiddleware, studentRoutes);
+app.use("/api/teachers", authMiddleware, teacherRoutes);
+app.use("/api/tests", testRoutes);
+app.use("/api/submissions", authMiddleware, submissionRoutes);
+app.use("/api/admin", authMiddleware, adminRoutes);
 
-// Get all tests
-app.get("/api/tests", async (req, res) => {
-  try {
-    const { data, error } = await supabase.from("tests").select("*");
-    if (error) return res.status(400).json({ error: error.message });
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+// ========== 404 HANDLER ==========
+app.use((req, res) => {
+  res.status(404).json({ error: "Route not found" });
 });
 
-// Create test (admin only)
-app.post("/api/tests", async (req, res) => {
-  try {
-    const { name, skill, parts } = req.body;
-    const { data, error } = await supabase
-      .from("tests")
-      .insert([{ name, skill, parts }])
-      .select();
+// ========== ERROR HANDLER ==========
+app.use(errorHandler);
 
-    if (error) return res.status(400).json({ error: error.message });
-    res.json(data[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ━━━ SUBMISSIONS ROUTES ━━━
-
-// Submit answer
-app.post("/api/submissions", async (req, res) => {
-  try {
-    const { user_id, test_id, skill, answers } = req.body;
-    
-    const { data, error } = await supabase
-      .from("submissions")
-      .insert([{ user_id, test_id, skill, answers }])
-      .select();
-
-    if (error) return res.status(400).json({ error: error.message });
-    res.json(data[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Get user submissions
-app.get("/api/submissions/:user_id", async (req, res) => {
-  try {
-    const { user_id } = req.params;
-    const { data, error } = await supabase
-      .from("submissions")
-      .select("*")
-      .eq("user_id", user_id);
-
-    if (error) return res.status(400).json({ error: error.message });
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Teacher grades submission
-app.patch("/api/submissions/:id/grade", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { score, feedback, teacher_id } = req.body;
-
-    const { data, error } = await supabase
-      .from("submissions")
-      .update({ score, feedback, teacher_id })
-      .eq("id", id)
-      .select();
-
-    if (error) return res.status(400).json({ error: error.message });
-    res.json(data[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ━━━ START SERVER ━━━
-
+// ========== START SERVER ==========
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  logger.info(`
+╔═══════════════════════════════════╗
+║  🚀 OXBRIDGE BACKEND RUNNING      ║
+╠═══════════════════════════════════╣
+║  Port: ${PORT}
+║  Environment: ${process.env.NODE_ENV}
+║  URL: http://localhost:${PORT}
+║  Frontend: ${process.env.FRONTEND_URL}
+╚═══════════════════════════════════╝
+  `);
 });
+
+module.exports = app;
