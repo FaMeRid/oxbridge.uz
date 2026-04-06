@@ -1,18 +1,28 @@
+const logger = require("../utils/logger");
+
 const validateRequest = (schema) => {
   return (req, res, next) => {
-    const { error, value } = schema.validate(req.body, {
-      abortEarly: false,
-    });
+    // Если schema это функция (Joi validators обычно функции)
+    let validationResult;
+    
+    if (typeof schema === 'function') {
+      // Вызываем как функцию
+      validationResult = schema(req.body);
+    } else if (schema.validate) {
+      // Если это Joi object с методом validate
+      validationResult = schema.validate(req.body, { abortEarly: false });
+    } else {
+      return res.status(500).json({ error: "Invalid schema" });
+    }
+
+    const { error, value } = validationResult;
 
     if (error) {
-      const errors = error.details.map((err) => ({
-        field: err.path.join("."),
-        message: err.message,
-      }));
-
-      return res.status(422).json({
-        error: "Validation error",
-        details: errors,
+      const messages = error.details?.map(d => d.message).join(", ") || error.message;
+      logger.warn(`Validation error: ${messages}`);
+      return res.status(400).json({
+        error: "Validation failed",
+        details: error.details?.map(d => d.message) || [error.message],
       });
     }
 
