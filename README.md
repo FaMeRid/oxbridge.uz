@@ -1,47 +1,34 @@
 # IELTS Platform — Oxbridge.uz
 
-**Платформа для подготовки к IELTS** специально для учеников и студентов **Oxbridge International School** (и не только).
+**Современная платформа для подготовки к IELTS**  
+для учеников **Oxbridge International School** (Ташкент) и всех желающих.
 
-Современный инструмент, который помогает улучшать все 4 секции IELTS: Listening, Reading, Writing и Speaking.
+---
 
-![IELTS Platform Preview](https://via.placeholder.com/800x400?text=IELTS+Platform+Screenshot)  
-*(Добавь сюда реальные скриншоты позже)*
+## ✨ Возможности
 
-## ✨ Основные возможности
-
-- Интерактивные mock-тесты IELTS (полные и по секциям)
-- Listening с аудио и автоматической проверкой
-- Vocabulary trainer и word lists
-- Writing feedback (пока в разработке)
-- Личный кабинет и сохранение прогресса
-- Адаптивный дизайн (мобильная версия)
+- Интерактивная подготовка к IELTS (Listening, Reading, Writing, Speaking)
+- Рабочий backend (запоминает сессии и ID пользователей)
+- Mock-тесты и упражнения
+- State management через Zustand
+- Postman-коллекции для тестирования API
 
 ## 🛠 Технологии
 
 **Frontend:**
-- Vite
-- Vanilla JavaScript + CSS
-- HTML5
+- React + Vite
+- Zustand (state management)
+- Vanilla CSS / Tailwind (в будущем)
 
 **Backend:**
-- Node.js (Express / Fastify — уточни у себя)
-- (Добавь базу данных, если используешь: MongoDB / PostgreSQL и т.д.)
+- Node.js + Express (или что используешь)
 
-## 🚀 Быстрый старт
+**Инструменты:**
+- Postman
 
-### Предварительные требования
-- Node.js (версия 18+)
-- npm или yarn
+## 🚀 Как запустить проект локально
 
-### Запуск Frontend
-
+### 1. Клонирование
 ```bash
-# Клонируем репозиторий
 git clone https://github.com/FaMeRid/oxbridge.uz.git
 cd oxbridge.uz
-
-# Устанавливаем зависимости
-npm install
-
-# Запускаем в режиме разработки
-npm run dev

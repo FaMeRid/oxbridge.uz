@@ -1,57 +1,44 @@
-const bcrypt = require("bcryptjs");
-const supabase = require("../config/database");
+const { supabaseAdmin } = require("../config/supabase");
 const { generateTokens } = require("../utils/jwt");
-const { v4: uuidv4 } = require("uuid");
 const logger = require("../utils/logger");
 
-// REGISTER
+// REGISTER — через Supabase Auth (рекомендуемый способ)
 exports.register = async (req, res, next) => {
   try {
     const { email, password, displayName } = req.validatedData;
 
-    // Check if user exists
-    const { data: existingUser } = await supabase
-      .from("users")
-      .select("id")
-      .eq("email", email)
-      .single();
+    const { data, error } = await supabaseAdmin.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true,                    // в разработке — сразу подтверждаем email
+      user_metadata: {
+        display_name: displayName,
+        role: "student"
+      }
+    });
 
-    if (existingUser) {
-      return res.status(409).json({ error: "Email already registered" });
+    if (error) {
+      if (error.message.toLowerCase().includes("already exists") || 
+          error.message.toLowerCase().includes("already registered")) {
+        return res.status(409).json({ error: "Email already registered" });
+      }
+      throw error;
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = data.user;
 
-    // Create user
-    const { data: user, error } = await supabase
-      .from("users")
-      .insert([
-        {
-          id: uuidv4(),
-          email,
-          password: hashedPassword,
-          displayName,
-          role: "student",
-          created_at: new Date().toISOString(),
-        },
-      ])
-      .select()
-      .single();
-
-    if (error) throw error;
-
-    // Generate tokens
-    const { accessToken, refreshToken } = generateTokens(user.id, user.role);
+    // Генерируем свои JWT (пока оставляем твою функцию)
+    const { accessToken, refreshToken } = generateTokens(user.id, "student");
 
     logger.info(`User registered: ${email}`);
 
     res.status(201).json({
+      success: true,
       user: {
         id: user.id,
         email: user.email,
-        displayName: user.displayName,
-        role: user.role,
+        displayName: displayName,
+        role: "student"
       },
       accessToken,
       refreshToken,
@@ -61,40 +48,37 @@ exports.register = async (req, res, next) => {
   }
 };
 
-// LOGIN
+// LOGIN — исправленный вариант
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.validatedData;
 
-    // Find user
-    const { data: user, error } = await supabase
-      .from("users")
-      .select("*")
-      .eq("email", email)
-      .single();
+    // Для логина лучше использовать обычный клиент (с anon key), но чтобы не плодить клиенты — используем admin + getUserByEmail + проверку
+    // Самый надёжный способ для backend:
+    const { data: signInData, error: signInError } = await supabaseAdmin.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-    if (error || !user) {
+    if (signInError || !signInData.user) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Check password
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const user = signInData.user;
 
-    if (!isValidPassword) {
-      return res.status(401).json({ error: "Invalid credentials" });
-    }
+    const role = user.user_metadata?.role || "student";
 
-    // Generate tokens
-    const { accessToken, refreshToken } = generateTokens(user.id, user.role);
+    const { accessToken, refreshToken } = generateTokens(user.id, role);
 
     logger.info(`User logged in: ${email}`);
 
     res.json({
+      success: true,
       user: {
         id: user.id,
         email: user.email,
-        displayName: user.displayName,
-        role: user.role,
+        displayName: user.user_metadata?.display_name || null,
+        role: role,
       },
       accessToken,
       refreshToken,
@@ -104,8 +88,8 @@ exports.login = async (req, res, next) => {
   }
 };
 
-// LOGOUT
+// LOGOUT (пока простой, можно улучшить позже)
 exports.logout = async (req, res) => {
-  logger.info(`User logged out: ${req.user.userId}`);
-  res.json({ message: "Logged out successfully" });
+  logger.info(`User logged out: ${req.user?.userId || 'unknown'}`);
+  res.json({ success: true, message: "Logged out successfully" });
 };
