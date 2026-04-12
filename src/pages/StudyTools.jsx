@@ -13,7 +13,18 @@ import FlashcardDeck from "../components/tools/FlashcardDeck";
 import ScorePredictor from "../components/tools/ScorePredictor";
 import StudyPlanner from "../components/tools/StudyPlanner";
 
+// ←←← НОВЫЙ ИМПОРТ
+import PlacementTest from "../components/tools/PlacementTest";   // ← укажи правильный путь
+
 const tools = [
+  {
+    id: "placement",
+    icon: "🎓",
+    name: "Placement Test",
+    desc: "Определи свой текущий уровень IELTS за ~30 минут. Получи оценку band score и персональные рекомендации.",
+    badge: "Core Tool",
+    component: PlacementTest,
+  },
   {
     id: "vocabulary",
     icon: "📝",
@@ -154,7 +165,7 @@ export default function StudyTools() {
     );
   }
 
-  // Show tools grid
+  // Show tools grid (остальной код без изменений)
   return (
     <div className="tools-page">
       {/* Header */}
@@ -238,12 +249,7 @@ export default function StudyTools() {
       {/* Grid */}
       <div className="tools-grid">
         {filtered.map((tool, i) => {
-          const dc =
-            BADGE_COLORS[tool.badge] || {
-              bg: "#f0f3f9",
-              color: "#4a5878",
-              border: "#dde3ef",
-            };
+          const dc = BADGE_COLORS[tool.badge] || { bg: "#f0f3f9", color: "#4a5878", border: "#dde3ef" };
           return (
             <button
               key={tool.id}
@@ -285,32 +291,21 @@ export default function StudyTools() {
               <div className="tool-name" style={{ fontWeight: 700, fontSize: "1rem", color: "#0f172a", marginBottom: 8 }}>
                 {tool.name}
               </div>
-              <div
-                className="tool-desc"
-                style={{
-                  fontSize: "0.82rem",
-                  color: "#475569",
-                  lineHeight: 1.6,
-                  marginBottom: 14,
-                }}
-              >
+              <div className="tool-desc" style={{ fontSize: "0.82rem", color: "#475569", lineHeight: 1.6, marginBottom: 14 }}>
                 {tool.desc}
               </div>
-              <span
-                className="tool-badge"
-                style={{
-                  display: "inline-block",
-                  fontSize: "0.65rem",
-                  fontWeight: 700,
-                  letterSpacing: "1px",
-                  textTransform: "uppercase",
-                  padding: "4px 11px",
-                  borderRadius: "999px",
-                  border: `1px solid ${dc.border}`,
-                  background: dc.bg,
-                  color: dc.color,
-                }}
-              >
+              <span className="tool-badge" style={{
+                display: "inline-block",
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                padding: "4px 11px",
+                borderRadius: "999px",
+                border: `1px solid ${dc.border}`,
+                background: dc.bg,
+                color: dc.color,
+              }}>
                 {tool.badge}
               </span>
             </button>

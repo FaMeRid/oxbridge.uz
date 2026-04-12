@@ -1,18 +1,15 @@
-const express = require("express");
+// backend/routes/auth.js
+const express = require('express');
 const router = express.Router();
-const authController = require("../controllers/authController");
-const validateRequest = require("../middleware/validation");
-const { validateRegister, validateLogin } = require("../utils/validation");
-const authMiddleware = require("../middleware/auth");
+const authController = require('../controllers/authController');
 
-router.post(
-  "/register",
-  validateRequest(validateRegister),
-  authController.register
-);
+// Регистрация
+router.post('/register', authController.register);
 
-router.post("/login", validateRequest(validateLogin), authController.login);
+// Логин
+router.post('/login', authController.login);
 
-router.post("/logout", authMiddleware, authController.logout);
+// Выход
+router.post('/logout', authController.logout);
 
 module.exports = router;

@@ -1,95 +1,159 @@
-const { supabaseAdmin } = require("../config/supabase");
-const { generateTokens } = require("../utils/jwt");
-const logger = require("../utils/logger");
+// backend/controllers/authController.js
 
-// REGISTER — через Supabase Auth (рекомендуемый способ)
-exports.register = async (req, res, next) => {
+const { supabaseClient, supabaseAdmin } = require("../config/supabase");
+
+/**
+ * REGISTER
+ */
+const register = async (req, res) => {
   try {
-    const { email, password, displayName } = req.validatedData;
-
-    const { data, error } = await supabaseAdmin.auth.admin.createUser({
+    const {
       email,
       password,
-      email_confirm: true,                    // в разработке — сразу подтверждаем email
-      user_metadata: {
-        display_name: displayName,
-        role: "student"
-      }
+      full_name,
+      class: studentClass,
+      role = "student",
+    } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        error: "Email и пароль обязательны",
+      });
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: full_name || null,
+          student_class: studentClass || null,
+          role,
+          display_name: full_name || null,
+        },
+      },
     });
 
     if (error) {
-      if (error.message.toLowerCase().includes("already exists") || 
-          error.message.toLowerCase().includes("already registered")) {
-        return res.status(409).json({ error: "Email already registered" });
-      }
-      throw error;
+      return res.status(400).json({
+        success: false,
+        error: error.message,
+      });
     }
 
-    const user = data.user;
+    // ⚠️ Supabase иногда не возвращает user сразу
+    if (!data.user) {
+      return res.status(400).json({
+        success: false,
+        error:
+          "Пользователь не создан. Возможно требуется подтверждение email.",
+      });
+    }
 
-    // Генерируем свои JWT (пока оставляем твою функцию)
-    const { accessToken, refreshToken } = generateTokens(user.id, "student");
-
-    logger.info(`User registered: ${email}`);
-
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
+      message: "Пользователь успешно создан",
       user: {
-        id: user.id,
-        email: user.email,
-        displayName: displayName,
-        role: "student"
+        id: data.user.id,
+        email: data.user.email,
+        full_name: data.user.user_metadata?.full_name,
+        class: data.user.user_metadata?.student_class,
+        role: data.user.user_metadata?.role,
       },
-      accessToken,
-      refreshToken,
     });
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    console.error("Register error:", err);
+    return res.status(500).json({
+      success: false,
+      error: "Внутренняя ошибка сервера",
+    });
   }
 };
 
-// LOGIN — исправленный вариант
-exports.login = async (req, res, next) => {
+/**
+ * LOGIN
+ */
+const login = async (req, res) => {
   try {
-    const { email, password } = req.validatedData;
+    const { email, password } = req.body;
 
-    // Для логина лучше использовать обычный клиент (с anon key), но чтобы не плодить клиенты — используем admin + getUserByEmail + проверку
-    // Самый надёжный способ для backend:
-    const { data: signInData, error: signInError } = await supabaseAdmin.auth.signInWithPassword({
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        error: "Email и пароль обязательны",
+      });
+    }
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
       email,
       password,
     });
 
-    if (signInError || !signInData.user) {
-      return res.status(401).json({ error: "Invalid credentials" });
+    if (error) {
+      return res.status(401).json({
+        success: false,
+        error: error.message,
+      });
     }
 
-    const user = signInData.user;
+    if (!data.session || !data.user) {
+      return res.status(401).json({
+        success: false,
+        error: "Не удалось войти в систему",
+      });
+    }
 
-    const role = user.user_metadata?.role || "student";
+    // ⚠️ НЕ используем supabaseAdmin здесь (это была твоя ошибка)
+    const user = data.user;
 
-    const { accessToken, refreshToken } = generateTokens(user.id, role);
-
-    logger.info(`User logged in: ${email}`);
-
-    res.json({
+    return res.status(200).json({
       success: true,
+      access_token: data.session.access_token,
+      refresh_token: data.session.refresh_token,
+      expires_in: data.session.expires_in,
+
       user: {
         id: user.id,
         email: user.email,
-        displayName: user.user_metadata?.display_name || null,
-        role: role,
+        full_name:
+          user.user_metadata?.full_name ||
+          user.user_metadata?.display_name,
+        class: user.user_metadata?.student_class,
+        role: user.user_metadata?.role || "student",
+        email_confirmed_at: user.email_confirmed_at,
       },
-      accessToken,
-      refreshToken,
     });
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    console.error("Login error:", err);
+    return res.status(500).json({
+      success: false,
+      error: "Внутренняя ошибка сервера",
+    });
   }
 };
 
-// LOGOUT (пока простой, можно улучшить позже)
-exports.logout = async (req, res) => {
-  logger.info(`User logged out: ${req.user?.userId || 'unknown'}`);
-  res.json({ success: true, message: "Logged out successfully" });
+/**
+ * LOGOUT (frontend responsibility mostly)
+ */
+const logout = async (req, res) => {
+  try {
+    // Supabase logout обычно делается на фронте
+    return res.status(200).json({
+      success: true,
+      message: "Успешный выход",
+    });
+  } catch (err) {
+    console.error("Logout error:", err);
+    return res.status(500).json({
+      success: false,
+      error: "Внутренняя ошибка сервера",
+    });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  logout,
 };

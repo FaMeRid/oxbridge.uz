@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "question": "She ___ to school every day.",
+    "options": ["go", "goes", "going", "gone"],
+    "answer": "goes",
+    "level": "A1"
+  },
+  {
+    "id": 2,
+    "question": "If I ___ more time, I would learn Spanish.",
+    "options": ["have", "had", "will have", "having"],
+    "answer": "had",
+    "level": "B1"
+  },
+  {
+    "id": 3,
+    "question": "Hardly ___ the meeting started when he interrupted.",
+    "options": ["had", "has", "did", "was"],
+    "answer": "had",
+    "level": "C1"
+  }
+]
