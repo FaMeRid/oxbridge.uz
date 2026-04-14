@@ -12,7 +12,6 @@ import About            from "@/pages/About";
 import Login            from "@/pages/Login";
 import Register         from "@/pages/Register";
 import Profile          from "@/pages/Profile";
-import PlacementTest    from "@/pages/PlacementTest";
 import Practice         from "@/pages/Practice";
 import StudyTools       from "@/pages/StudyTools";
 import Listening        from "@/pages/Listening";
@@ -59,7 +58,6 @@ function Layout() {
           <Route path="/teacher-login" component={TeacherLogin} />
           <Route path="/support"       component={Support} />
           <Route path="/help"          component={Support} />
-          <Route path="/placement"     component={PlacementTest} />
 
           {/* ── Student ── */}
           <Route path="/dashboard"     component={Dashboard} />
