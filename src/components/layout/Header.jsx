@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useAuthStore } from "@/features/auth/authStore";
 import "../../styles/globals.css";
-
 // ════════════════════════════════════════
 // ICONS
 // ════════════════════════════════════════
@@ -778,71 +777,28 @@ export function Header() {
           }}
         >
           {/* Logo */}
-          <a
-            href="/"
-            onClick={(e) => {
-              e.preventDefault();
-              setLocation("/");
-            }}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              textDecoration: "none",
-              cursor: "pointer",
-              transition: "transform 0.2s",
-              flexShrink: 0,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.02)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-            }}
-          >
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                background: "linear-gradient(145deg, #a81011, #d42022)",
-                borderRadius: "12px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1.4rem",
-                boxShadow: "0 4px 16px rgba(168,16,17,0.25)",
-                flexShrink: 0,
-              }}
-            >
-              ���
-            </div>
-            <div style={{ minWidth: 0 }}>
-              <h1
-                style={{
-                  fontFamily: "Playfair Display, serif",
-                  fontSize: "1.3rem",
-                  fontWeight: 800,
-                  color: "#0c1f4a",
-                  margin: 0,
-                  lineHeight: 1,
-                }}
-              >
-                Oxbridge
-              </h1>
-              <p
-                style={{
-                  fontSize: "0.65rem",
-                  fontWeight: 700,
-                  color: "#a81011",
-                  margin: "4px 0 0 0",
-                  letterSpacing: "1.5px",
-                  textTransform: "uppercase",
-                }}
-              >
-                IELTS
-              </p>
-            </div>
-          </a>
+<a
+  href="/"
+  onClick={(e) => {
+    e.preventDefault();
+    setLocation("/");
+  }}
+  style={{
+    display: "flex",
+    alignItems: "center",
+    textDecoration: "none",
+    cursor: "pointer",
+  }}
+>
+  <img
+    src="/public/assets/icons/logo2.png" // ← замени на свой путь
+    alt="Logo"
+    style={{
+      height: "42px",
+      objectFit: "contain",
+    }}
+  />
+</a>
 
           {/* Desktop Navigation */}
           <nav

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import { useAuthStore } from "@/features/auth/authStore";
 import "@/styles/globals.css";
+import VerticalTestimonials from "@/components/tools/VerticalTestimonials";
 
 // ─────────────────────────────────────────
 // FLOATING STICKER
@@ -277,29 +278,6 @@ function FeatureCard({ icon, title, desc, color, highlights, link, hovered, onHo
   );
 }
 
-// ─────────────────────────────────────────
-// TESTIMONIAL CARD
-// ─────────────────────────────────────────
-function TestimonialCard({ name, band, text, avatar, location, improvement, time }) {
-  return (
-    <div style={{ background:"linear-gradient(145deg,#fdf0f0,#fff)", border:"1px solid rgba(168,16,17,0.15)", borderRadius:16, padding:"24px 20px", transition:"all 0.25s" }}
-      onMouseEnter={(e) => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 8px 24px rgba(168,16,17,0.1)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}>
-      <div style={{ display:"flex", justifyContent:"space-between", marginBottom:12 }}>
-        <span>⭐⭐⭐⭐⭐</span>
-        <span style={{ background:"#f0fdf4", color:"#16a34a", padding:"3px 10px", borderRadius:999, fontSize:"0.72rem", fontWeight:700 }}>{improvement} in {time}</span>
-      </div>
-      <p style={{ fontSize:"0.88rem", color:"#475569", lineHeight:1.7, fontStyle:"italic", marginBottom:16 }}>"{text}"</p>
-      <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-        <div style={{ width:44, height:44, borderRadius:"50%", background:"#fdf0f0", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.5rem", flexShrink:0 }}>{avatar}</div>
-        <div>
-          <p style={{ fontWeight:700, fontSize:"0.88rem", color:"#0f172a", margin:0 }}>{name}</p>
-          <p style={{ fontSize:"0.78rem", color:"#a81011", fontWeight:700, margin:"3px 0 0" }}>Band {band} · {location}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ─────────────────────────────────────────
 // MAIN
@@ -340,12 +318,6 @@ export default function Home() {
     { icon:"🎧", title:"Listening Tests",     desc:"Full mock tests with 4 authentic parts and auto-scoring",  color:"#06b6d4", highlights:["4 Parts","Auto-Score","Timer"],          link:"/listening" },
   ];
 
-  const TESTIMONIALS = [
-    { name:"Sarah Johnson",  band:"8.5", improvement:"+2.0", time:"3 months",   avatar:"👩‍🎓", location:"London, UK",   text:"Oxbridge changed my life! I went from 6.5 to 8.5 in 3 months. The Grammar Checker fixed so many mistakes I didn't even know I was making." },
-    { name:"Ahmed Hassan",   band:"8.0", improvement:"+1.5", time:"2 months",   avatar:"👨‍🎓", location:"Cairo, Egypt",  text:"The personalised study plan helped me focus on weak areas. Vocabulary Builder made learning genuinely fun — I looked forward to studying every day!" },
-    { name:"Maria Garcia",   band:"7.5", improvement:"+1.2", time:"2.5 months", avatar:"👩",   location:"Madrid, Spain", text:"Practice tests are so realistic. Essay templates gave me real confidence for Task 2. Worth every minute — highly recommended!" },
-    { name:"Hiroshi Tanaka", band:"8.0", improvement:"+1.8", time:"3 months",   avatar:"👨",   location:"Tokyo, Japan",  text:"As a Japanese speaker I struggled with listening. This platform has everything. Community support was incredible and kept me motivated." },
-  ];
 
   const FAQS = [
     { q:"How does Oxbridge help me prepare for IELTS?",                  a:"50+ interactive tools including vocabulary builders, grammar checkers, essay templates, reading trainers, and mock tests. Our score predictor gives realistic band estimates and personalised study plans optimise your prep." },
@@ -429,10 +401,10 @@ export default function Home() {
       <div ref={statsRef} className={`sec-fade${statsVis?" vis":""}`}>
         <section style={{ background:"#fff", padding:"52px 28px", borderTop:"1px solid #e2e8f0" }}>
           <div style={{ maxWidth:1100, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:18 }}>
-            <StatCounter value={10000} suffix="+" label="Happy Students" icon="👥" started={statsVis} />
+            <StatCounter value={6500} suffix="+" label="Happy Students" icon="👥" started={statsVis} />
             <StatCounter value={50}    suffix="+" label="Study Tools"    icon="🛠️" started={statsVis} />
-            <StatCounter value={94}    suffix="%" label="Success Rate"   icon="🎯" started={statsVis} />
-            <StatCounter value={12}    suffix="+" label="Years Teaching" icon="📅" started={statsVis} />
+            <StatCounter value={90}    suffix="%" label="Success Rate"   icon="🎯" started={statsVis} />
+            <StatCounter value={13}    suffix="+" label="Years Teaching" icon="📅" started={statsVis} />
           </div>
         </section>
       </div>
@@ -517,21 +489,22 @@ export default function Home() {
         </section>
       </div>
 
-      {/* ══════════ TESTIMONIALS ══════════ */}
-      <div ref={testitRef} className={`sec-fade${testitVis?" vis":""}`}>
-        <section style={{ background:"linear-gradient(180deg,#fff 0%,#f9fafb 100%)", padding:"80px 28px", borderTop:"1px solid #e2e8f0" }}>
-          <div style={{ maxWidth:1280, margin:"0 auto" }}>
-            <div style={{ textAlign:"center", marginBottom:48 }}>
-              <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,4vw,2.8rem)", fontWeight:800, color:"#0c1f4a", marginBottom:12 }}>Our Students Love Us ❤️</h2>
-              <p style={{ fontSize:"1rem", color:"#475569", maxWidth:480, margin:"0 auto" }}>Join thousands who've achieved their target band</p>
-            </div>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:20 }}>
-              {TESTIMONIALS.map((t) => <TestimonialCard key={t.name} {...t} />)}
-            </div>
-          </div>
+{/* ══════════ TESTIMONIALS ══════════ */}
+<div ref={testitRef} className={`sec-fade${testitVis?" vis":""}`}>
+  <section style={{ background:"linear-gradient(180deg,#fff 0%,#f9fafb 100%)", padding:"80px 28px", borderTop:"1px solid #e2e8f0" }}>
+    <div style={{ maxWidth:1280, margin:"0 auto" }}>
+      <div style={{ textAlign:"center", marginBottom:48 }}>
+        <section style={{ padding: "80px 20px" }}>
+          <h2 style={{ textAlign: "center", marginBottom: 30 }}>
+            Loved by Students ❤️
+          </h2>
+
+          <VerticalTestimonials />
         </section>
       </div>
-
+    </div>
+  </section>
+</div>
       {/* ══════════ FAQ ══════════ */}
       <div ref={faqRef} className={`sec-fade${faqVis?" vis":""}`}>
         <section style={{ background:"linear-gradient(135deg,#f9fafb 0%,#fff 100%)", padding:"80px 28px", borderTop:"1px solid #e2e8f0" }}>

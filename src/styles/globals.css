@@ -1567,3 +1567,89 @@ html, body {
     display: none !important;
   }
 }
+.vt-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* плавный fade сверху и снизу (как у топ сайтов) */
+.vt-wrapper::before,
+.vt-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.vt-wrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom, #fff, transparent);
+}
+
+.vt-wrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top, #fff, transparent);
+}
+
+/* колонка */
+.vt-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scrollUp linear infinite;
+}
+
+.vt-column.reverse {
+  animation-name: scrollDown;
+}
+
+/* карточка */
+.vt-card {
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 18px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: all 0.25s ease;
+}
+
+.vt-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.vt-card span {
+  display: block;
+  margin-top: 10px;
+  font-weight: 700;
+  color: #a81011;
+  font-size: 0.8rem;
+}
+
+/* анимации */
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

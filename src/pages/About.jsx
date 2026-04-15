@@ -1,13 +1,14 @@
 import React, { useState, useMemo } from "react";
 import "@/styles/globals.css";
 import "@/styles/aboutPage.css";
+import { teacherImages } from "@assets/teachers";
 
 // ============================================
 // CONSTANTS
 // ============================================
 const ACADEMY_INFO = {
   name: "Oxbridge English Academy",
-  established: 2014,
+  established: 2013,
   location: "Termez, Surkhandarya Region, Uzbekistan",
   tagline: "Where Excellence Meets IELTS Success",
   motto: "Transform Your English, Transform Your Future",
@@ -30,14 +31,13 @@ const SOCIAL_LINKS = {
 const FACULTY_MEMBERS = [
   {
     id: 1,
-    name: "Dr. Sarah Mitchell",
+    name: "Sh. Shohruh",
     role: "Head of IELTS Preparation",
     credentials: "PhD in Applied Linguistics, Cambridge CELTA",
     experience: "12+ years",
     specialization: "Academic Writing & Speaking",
     bio: "Former IELTS examiner with expertise in band 7+ strategies. Published researcher in second language acquisition.",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
+    image: teacherImages.shohruh,
     achievements: [
       "500+ students achieved Band 7+",
       "IELTS Examiner 2015-2020",
