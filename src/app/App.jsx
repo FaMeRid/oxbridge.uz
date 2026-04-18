@@ -64,6 +64,16 @@ function Layout() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+  useEffect(() => {
+  const tg = window.Telegram?.WebApp;
+
+  if (!tg) return;
+
+  tg.ready();
+  tg.expand();
+
+  console.log("User:", tg.initDataUnsafe.user);
+}, []);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>

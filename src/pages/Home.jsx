@@ -4,10 +4,9 @@ import { useLocation } from "wouter";
 import { useAuthStore } from "@/features/auth/authStore";
 import "@/styles/globals.css";
 import VerticalTestimonials from "@/components/tools/VerticalTestimonials";
+import { FACULTY_MEMBERS } from "@/features/about/faculty";
+import "@/styles/VerticalTesting.css"
 
-// ─────────────────────────────────────────
-// FLOATING STICKER
-// ─────────────────────────────────────────
 function FloatingSticker({ emoji, style }) {
   return (
     <span aria-hidden="true" style={{
@@ -21,9 +20,6 @@ function FloatingSticker({ emoji, style }) {
   );
 }
 
-// ─────────────────────────────────────────
-// COUNT-UP HOOK
-// ─────────────────────────────────────────
 function useCountUp(target, duration = 1600, start = false) {
   const [val, setVal] = useState(0);
   useEffect(() => {
@@ -42,9 +38,6 @@ function useCountUp(target, duration = 1600, start = false) {
   return val;
 }
 
-// ─────────────────────────────────────────
-// FADE-IN ON SCROLL
-// ─────────────────────────────────────────
 function useFadeIn() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -59,9 +52,6 @@ function useFadeIn() {
   return { ref, visible };
 }
 
-// ─────────────────────────────────────────
-// PLACEMENT TEST DATA — Foundation → Advanced
-// ─────────────────────────────────────────
 const PT_QUESTIONS = [
   // Foundation
   { id:1,  level:"Foundation",        emoji:"🌱", q:"She ___ to school every day.",                                        opts:["go","goes","going","gone"],                                      ans:"goes"                    },
@@ -102,9 +92,6 @@ function ptBand(correct, total) {
   return               { band:"4.0–4.5", label:"Foundation",           emoji:"🌱", color:"#0d7c59" };
 }
 
-// ─────────────────────────────────────────
-// MINI PLACEMENT TEST
-// ─────────────────────────────────────────
 function MiniPlacementTest() {
   const [, navigate]   = useLocation();
   const [step, setStep]       = useState("intro");
@@ -130,7 +117,7 @@ function MiniPlacementTest() {
   const score  = PT_QUESTIONS.filter((q) => answers[q.id] === q.ans).length;
   const result = ptBand(score, PT_QUESTIONS.length);
 
-  /* ── INTRO ── */
+  
   if (step === "intro") return (
     <div style={{ textAlign:"center" }}>
       <div style={{ fontSize:"3rem", marginBottom:14 }}>🎓</div>
@@ -152,7 +139,6 @@ function MiniPlacementTest() {
     </div>
   );
 
-  /* ── RESULT ── */
   if (step === "result") return (
     <div style={{ textAlign:"center" }}>
       <div style={{ fontSize:"2.8rem", marginBottom:10 }}>{result.emoji}</div>
@@ -181,7 +167,6 @@ function MiniPlacementTest() {
     </div>
   );
 
-  /* ── TEST ── */
   return (
     <div>
       {/* Progress bar */}
@@ -241,9 +226,6 @@ function MiniPlacementTest() {
   );
 }
 
-// ─────────────────────────────────────────
-// STAT COUNTER
-// ─────────────────────────────────────────
 function StatCounter({ value, suffix, label, icon, started }) {
   const num = useCountUp(value, 1600, started);
   return (
@@ -257,9 +239,6 @@ function StatCounter({ value, suffix, label, icon, started }) {
   );
 }
 
-// ─────────────────────────────────────────
-// FEATURE CARD
-// ─────────────────────────────────────────
 function FeatureCard({ icon, title, desc, color, highlights, link, hovered, onHover }) {
   const [, navigate] = useLocation();
   return (
@@ -278,10 +257,6 @@ function FeatureCard({ icon, title, desc, color, highlights, link, hovered, onHo
   );
 }
 
-
-// ─────────────────────────────────────────
-// MAIN
-// ─────────────────────────────────────────
 export default function Home() {
   const [, navigate]       = useLocation();
   const user               = useAuthStore((s) => s.user);
@@ -310,7 +285,6 @@ export default function Home() {
     { icon:"📝", title:"Vocabulary Builder",  desc:"1000+ IELTS words with spaced repetition & audio",          color:"#6366f1", highlights:["Flashcards","Audio","Quizzes"],          link:"/tools"     },
     { icon:"🔍", title:"Grammar Checker",     desc:"200+ exercises across 20 grammar rules. Instant feedback",  color:"#ec4899", highlights:["Interactive","200+ Exercises","Feedback"],link:"/tools"     },
     { icon:"✍️", title:"Essay Templates",     desc:"Band 8+ samples with proven Task 1 & 2 structures",         color:"#8b5cf6", highlights:["Task 1 & 2","Real Samples","Practice"],  link:"/writing"   },
-    { icon:"📖", title:"Reading Trainer",     desc:"9 authentic passages. Skim & scan with timed exercises",    color:"#10b981", highlights:["Timed","Comprehension","Analytics"],     link:"/reading"   },
     { icon:"🃏", title:"Flashcard Deck",      desc:"32+ cards for idioms, collocations & academic phrases",     color:"#ec4899", highlights:["Gamified","Multiple Modes","Progress"],  link:"/tools"     },
     { icon:"🎯", title:"Score Predictor",     desc:"Estimate your band based on real practice performance",     color:"#f97316", highlights:["AI-Powered","Real-Time","Analysis"],     link:"/results"   },
     { icon:"🗓️", title:"Study Planner",       desc:"Personalised 30/60/90-day schedule adapting to your level", color:"#f59e0b", highlights:["Adaptive","Reminders","Goals"],         link:"/tools"     },

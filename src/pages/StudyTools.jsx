@@ -4,17 +4,14 @@ import "../styles/globals.css";
 
 // Import all tool components
 import VocabularyBuilder from "../components/tools/VocabularyBuilder";
+import Shadowing from "../components/tools/Shadowing";
 import GrammarChecker from "../components/tools/GrammarChecker";
 import PronunciationGuide from "../components/tools/PronunciationGuide";
-import ReadingSpeedTrainer from "../components/tools/ReadingSpeedTrainer";
-import ListeningLab from "../components/tools/ListeningLab";
 import EssayTemplates from "../components/tools/EssayTemplates";
 import FlashcardDeck from "../components/tools/FlashcardDeck";
 import ScorePredictor from "../components/tools/ScorePredictor";
 import StudyPlanner from "../components/tools/StudyPlanner";
-
-// ←←← НОВЫЙ ИМПОРТ
-import PlacementTest from "../components/tools/PlacementTest";   // ← укажи правильный путь
+import PlacementTest from "../components/tools/PlacementTest"; 
 
 const tools = [
   {
@@ -25,6 +22,12 @@ const tools = [
     badge: "Core Tool",
     component: PlacementTest,
   },
+  { id: "shadowing", 
+    icon: "🔁", 
+    name: "Shadowing", 
+    desc: "Improve your listening and speaking skills by repeating audio clips with a delay.",
+     badge: "Listening Aid",
+      component: Shadowing },
   {
     id: "vocabulary",
     icon: "📝",
@@ -48,22 +51,6 @@ const tools = [
     desc: "Master British English pronunciation with phonetic breakdowns and audio examples.",
     badge: "Speaking Aid",
     component: PronunciationGuide,
-  },
-  {
-    id: "reading",
-    icon: "📖",
-    name: "Reading Speed Trainer",
-    desc: "Develop skimming and scanning techniques to complete Reading passages faster and more accurately.",
-    badge: "Reading Aid",
-    component: ReadingSpeedTrainer,
-  },
-  {
-    id: "listening",
-    icon: "🎧",
-    name: "Listening Lab",
-    desc: "Practise with real IELTS-style audio clips at varying accents and speeds with transcripts.",
-    badge: "Listening Aid",
-    component: ListeningLab,
   },
   {
     id: "essays",
@@ -103,8 +90,6 @@ const BADGE_COLORS = {
   "Core Tool": { bg: "#eff4ff", color: "#1e5dbf", border: "rgba(30,93,191,0.2)" },
   "Writing Aid": { bg: "#fdf6dc", color: "#c9a227", border: "rgba(201,162,39,0.3)" },
   "Speaking Aid": { bg: "#edfaf5", color: "#0d7c59", border: "rgba(13,124,89,0.2)" },
-  "Reading Aid": { bg: "#fdf6dc", color: "#c9a227", border: "rgba(201,162,39,0.3)" },
-  "Listening Aid": { bg: "#eff4ff", color: "#1e5dbf", border: "rgba(30,93,191,0.2)" },
   "Vocabulary": { bg: "#f5eeff", color: "#6d28d9", border: "rgba(109,40,217,0.2)" },
   "Analytics": { bg: "#fdecea", color: "#c0392b", border: "rgba(192,57,43,0.2)" },
   "Productivity": { bg: "#edfaf5", color: "#0d7c59", border: "rgba(13,124,89,0.2)" },
