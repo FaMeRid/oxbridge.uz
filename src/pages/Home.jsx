@@ -6,6 +6,7 @@ import "@/styles/globals.css";
 import VerticalTestimonials from "@/components/tools/VerticalTestimonials";
 import { FACULTY_MEMBERS } from "@/features/about/faculty";
 import "@/styles/VerticalTesting.css"
+import StudyBuddy from "@/components/StudyBuddy";
 
 function FloatingSticker({ emoji, style }) {
   return (

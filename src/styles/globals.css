@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
-
+@import "tailwindcss";
 /* ==========================================================================
    CSS VARIABLES
    ========================================================================== */
@@ -1038,48 +1038,51 @@ html, body {
   font-size: 2.5rem;
   margin-bottom: 14px;
 }
-
 /* ==========================================================================
-   PRACTICE PAGE
+   PRACTICE PAGE (IMPROVED)
    ========================================================================== */
+
+/* Основной layout */
 .practice-layout {
   display: flex;
-  height: calc(100vh - 68px);
-  max-width: 1280px;
+  flex-direction: row;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 28px 28px 60px;
-  gap: 24px;
+  padding: 32px 24px 60px;
+  gap: 32px;
+  min-height: calc(100vh - 68px);
 }
 
+/* ========== SIDEBAR ========== */
 .practice-sidebar {
-  flex: 0 0 210px;
+  flex: 0 0 260px;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid var(--border);
-  padding-right: 20px;
+  gap: 24px;
 }
 
 .practice-sidebar-title {
   font-weight: 700;
   font-size: 0.75rem;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   color: var(--navy3);
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
 
+/* Кнопки навыков */
 .practice-skill-btn {
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 10px 12px;
-  margin-bottom: 4px;
-  border-radius: 9px;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 6px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   background: transparent;
   color: var(--navy);
   width: 100%;
@@ -1089,6 +1092,7 @@ html, body {
 .practice-skill-btn:hover {
   background: var(--crimson-pale);
   color: var(--crimson);
+  transform: translateX(4px);
 }
 
 .practice-skill-btn.active {
@@ -1096,20 +1100,23 @@ html, body {
   color: #fff;
   font-weight: 600;
   box-shadow: var(--shadow-red);
+  transform: translateX(0);
 }
 
+/* Прогресс в сайдбаре */
 .practice-sidebar-progress {
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
 }
 
 .practice-sidebar-progress-label {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   color: var(--text3);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .progress-bar-thin {
@@ -1117,7 +1124,7 @@ html, body {
   background: var(--bg2);
   border-radius: 999px;
   overflow: hidden;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .progress-bar-fill {
@@ -1128,157 +1135,190 @@ html, body {
 }
 
 .progress-bar-pct {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text3);
+  font-weight: 500;
 }
 
+/* ========== MAIN CONTENT ========== */
 .practice-main {
   flex: 1;
   overflow-y: auto;
+  padding-right: 4px;
 }
 
+/* Хедер скилла */
 .practice-skill-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 20px;
+  margin-bottom: 28px;
+  background: var(--surface);
+  padding: 20px 24px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
 }
 
 .practice-skill-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  font-size: 1.6rem;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  font-size: 2rem;
   background: linear-gradient(135deg, var(--navy3), #1e3a7a);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(12,31,74,0.3);
+  box-shadow: 0 6px 20px rgba(12, 31, 74, 0.25);
 }
 
 .practice-skill-title {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 800;
   color: var(--navy3);
+  margin-bottom: 4px;
 }
 
 .practice-skill-subtitle {
-  font-size: 0.78rem;
-  color: var(--text3);
+  font-size: 0.85rem;
+  color: var(--text2);
 }
 
+/* Статистика (4 блока) */
 .practice-stats-row {
-  display: flex;
-  gap: 14px;
-  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .practice-mini-stat {
-  flex: 1;
-  background: var(--bg2);
-  padding: 14px 12px;
-  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px 12px;
+  border-radius: 16px;
   text-align: center;
+  transition: all 0.2s;
+}
+
+.practice-mini-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--crimson-border);
 }
 
 .practice-mini-stat-icon {
-  font-size: 1.1rem;
-  margin-bottom: 6px;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
 }
 
 .practice-mini-stat-val {
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   color: var(--navy);
-  margin-bottom: 3px;
+  margin-bottom: 6px;
 }
 
 .practice-mini-stat-label {
   font-size: 0.7rem;
   color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* Заголовок секции тестов */
 .practice-section-title {
   font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 14px;
+  font-size: 1rem;
+  margin-bottom: 20px;
   color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+/* СЕТКА ТЕСТОВ — ИСПРАВЛЕНО! */
 .practice-tests-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
 }
 
+/* Карточка теста (без @apply, чистый CSS) */
 .test-card {
-  background: #fff;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 20px;
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
 }
 
 .test-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: var(--crimson-border);
+  box-shadow: var(--shadow-lg);
 }
 
 .test-card-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .test-card-name {
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--navy);
+  line-height: 1.4;
 }
 
 .test-diff-badge {
-  font-size: 0.63rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 999px;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 100px;
   border: 1px solid transparent;
+  display: inline-block;
 }
 
 .test-card-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   color: var(--text3);
-  margin-bottom: 12px;
-  margin-top: 8px;
+  margin: 12px 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--bg2);
 }
 
 .test-start-btn {
   width: 100%;
-  padding: 8px 0;
-  border-radius: 9px;
+  padding: 10px 0;
+  border-radius: 12px;
   border: none;
   background: linear-gradient(135deg, var(--navy3), #1e3a7a);
   color: #fff;
   font-weight: 700;
-  font-size: 0.83rem;
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.25s;
+  margin-top: auto;
 }
 
 .test-start-btn:hover {
   background: linear-gradient(135deg, var(--crimson), var(--crimson-light));
   box-shadow: var(--shadow-red);
+  transform: translateY(-1px);
 }
 
-/* ==========================================================================
-   PRACTICE — FULL MOCK TEST VIEW
-   ========================================================================== */
+/* ========== FULL MOCK SECTION ========== */
 .mock-btn {
   border: 1.5px dashed var(--crimson-border) !important;
   color: var(--crimson) !important;
@@ -1290,79 +1330,82 @@ html, body {
 
 .mock-btn.active {
   border-style: solid !important;
+  background: linear-gradient(135deg, var(--crimson), var(--crimson-light)) !important;
   color: #fff !important;
+  box-shadow: var(--shadow-red);
 }
 
 .fullmock-section {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .fullmock-info-card {
   background: linear-gradient(135deg, var(--navy3), var(--navy2));
-  border-radius: 14px;
-  padding: 18px 24px;
-  margin-bottom: 28px;
+  border-radius: 20px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
 }
 
 .fullmock-info-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 24px;
 }
 
 .fullmock-info-item {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .fullmock-info-item strong {
   color: #fff;
+  font-weight: 700;
 }
 
 .fullmock-breakdown {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 14px;
-  margin-bottom: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 36px;
 }
 
 .fullmock-part-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 16px;
+  border-radius: 18px;
+  padding: 20px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 16px;
+  transition: all 0.2s;
 }
 
 .fullmock-part-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
+  border-color: var(--crimson-border);
 }
 
 .fullmock-part-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   flex-shrink: 0;
 }
 
 .fullmock-part-name {
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--navy);
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .fullmock-part-meta {
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   color: var(--text3);
 }
 
@@ -1370,118 +1413,77 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
+  gap: 16px;
 }
 
 .fullmock-note {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--text3);
+  background: var(--bg2);
+  padding: 8px 16px;
+  border-radius: 12px;
 }
 
-/* ==========================================================================
-   LISTENING / READING (placeholder pages)
-   ========================================================================== */
-.placeholder-page {
-  max-width: 600px;
-  margin: 60px auto;
-  text-align: center;
-  padding: 0 24px;
-}
-
-.placeholder-icon {
-  font-size: 4.5rem;
-  margin-bottom: 20px;
-  display: block;
-}
-
-.placeholder-page h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 14px;
-}
-
-.placeholder-page p {
-  color: var(--text2);
-  font-size: 1rem;
-  margin-bottom: 10px;
-  line-height: 1.7;
-}
-
-.placeholder-badge {
-  display: inline-block;
-  margin-top: 24px;
-  background: var(--crimson-pale);
-  color: var(--crimson);
-  border: 1px solid var(--crimson-border);
-  padding: 8px 20px;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-/* ==========================================================================
-   MODAL (Practice)
-   ========================================================================== */
+/* ========== MODAL (IMPROVED) ========== */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15,23,42,0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9000;
-  padding: 24px;
+  z-index: 10000;
+  padding: 20px;
   animation: fadeIn 0.2s ease;
 }
 
 .modal-box {
-  background: #fff;
-  border-radius: 20px;
-  padding: 40px 36px;
-  max-width: 480px;
+  background: var(--surface);
+  border-radius: 28px;
+  padding: 32px 32px 40px;
+  max-width: 520px;
   width: 100%;
   box-shadow: var(--shadow-xl);
   position: relative;
   animation: scaleIn 0.25s ease;
+  border: 1px solid var(--crimson-border);
 }
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 20px;
+  right: 20px;
   background: var(--bg2);
   border: none;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text2);
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .modal-close:hover {
   background: var(--crimson-pale);
   color: var(--crimson);
+  transform: rotate(90deg);
 }
 
 .modal-icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
+  font-size: 3rem;
+  margin-bottom: 16px;
   display: block;
   text-align: center;
 }
 
 .modal-title {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--navy);
   text-align: center;
@@ -1491,8 +1493,100 @@ html, body {
 .modal-subtitle {
   text-align: center;
   color: var(--text2);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+/* Дополнительные стили для модалки (инфо-строка, инструкции) */
+.modal-info-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--bg2);
+  border-radius: 16px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  font-size: 0.85rem;
+  color: var(--text2);
+}
+
+.modal-difficulty-badge {
+  padding: 4px 14px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.modal-instructions {
   margin-bottom: 28px;
+  padding-left: 24px;
+  color: var(--text2);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.modal-teacher-note {
+  list-style: none;
+  margin-left: -24px;
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--bg2);
+  border-radius: 14px;
+  font-size: 0.82rem;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 1024px) {
+  .practice-layout {
+    flex-direction: column;
+    padding: 20px;
+    gap: 24px;
+  }
+  .practice-sidebar {
+    flex: none;
+    width: 100%;
+    border-right: none;
+    padding-right: 0;
+  }
+  .practice-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .practice-tests-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .practice-layout {
+    padding: 16px;
+  }
+  .practice-skill-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+  }
+  .practice-skill-title {
+    font-size: 1.4rem;
+  }
+  .practice-stats-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .practice-tests-grid {
+    grid-template-columns: 1fr;
+  }
+  .modal-box {
+    padding: 24px 20px;
+    margin: 16px;
+  }
 }
 
 /* ==========================================================================

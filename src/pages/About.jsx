@@ -513,7 +513,6 @@ const TABS = [
   { id: "about", label: "About Us", icon: "🏛️" },
   { id: "faculty", label: "Our Faculty", icon: "👨‍🏫" },
   { id: "events", label: "Events", icon: "📅" },
-  { id: "platform", label: "Platform", icon: "💻" },
   { id: "stories", label: "Stories", icon: "📖" },
 ];
 
@@ -851,99 +850,6 @@ const EventsTab = () => {
 };
 
 // ============================================
-// PLATFORM TAB
-// ============================================
-const PlatformTab = () => (
-  <div className="ab-tab-content">
-    <SectionTitle
-      subtitle="Experience IELTS preparation reimagined for the digital age"
-      centered
-    >
-      The Oxbridge Platform
-    </SectionTitle>
-
-    <div className="ab-platform-grid">
-      {/* Browser mockup */}
-      <div className="ab-mockup">
-        <div className="ab-mockup-bar">
-          <div className="ab-mockup-dots">
-            <span style={{ background: "#ff5f57" }} />
-            <span style={{ background: "#febc2e" }} />
-            <span style={{ background: "#28c840" }} />
-          </div>
-          <div className="ab-mockup-url">app.oxbridgeuz.com</div>
-        </div>
-        <div className="ab-mockup-body">
-          <div className="ab-mockup-sidebar">
-            <div className="ab-mockup-avatar" />
-            <div className="ab-mockup-nav">
-              <div style={{ background: "var(--gold)", width: "100%" }} />
-              <div style={{ width: "70%" }} />
-              <div style={{ width: "55%" }} />
-              <div style={{ width: "65%" }} />
-            </div>
-          </div>
-          <div className="ab-mockup-main">
-            <div className="ab-mockup-stat-row">
-              {["#c9a227", "#0d7c59", "#1e5dbf"].map((c) => (
-                <div
-                  key={c}
-                  className="ab-mockup-stat"
-                  style={{ borderTop: `3px solid ${c}` }}
-                />
-              ))}
-            </div>
-            <div className="ab-mockup-card" />
-            <div className="ab-mockup-chart">
-              {[60, 75, 65, 85, 80, 90].map((h, i) => (
-                <div
-                  key={i}
-                  className="ab-mockup-bar-item"
-                  style={{ height: `${h}%` }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Features */}
-      <div className="ab-platform-features">
-        <h3>Why Our Platform Stands Out</h3>
-        <ul className="ab-platform-list">
-          {[
-            {
-              title: "Authentic Exam Interface",
-              desc: "Practice with the exact layout and timing of computer-delivered IELTS.",
-            },
-            {
-              title: "Instant Detailed Feedback",
-              desc: "Know exactly why each answer was right or wrong.",
-            },
-            {
-              title: "Teacher Dashboard Integration",
-              desc: "Your instructor assigns sections and tracks progress in real-time.",
-            },
-            {
-              title: "Band Score Predictor",
-              desc: "Our algorithm analyses patterns to predict your exam band accurately.",
-            },
-          ].map((item) => (
-            <li key={item.title}>
-              <strong>{item.title}</strong>
-              <p>{item.desc}</p>
-            </li>
-          ))}
-        </ul>
-        <ABtn variant="primary" size="lg" href="/practice">
-          Start Free Practice
-        </ABtn>
-      </div>
-    </div>
-  </div>
-);
-
-// ============================================
 // SUCCESS STORIES TAB
 // ============================================
 const StoriesTab = () => (
@@ -1119,8 +1025,6 @@ export default function About() {
         return <FacultyTab />;
       case "events":
         return <EventsTab />;
-      case "platform":
-        return <PlatformTab />;
       case "stories":
         return <StoriesTab />;
       default:

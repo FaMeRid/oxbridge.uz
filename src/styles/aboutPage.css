@@ -643,13 +643,6 @@
 
 .ab-event-more:hover { gap: 8px; color: var(--crimson); }
 
-/* ── PLATFORM TAB ── */
-.ab-platform-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
 
 /* Flat browser mockup */
 .ab-mockup {
@@ -766,42 +759,6 @@
   border-radius: 4px 4px 0 0;
   opacity: 0.8;
 }
-
-.ab-platform-features h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 28px;
-}
-
-.ab-platform-list {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 32px;
-}
-
-.ab-platform-list li {
-  padding: 0 0 20px 28px;
-  position: relative;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
-}
-
-.ab-platform-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-.ab-platform-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 1px;
-  color: #0d7c59;
-  font-weight: 800;
-  font-size: 1rem;
-}
-
-.ab-platform-list strong { display: block; color: var(--navy); margin-bottom: 4px; font-size: 0.95rem; }
-.ab-platform-list p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
 
 /* ── BADGES ── */
 .ab-badge {
