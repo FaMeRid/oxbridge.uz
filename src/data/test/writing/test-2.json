@@ -1,0 +1,153 @@
+{
+  "level": "Intermediate",
+  "band": "6.0–7.0",
+  "color": "#b45309",
+  "bg": "#fdf6dc",
+  "border": "#d97706",
+  "description": "Suitable for Band 6.0–7.0 target. More complex data sets and essay structures requiring nuanced arguments.",
+  "task1": [
+    {
+      "id": "t1-2",
+      "title": "Line Graph — CO₂ Emissions",
+      "chartId": "t1-2",
+      "description": "The line graph below shows the CO₂ emissions per capita in four countries between 1990 and 2020.",
+      "minWords": 150,
+      "tips": [
+        "Describe trends over time, not point-by-point",
+        "Use trend language: rose sharply, declined steadily, plateaued",
+        "Make at least one comparison between countries",
+        "End with the final position of each line"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Paraphrase — what the graph shows." },
+        { "label": "Overview", "desc": "Highest emitter + most notable change." },
+        { "label": "Body 1", "desc": "Countries 1 & 2 — trends over time." },
+        { "label": "Body 2", "desc": "Countries 3 & 4 — trends and comparison." }
+      ],
+      "sampleBands": { "words": "~175–210", "time": "20 min", "band": "7.0+" }
+    },
+    {
+      "id": "bar-degrees",
+      "title": "Bar Chart — University Degrees by Gender",
+      "chartId": "bar-degrees",
+      "description": "The bar chart below shows the percentage of men and women who completed university degrees in six subjects in 2019.",
+      "minWords": 150,
+      "tips": [
+        "Compare male vs female patterns — don't describe each bar separately",
+        "Identify subjects with the biggest gender gap",
+        "Use comparative language: 'while', 'whereas', 'in contrast'",
+        "Avoid repeating the same structure for every subject"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Paraphrase — subjects, genders, time period." },
+        { "label": "Overview", "desc": "Overall pattern + subject with biggest gender gap." },
+        { "label": "Body 1", "desc": "Subjects where women predominate with figures." },
+        { "label": "Body 2", "desc": "Subjects where men predominate + one balanced subject." }
+      ],
+      "sampleBands": { "words": "~175–200", "time": "20 min", "band": "7.0+" }
+    },
+    {
+      "id": "two-charts-spending",
+      "title": "Two Charts — Household Expenditure",
+      "chartId": "two-charts-spending",
+      "description": "The charts below show how households in one country spent their income in 1980 and 2020.",
+      "minWords": 150,
+      "tips": [
+        "Always compare the two time periods — don't describe each chart separately",
+        "Focus on the most significant changes",
+        "Use language of change: 'rose significantly', 'fell by', 'remained relatively stable'",
+        "Include at least one figure from each chart"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "What both charts show — spending over two periods." },
+        { "label": "Overview", "desc": "Most notable changes between 1980 and 2020." },
+        { "label": "Body 1", "desc": "Categories that increased — with figures for both years." },
+        { "label": "Body 2", "desc": "Categories that decreased or stayed the same." }
+      ],
+      "sampleBands": { "words": "~180–210", "time": "20 min", "band": "7.0+" }
+    }
+  ],
+  "task2": [
+    {
+      "id": "t2-2",
+      "title": "Discussion Essay — Remote Work",
+      "type": "Discussion",
+      "question": "Remote working has become increasingly common. Discuss the advantages and disadvantages of this trend and give your own opinion.",
+      "minWords": 250,
+      "tips": [
+        "Present BOTH sides before giving your opinion",
+        "Use a clear topic sentence for each paragraph",
+        "Avoid personal anecdotes — use general examples",
+        "Your opinion in the conclusion must match your essay"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Topic intro + outline (discuss both + opinion)." },
+        { "label": "Advantages", "desc": "2 advantages with explanation and example." },
+        { "label": "Disadvantages", "desc": "2 disadvantages with explanation and example." },
+        { "label": "Conclusion", "desc": "Summary + your overall opinion." }
+      ],
+      "keyPhrases": [
+        "On the one hand, …",
+        "On the other hand, …",
+        "A significant advantage is …",
+        "However, a major drawback is …",
+        "Overall, I believe …"
+      ],
+      "sampleBands": { "words": "~280–320", "time": "40 min", "band": "7.0+" }
+    },
+    {
+      "id": "t2-2",
+      "title": "Problem-Solution — Childhood Obesity",
+      "type": "Problem / Solution",
+      "question": "The rate of obesity in children is increasing in many countries. What are the main causes of this problem, and what solutions could governments and individuals take?",
+      "minWords": 250,
+      "tips": [
+        "Separate causes and solutions clearly",
+        "Each paragraph = one main idea, fully developed",
+        "Use modal verbs: could, should, might, would",
+        "Be specific — name actual policies or behaviours"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "State the problem + your approach (causes & solutions)." },
+        { "label": "Causes", "desc": "2 main causes — unhealthy diet, sedentary lifestyle." },
+        { "label": "Solutions", "desc": "Government + individual solutions linked to causes." },
+        { "label": "Conclusion", "desc": "Summarise and restate key points." }
+      ],
+      "keyPhrases": [
+        "One of the primary causes is …",
+        "This is largely due to …",
+        "To address this, governments could …",
+        "At an individual level, people should …",
+        "If these measures were implemented, …"
+      ],
+      "sampleBands": { "words": "~280–310", "time": "40 min", "band": "7.0+" }
+    },
+    {
+      "id": "t2-2",
+      "title": "Two-Part Question — Space Exploration",
+      "type": "Two-part Question",
+      "question": "Some people think that space exploration is a waste of money and these funds should be used for other purposes. Why do some people think this? Do you agree or disagree?",
+      "minWords": 250,
+      "tips": [
+        "Answer BOTH parts of the question explicitly",
+        "Part 1: explain others' reasons without giving your view",
+        "Part 2: give your own view with clear reasoning",
+        "Don't combine both parts into one paragraph"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Introduce the debate + state you will address both parts." },
+        { "label": "Body 1", "desc": "Reasons why people think space is wasteful (not your view)." },
+        { "label": "Body 2", "desc": "Your own view — agree or disagree + reasons + example." },
+        { "label": "Conclusion", "desc": "Summarise both parts + restate your position." }
+      ],
+      "keyPhrases": [
+        "Those who oppose space funding argue that …",
+        "From their perspective, …",
+        "However, I would contend that …",
+        "The benefits of space research include …",
+        "In conclusion, while I understand the concerns …"
+      ],
+      "sampleBands": { "words": "~275–310", "time": "40 min", "band": "7.0+" }
+    }
+  ]
+}

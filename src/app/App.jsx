@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 // Layout
 import Header from "@/components/layout/Header";
-
+import StudyBuddy from "@/components/StudyBuddy";
 // Pages
 import Home             from "@/pages/Home";
 import About            from "@/pages/About";

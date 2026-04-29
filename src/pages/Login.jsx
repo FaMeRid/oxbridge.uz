@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useAuthStore } from "@/features/auth/authStore";
+import { useTelegramLogin } from "@/features/auth/TelegramLogin";
 
 export function Login() {
   const [, setLocation] = useLocation();
@@ -9,7 +10,7 @@ export function Login() {
   const {
     emailLogin,
     googleLogin,
-    telegramLogin, // 🔥 ДОБАВИЛИ
+    telegramLogin,
     isLoading,
     error,
     isAuthenticated,
@@ -22,50 +23,36 @@ export function Login() {
   const [telegramLoading, setTelegramLoading] = useState(false);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      setLocation("/profile");
-    }
+    if (isAuthenticated) setLocation("/profile");
   }, [isAuthenticated, setLocation]);
 
-  // ---------------- TELEGRAM LOGIN ----------------
-  const handleTelegramLogin = async () => {
-    try {
-      setLocalError("");
-      setTelegramLoading(true);
-
-      const tg = window.Telegram?.WebApp;
-
-      if (!tg) {
-        setLocalError("Откройте приложение через Telegram");
-        return;
+  // ---------------- TELEGRAM (умный, через хук) ----------------
+  const triggerTelegram = useTelegramLogin({
+    botId: import.meta.env.VITE_TELEGRAM_BOT_ID,
+    onAuth: async (user) => {
+      try {
+        setTelegramLoading(true);
+        setLocalError("");
+        await telegramLogin(user);
+      } catch (err) {
+        setLocalError(err.message || "Telegram login failed");
+      } finally {
+        setTelegramLoading(false);
       }
-
-      tg.ready();
-      tg.expand();
-
-      const user = tg.initDataUnsafe?.user;
-      const initData = tg.initData;
-
-      if (!user) {
-        setLocalError("Telegram user не найден");
-        return;
-      }
-
-      await telegramLogin({
-        telegramId: user.id,
-        first_name: user.first_name,
-        username: user.username,
-        initData,
-      });
-
-    } catch (err) {
-      setLocalError(err.message || "Telegram login failed");
-    } finally {
+    },
+    onError: (msg) => {
       setTelegramLoading(false);
-    }
+      setLocalError(msg);
+    },
+  });
+
+  const handleTelegramLogin = () => {
+    setLocalError("");
+    setTelegramLoading(true);
+    triggerTelegram();
   };
 
-  // ---------------- GOOGLE LOGIN ----------------
+  // ---------------- GOOGLE ----------------
   const googleLoginHandler = useGoogleLogin({
     onSuccess: async (codeResponse) => {
       try {
@@ -75,20 +62,13 @@ export function Login() {
         const response = await fetch(
           "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" +
             codeResponse.access_token,
-          {
-            headers: {
-              Authorization: `Bearer ${codeResponse.access_token}`,
-            },
-          }
+          { headers: { Authorization: `Bearer ${codeResponse.access_token}` } }
         );
-
         const googleUser = await response.json();
-
         await googleLogin({
           credential: codeResponse.access_token,
           ...googleUser,
         });
-
       } catch (err) {
         setLocalError(err.message || "Google login failed");
       } finally {
@@ -102,18 +82,15 @@ export function Login() {
     flow: "implicit",
   });
 
-  // ---------------- EMAIL LOGIN ----------------
+  // ---------------- EMAIL ----------------
   const handleEmailLogin = async (e) => {
     e.preventDefault();
-
     try {
       setLocalError("");
-
       if (!email || !password) {
         setLocalError("Please fill in all fields");
         return;
       }
-
       await emailLogin(email, password);
     } catch (err) {
       setLocalError(err.message || "Login failed");
@@ -145,19 +122,12 @@ export function Login() {
           border: "1px solid rgba(168,16,17,0.1)",
         }}
       >
-
-        {/* HEADER */}
         <div style={{ textAlign: "center", marginBottom: "28px" }}>
           <div style={{ fontSize: "2rem" }}>🎓</div>
-          <h1 style={{ fontSize: "1.9rem", fontWeight: 800 }}>
-            Sign In
-          </h1>
-          <p style={{ color: "#475569" }}>
-            Welcome back
-          </p>
+          <h1 style={{ fontSize: "1.9rem", fontWeight: 800 }}>Sign In</h1>
+          <p style={{ color: "#475569" }}>Welcome back</p>
         </div>
 
-        {/* ERROR */}
         {displayError && (
           <div
             style={{
@@ -174,7 +144,6 @@ export function Login() {
           </div>
         )}
 
-        {/* 🔵 TELEGRAM BUTTON */}
         <button
           onClick={handleTelegramLogin}
           disabled={isLoading || telegramLoading}
@@ -194,7 +163,6 @@ export function Login() {
           {telegramLoading ? "Connecting..." : "✈️ Continue with Telegram"}
         </button>
 
-        {/* 🔵 GOOGLE */}
         <button
           onClick={() => googleLoginHandler()}
           disabled={googleLoading || isLoading}
@@ -211,12 +179,8 @@ export function Login() {
           {googleLoading ? "Loading..." : "Continue with Google"}
         </button>
 
-        {/* OR */}
-        <div style={{ textAlign: "center", marginBottom: "15px" }}>
-          OR
-        </div>
+        <div style={{ textAlign: "center", marginBottom: "15px" }}>OR</div>
 
-        {/* EMAIL */}
         <form onSubmit={handleEmailLogin}>
           <input
             type="email"
@@ -225,7 +189,6 @@ export function Login() {
             onChange={(e) => setEmail(e.target.value)}
             style={{ width: "100%", padding: "12px", marginBottom: "10px" }}
           />
-
           <input
             type="password"
             placeholder="Password"
@@ -233,7 +196,6 @@ export function Login() {
             onChange={(e) => setPassword(e.target.value)}
             style={{ width: "100%", padding: "12px", marginBottom: "12px" }}
           />
-
           <button
             type="submit"
             disabled={isLoading}
@@ -251,7 +213,6 @@ export function Login() {
           </button>
         </form>
 
-        {/* FOOTER */}
         <div style={{ textAlign: "center", marginTop: "18px" }}>
           <a href="/register" style={{ color: "#a81011", fontWeight: 700 }}>
             Create account

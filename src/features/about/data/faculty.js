@@ -1,3 +1,5 @@
+// src/features/about/data/faculty.js
+
 export const FACULTY_MEMBERS = [
   {
     id: 1,

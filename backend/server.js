@@ -26,14 +26,53 @@ const app = express();
 // ========== MIDDLEWARE ==========
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// ---------- CORS ----------
+const staticAllowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://oxbridge.uz",
+  "https://www.oxbridge.uz",
+];
+
+// + всё, что прилетает из FRONTEND_URL (если задан)
+if (process.env.FRONTEND_URL) {
+  staticAllowedOrigins.push(process.env.FRONTEND_URL);
+}
+
+const isNgrokOrigin = (hostname) =>
+  /\.ngrok-free\.(dev|app)$/.test(hostname) ||
+  /\.ngrok\.io$/.test(hostname) ||
+  /\.ngrok\.app$/.test(hostname);
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: (origin, callback) => {
+      // запросы без origin (Postman, curl, серверные вызовы) — пропускаем
+      if (!origin) return callback(null, true);
+
+      if (staticAllowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      try {
+        const { hostname } = new URL(origin);
+        if (isNgrokOrigin(hostname)) {
+          return callback(null, true);
+        }
+      } catch (_) {
+        // невалидный origin — fall through
+      }
+
+      logger.warn(`CORS blocked: ${origin}`);
+      return callback(new Error(`CORS blocked: ${origin}`));
+    },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 app.use('/api/test-results', testResultsRoutes);
 
 // Rate limiting

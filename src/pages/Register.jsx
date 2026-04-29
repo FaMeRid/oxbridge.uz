@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useAuthStore } from "@/features/auth/authStore";
+import { useTelegramLogin } from "@/features/auth/TelegramLogin";
 import "../styles/globals.css";
 
 export function Register() {
@@ -10,7 +11,7 @@ export function Register() {
   const {
     emailRegister,
     googleLogin,
-    telegramLogin, // 🔥 ДОБАВИЛ
+    telegramLogin,
     isLoading,
     error,
     isAuthenticated,
@@ -21,73 +22,54 @@ export function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [localError, setLocalError] = useState("");
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [telegramLoading, setTelegramLoading] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
 
-  // redirect
   useEffect(() => {
-    if (isAuthenticated) {
-      setLocation("/profile");
-    }
+    if (isAuthenticated) setLocation("/profile");
   }, [isAuthenticated, setLocation]);
 
-  // -------------------------
-  // 🔵 TELEGRAM LOGIN (FIXED)
-  // -------------------------
-  const handleTelegramRegister = async () => {
-    try {
-      setLocalError("");
-
-      const tg = window.Telegram?.WebApp;
-
-      if (!tg) {
-        setLocalError("Откройте приложение через Telegram");
-        return;
+  // ---------------- TELEGRAM (умный, через хук) ----------------
+  const triggerTelegram = useTelegramLogin({
+    botId: import.meta.env.VITE_TELEGRAM_BOT_ID,
+    onAuth: async (user) => {
+      try {
+        setTelegramLoading(true);
+        setLocalError("");
+        await telegramLogin(user);
+      } catch (err) {
+        setLocalError(err.message || "Telegram registration failed");
+      } finally {
+        setTelegramLoading(false);
       }
+    },
+    onError: (msg) => {
+      setTelegramLoading(false);
+      setLocalError(msg);
+    },
+  });
 
-      tg.ready();
-      tg.expand();
-
-      const user = tg.initDataUnsafe?.user;
-      const initData = tg.initData;
-
-      if (!user) {
-        setLocalError("Telegram user не найден");
-        return;
-      }
-
-      await telegramLogin({
-        telegramId: user.id,
-        first_name: user.first_name,
-        username: user.username,
-        initData,
-      });
-
-    } catch (err) {
-      setLocalError(err.message || "Telegram registration failed");
-    }
+  const handleTelegramRegister = () => {
+    setLocalError("");
+    setTelegramLoading(true);
+    triggerTelegram();
   };
 
-  // -------------------------
-  // 🔵 GOOGLE LOGIN (FIXED)
-  // -------------------------
+  // ---------------- GOOGLE ----------------
   const googleLoginHandler = useGoogleLogin({
     onSuccess: async (codeResponse) => {
       try {
         setGoogleLoading(true);
         setLocalError("");
-
         const response = await fetch(
           "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" +
             codeResponse.access_token
         );
-
         const googleUser = await response.json();
-
         await googleLogin({
           credential: codeResponse.access_token,
           ...googleUser,
         });
-
       } catch (err) {
         setLocalError(err.message || "Google registration failed");
       } finally {
@@ -101,46 +83,36 @@ export function Register() {
     flow: "implicit",
   });
 
-  // -------------------------
-  // 🔵 EMAIL REGISTER (FIXED VALIDATION)
-  // -------------------------
+  // ---------------- EMAIL ----------------
   const handleEmailRegister = async (e) => {
     e.preventDefault();
-
     try {
       setLocalError("");
 
-      // validation
       if (!email || !password || !confirmPassword) {
         setLocalError("Please fill all fields");
         return;
       }
-
       if (!agreeTerms) {
         setLocalError("Please agree to terms and conditions");
         return;
       }
-
       if (password !== confirmPassword) {
         setLocalError("Passwords do not match");
         return;
       }
-
       if (password.length < 6) {
         setLocalError("Password must be at least 6 characters");
         return;
       }
 
       await emailRegister(email, password, confirmPassword);
-
     } catch (err) {
       setLocalError(err.message || "Registration failed");
     }
   };
 
   const displayError = localError || error;
-  const passwordsMatch = password === confirmPassword;
-  const passwordValid = password.length >= 6;
 
   return (
     <div
@@ -166,47 +138,34 @@ export function Register() {
           overflow: "hidden",
         }}
       >
-        {/* TOP BAR */}
         <div
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
+            top: 0, left: 0, right: 0,
             height: "4px",
             background: "linear-gradient(90deg, #a81011, #d42022)",
           }}
         />
 
-        {/* HEADER */}
         <div style={{ textAlign: "center", marginBottom: "28px" }}>
           <div
             style={{
-              width: "60px",
-              height: "60px",
+              width: "60px", height: "60px",
               background: "linear-gradient(145deg, #a81011, #d42022)",
               borderRadius: "14px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "1.8rem",
-              margin: "0 auto 12px",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "1.8rem", margin: "0 auto 12px",
               boxShadow: "0 4px 24px rgba(168,16,17,0.28)",
             }}
           >
             🎓
           </div>
-
-          <h1 style={{ fontSize: "1.9rem", fontWeight: 800 }}>
-            Create Account
-          </h1>
-
+          <h1 style={{ fontSize: "1.9rem", fontWeight: 800 }}>Create Account</h1>
           <p style={{ color: "#475569", fontSize: "0.9rem" }}>
             Join Oxbridge IELTS today
           </p>
         </div>
 
-        {/* ERROR */}
         {displayError && (
           <div
             style={{
@@ -224,10 +183,9 @@ export function Register() {
           </div>
         )}
 
-        {/* 🔵 TELEGRAM */}
         <button
           onClick={handleTelegramRegister}
-          disabled={isLoading}
+          disabled={isLoading || telegramLoading}
           style={{
             width: "100%",
             padding: "14px",
@@ -238,13 +196,12 @@ export function Register() {
             fontWeight: 700,
             marginBottom: "12px",
             cursor: "pointer",
-            opacity: isLoading ? 0.6 : 1,
+            opacity: telegramLoading ? 0.7 : 1,
           }}
         >
-          ✈️ Continue with Telegram
+          {telegramLoading ? "Connecting..." : "✈️ Continue with Telegram"}
         </button>
 
-        {/* 🔵 GOOGLE */}
         <button
           onClick={() => googleLoginHandler()}
           disabled={googleLoading || isLoading}
@@ -262,12 +219,8 @@ export function Register() {
           Continue with Google
         </button>
 
-        {/* OR */}
-        <div style={{ textAlign: "center", marginBottom: "18px" }}>
-          OR
-        </div>
+        <div style={{ textAlign: "center", marginBottom: "18px" }}>OR</div>
 
-        {/* FORM */}
         <form onSubmit={handleEmailRegister}>
           <input
             type="email"
@@ -276,7 +229,6 @@ export function Register() {
             onChange={(e) => setEmail(e.target.value)}
             style={{ width: "100%", padding: "12px", marginBottom: "10px" }}
           />
-
           <input
             type="password"
             placeholder="Password"
@@ -284,7 +236,6 @@ export function Register() {
             onChange={(e) => setPassword(e.target.value)}
             style={{ width: "100%", padding: "12px", marginBottom: "10px" }}
           />
-
           <input
             type="password"
             placeholder="Confirm password"
@@ -299,7 +250,7 @@ export function Register() {
               checked={agreeTerms}
               onChange={(e) => setAgreeTerms(e.target.checked)}
             />
-            I agree to terms
+            {" "}I agree to terms
           </label>
 
           <button

@@ -21,15 +21,15 @@ const TEST_LIST = {
     { id: 4, name: "Listening Test 4 ", duration: "40 min", difficulty: "Expert",       parts: 4 },
   ],
   Reading: [
-    { id: 1, name: "Reading Test 1 — Academic",  duration: "60 min", difficulty: "Foundation",   parts: 3 },
-    { id: 2, name: "Reading Test 2 — Academic",  duration: "60 min", difficulty: "Intermediate", parts: 3 },
-    { id: 3, name: "Reading Test 3 — Academic",  duration: "60 min", difficulty: "Advanced",     parts: 3 },
+    { id: 1, name: "Reading Test 1 ",  duration: "60 min", difficulty: "Foundation",   parts: 3 },
+    { id: 2, name: "Reading Test 2 ",  duration: "60 min", difficulty: "Intermediate", parts: 3 },
+    { id: 3, name: "Reading Test 3 ",  duration: "60 min", difficulty: "Advanced",     parts: 3 },
   ],
   Writing: [
-    { id: 1, name: "Writing Task 1 — Set A", duration: "20 min", difficulty: "Foundation",   parts: 1 },
-    { id: 2, name: "Writing Task 2 — Set A", duration: "40 min", difficulty: "Intermediate", parts: 1 },
-    { id: 3, name: "Writing Task 1 — Set B", duration: "20 min", difficulty: "Advanced",     parts: 1 },
-    { id: 4, name: "Writing Task 2 — Set B", duration: "40 min", difficulty: "Expert",       parts: 1 },
+    { id: 1, name: "Writing Test 1 ", duration: "20 min", difficulty: "Foundation",   parts: 1 },
+    { id: 2, name: "Writing Test 2 ", duration: "40 min", difficulty: "Intermediate", parts: 1 },
+    { id: 3, name: "Writing Test 3 ", duration: "20 min", difficulty: "Advanced",     parts: 1 },
+    { id: 4, name: "Writing Test 4 ", duration: "40 min", difficulty: "Expert",       parts: 1 },
   ],
   Speaking: [
     { id: 1, name: "Speaking Mock 1", duration: "15 min", difficulty: "Foundation",   parts: 3 },

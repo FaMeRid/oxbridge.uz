@@ -1,0 +1,58 @@
+{
+  "level": "Foundation",
+  "band": "5.0–6.0",
+  "color": "#1e5dbf",
+  "bg": "#eff4ff",
+  "border": "#3b82f6",
+    "description": "Suitable for Band 5.0–6.0 target. Clear tasks with well-defined data and straightforward essay structures.",
+  "task1": 
+    {
+      "id": "t1-1",
+      "title": "Bar Chart — Internet Usage",
+      "chartId": "t1-1",
+      "description": "The bar chart below shows the percentage of people in different age groups who used the internet daily in the UK in 2020.",
+      "minWords": 150,
+      "tips": [
+        "Start with an overview — pick the most striking trend",
+        "Group age groups logically (young vs older)",
+        "Use accurate data language: 'approximately', 'roughly'",
+        "Avoid opinions or explanations — just describe"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Paraphrase the task. Do NOT copy the prompt." },
+        { "label": "Overview",     "desc": "2 sentences. Biggest trend + exception." },
+        { "label": "Body 1",       "desc": "Describe 2-3 specific data points with figures." },
+        { "label": "Body 2",       "desc": "Compare or contrast remaining groups with figures." }
+      ],
+      "sampleBands": { "words": "~160–190", "time": "20 min", "band": "6.0+" }
+},
+  
+   "task2": 
+    {
+      "id": "t1-2",
+      "title": "Opinion Essay — Technology in Education",
+      "type": "Opinion",
+      "question": "Some people believe that technology has made education better, while others think it has had a negative impact. To what extent do you agree or disagree?",
+      "minWords": 250,
+      "tips": [
+        "State your position clearly in the introduction",
+        "Give ONE clear opinion — don't sit on the fence",
+        "Support each body paragraph with an example",
+        "Paraphrase the question — never copy it"
+      ],
+      "structure": [
+        { "label": "Introduction",  "desc": "Background + thesis (your opinion, clear)." },
+        { "label": "Body 1",        "desc": "Main reason supporting your view + example." },
+        { "label": "Body 2",        "desc": "Second reason OR counter-argument + rebuttal." },
+        { "label": "Conclusion",    "desc": "Restate opinion. No new ideas." }
+      ],
+      "keyPhrases": [
+        "In my view, …",
+        "I strongly believe that …",
+        "While some argue that …, I contend that …",
+        "This is evidenced by …",
+        "To conclude, …"
+      ],
+      "sampleBands": { "words": "~260–290", "time": "40 min", "band": "5.0+" }
+    }}
+    

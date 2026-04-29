@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
       await new Promise((r) => setTimeout(r, 800));
 
       const { credential } = googleResponse;
-      
+
       // Decode JWT token (without verification, for demo)
       const decodedToken = JSON.parse(atob(credential.split(".")[1]));
 
@@ -95,7 +95,6 @@ export function AuthProvider({ children }) {
         loginTime: new Date().toISOString(),
       };
 
-      // Mock token
       const mockToken = btoa(JSON.stringify(userData));
 
       saveUser(userData, mockToken);
@@ -131,7 +130,6 @@ export function AuthProvider({ children }) {
         throw new Error("Passwords do not match");
       }
 
-      // Check if user already exists (mock)
       const existingUser = localStorage.getItem(STORAGE_KEY);
       if (existingUser) {
         const parsed = JSON.parse(existingUser);
@@ -140,7 +138,6 @@ export function AuthProvider({ children }) {
         }
       }
 
-      // Simulate API call
       await new Promise((r) => setTimeout(r, 1000));
 
       const name = email.split("@")[0];
@@ -168,8 +165,80 @@ export function AuthProvider({ children }) {
     }
   }, [saveUser]);
 
+  /* ──────────────────────────────────────────────────────────
+     Telegram Login — реальный запрос к бэку
+     Бэк проверяет HMAC-подпись токеном бота, создаёт юзера
+     в Supabase и возвращает access_token.
+     ────────────────────────────────────────────────────────── */
+  const telegramLogin = useCallback(async (tgUser) => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      if (!tgUser || !tgUser.id) {
+        throw new Error("Telegram payload is empty");
+      }
+
+      const apiBase = import.meta.env.VITE_API_URL || "";
+      const res = await fetch(`${apiBase}/api/auth/telegram`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(tgUser),
+      });
+
+      let data = {};
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error(`Server returned ${res.status}`);
+      }
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Telegram login failed");
+      }
+
+      const profile = data.user || {};
+      const fullName =
+        profile.full_name ||
+        [tgUser.first_name, tgUser.last_name].filter(Boolean).join(" ") ||
+        tgUser.username ||
+        "Telegram user";
+
+      const userData = {
+        id: profile.id || `tg_${tgUser.id}`,
+        email: profile.email || null,
+        displayName: fullName,
+        picture: profile.photo_url || tgUser.photo_url || null,
+        username: profile.username || tgUser.username || null,
+        telegramId: profile.telegram_id || tgUser.id,
+        role: profile.role || "student",
+        provider: "telegram",
+        loginTime: new Date().toISOString(),
+      };
+
+      const token =
+        data.access_token || data.token || null;
+
+      saveUser(userData, token);
+
+      // refresh_token (опционально) — пригодится потом
+      if (data.refresh_token) {
+        localStorage.setItem("oxbridge_refresh_token", data.refresh_token);
+      }
+
+      return userData;
+    } catch (err) {
+      const errorMessage = err.message || "Telegram login failed";
+      setError(errorMessage);
+      throw new Error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [saveUser]);
+
   const logout = useCallback(() => {
     saveUser(null);
+    localStorage.removeItem("oxbridge_refresh_token");
   }, [saveUser]);
 
   const isAuthenticated = !!user;
@@ -182,6 +251,7 @@ export function AuthProvider({ children }) {
     googleLogin,
     emailLogin,
     emailRegister,
+    telegramLogin,
     logout,
   };
 

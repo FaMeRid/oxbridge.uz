@@ -1,15 +1,16 @@
 // backend/routes/auth.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const authController = require('../controllers/authController');
 
-// Регистрация
-router.post('/register', authController.register);
+const authController = require("../controllers/authController");
+const telegramAuthController = require("../controllers/telegramAuthController");
 
-// Логин
-router.post('/login', authController.login);
+// Email + пароль
+router.post("/register", authController.register);
+router.post("/login", authController.login);
+router.post("/logout", authController.logout);
 
-// Выход
-router.post('/logout', authController.logout);
+// Telegram Login Widget
+router.post("/telegram", telegramAuthController.telegramLogin);
 
 module.exports = router;

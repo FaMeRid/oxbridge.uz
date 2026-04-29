@@ -1,0 +1,153 @@
+{
+  "level": "Advanced",
+  "band": "7.0–8.5",
+  "color": "#a81011",
+  "bg": "#fdecea",
+  "border": "#fecaca",
+  "description": "Suitable for Band 7.0–8.5 target. Complex visual data and abstract essay topics requiring sophisticated language and argument.",
+  "task1": [
+    {
+      "id": "t1-3",
+      "title": "Process Diagram — Recycling Paper",
+      "chartId": "t1-3",
+      "description": "The diagram below shows how paper is recycled. Summarise the information by selecting and reporting the main features.",
+      "minWords": 150,
+      "tips": [
+        "Use passive voice: 'The paper is collected…', 'The pulp is bleached…'",
+        "Sequence language: first, then, following this, subsequently, finally",
+        "Cover every stage — don't skip steps",
+        "No data comparison needed — describe the process chronologically"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "What the diagram shows — a cyclical/linear process." },
+        { "label": "Overview", "desc": "How many stages, where it starts and ends." },
+        { "label": "Body 1", "desc": "Stages 1–4 with precise linking language." },
+        { "label": "Body 2", "desc": "Stages 5–8: bleaching through final product." }
+      ],
+      "sampleBands": { "words": "~185–210", "time": "20 min", "band": "7.5+" }
+    },
+    {
+      "id": "map-town",
+      "title": "Map — Town Development Over Time",
+      "chartId": "map-town",
+      "description": "The maps below show a small town in 1970 and 2020. Summarise the main changes that occurred.",
+      "minWords": 150,
+      "tips": [
+        "Focus on change, not static description — what was added, removed, relocated?",
+        "Use location language: to the north, in the eastern part, adjacent to",
+        "Group related changes together by area",
+        "Use passive: 'The factory was demolished', 'A park was built'"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Paraphrase — what the maps show and the time period." },
+        { "label": "Overview", "desc": "The overall character of change (development, demolition, expansion)." },
+        { "label": "Body 1", "desc": "Changes in the northern / eastern areas with specifics." },
+        { "label": "Body 2", "desc": "Changes in remaining areas — what remained the same." }
+      ],
+      "sampleBands": { "words": "~185–210", "time": "20 min", "band": "7.5+" }
+    },
+    {
+      "id": "mixed-employment",
+      "title": "Mixed Charts — Employment and GDP",
+      "chartId": "mixed-employment",
+      "description": "The bar chart shows employment rates in five sectors in 2000 and 2020, while the line graph shows GDP growth over the same period.",
+      "minWords": 150,
+      "tips": [
+        "Identify the relationship between the two charts — correlate trends",
+        "Describe each chart separately in Body paragraphs, but link them in the Overview",
+        "Prioritise the most significant data points",
+        "Use a sophisticated overview that synthesises both charts"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "What both charts show and the time period." },
+        { "label": "Overview", "desc": "Key trend in each chart + any relationship between them." },
+        { "label": "Body 1", "desc": "Employment data — sectors with biggest changes." },
+        { "label": "Body 2", "desc": "GDP growth trend linked to employment changes." }
+      ],
+      "sampleBands": { "words": "~190–220", "time": "20 min", "band": "8.0+" }
+    }
+  ],
+  "task2": [
+    {
+      "id": "t2-3",
+      "title": "Problem-Solution — Urban Traffic",
+      "type": "Problem / Solution",
+      "question": "Traffic congestion in cities is a serious and growing problem. What are the causes of this problem and what measures could be taken to solve it?",
+      "minWords": 250,
+      "tips": [
+        "Clearly separate causes from solutions in different paragraphs",
+        "Each paragraph = one main idea, fully developed with evidence",
+        "Use modal verbs for solutions: could, should, might, would",
+        "Be specific — avoid vague phrases like 'things would improve'"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Introduce topic + state you'll cover causes & solutions." },
+        { "label": "Causes", "desc": "2 main causes of congestion, well explained." },
+        { "label": "Solutions", "desc": "2 practical solutions directly linked to causes." },
+        { "label": "Conclusion", "desc": "Summarise key points. Optional: future outlook." }
+      ],
+      "keyPhrases": [
+        "One of the primary causes is …",
+        "This leads to a situation in which …",
+        "A possible solution would be to …",
+        "Governments could invest in …",
+        "If these measures were implemented, …"
+      ],
+      "sampleBands": { "words": "~290–330", "time": "40 min", "band": "7.5+" }
+    },
+    {
+      "id": "t2-3",
+      "title": "Discursive Essay — Globalisation and Culture",
+      "type": "Discussion",
+      "question": "Globalisation has led to a growing dominance of Western culture over local traditions. To what extent do you agree or disagree with this statement?",
+      "minWords": 250,
+      "tips": [
+        "This requires nuance — a partial agreement or qualified position scores higher",
+        "Acknowledge the opposing side before rebutting it",
+        "Use abstract nouns: 'cultural homogenisation', 'indigenous heritage'",
+        "Support each point with a concrete cross-cultural example"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Introduce globalisation debate + nuanced thesis." },
+        { "label": "Body 1 (Agree)", "desc": "Evidence that Western culture is dominant + example." },
+        { "label": "Body 2 (Qualify)", "desc": "Counter-evidence: resilience of local cultures." },
+        { "label": "Conclusion", "desc": "Balanced overall position — agree to an extent." }
+      ],
+      "keyPhrases": [
+        "It is undeniable that …",
+        "However, this view overlooks …",
+        "A more nuanced perspective suggests …",
+        "While … , it would be an overstatement to claim …",
+        "In conclusion, although … , it is equally true that …"
+      ],
+      "sampleBands": { "words": "~295–335", "time": "40 min", "band": "8.0+" }
+    },
+    {
+      "id": "t2-3",
+      "title": "Argumentative Essay — Artificial Intelligence",
+      "type": "Opinion",
+      "question": "Artificial intelligence will eventually replace most human jobs, leading to widespread unemployment. To what extent do you agree or disagree with this prediction?",
+      "minWords": 250,
+      "tips": [
+        "Engage with the future tense and speculation: 'may', 'could', 'is likely to'",
+        "Distinguish between types of work — manual vs creative vs managerial",
+        "A sophisticated essay acknowledges complexity, not just agreement/disagreement",
+        "Use academic hedging: 'it seems plausible that', 'evidence suggests'"
+      ],
+      "structure": [
+        { "label": "Introduction", "desc": "Context of AI + clear but nuanced thesis." },
+        { "label": "Body 1 (Agree)", "desc": "Jobs AI will replace + evidence (manufacturing, data entry)." },
+        { "label": "Body 2 (Qualify)", "desc": "Jobs resistant to automation + new roles AI creates." },
+        { "label": "Conclusion", "desc": "Qualified position — transformation not elimination." }
+      ],
+      "keyPhrases": [
+        "It is widely predicted that …",
+        "Evidence from recent decades suggests …",
+        "However, it is worth noting that …",
+        "Rather than replacing workers entirely, AI is more likely to …",
+        "In conclusion, the impact of AI will be transformative rather than simply destructive …"
+      ],
+      "sampleBands": { "words": "~300–340", "time": "40 min", "band": "8.0+" }
+    }
+  ]
+}
