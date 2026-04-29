@@ -4,13 +4,15 @@ import { useLocation } from "wouter";
 import { useAuthStore } from "@/features/auth/authStore";
 import "@/styles/globals.css";
 import VerticalTestimonials from "@/components/tools/VerticalTestimonials";
-import "@/styles/VerticalTesting.css"
+import "@/styles/VerticalTesting.css";
 
-
+// ─────────────────────────────────────────
+// FLOATING STICKER
+// ─────────────────────────────────────────
 function FloatingSticker({ emoji, style }) {
   return (
     <span aria-hidden="true" style={{
-      position: "absolute", fontSize: "clamp(1.6rem,3vw,2.2rem)",
+      position: "absolute", fontSize: "clamp(1.2rem,2.5vw,2rem)",
       userSelect: "none", pointerEvents: "none",
       animation: "floatBob 4s ease-in-out infinite",
       ...style,
@@ -20,6 +22,22 @@ function FloatingSticker({ emoji, style }) {
   );
 }
 
+// ─────────────────────────────────────────
+// MOBILE HOOK
+// ─────────────────────────────────────────
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < breakpoint);
+  useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", fn, { passive: true });
+    return () => window.removeEventListener("resize", fn);
+  }, [breakpoint]);
+  return isMobile;
+}
+
+// ─────────────────────────────────────────
+// COUNT-UP HOOK
+// ─────────────────────────────────────────
 function useCountUp(target, duration = 1600, start = false) {
   const [val, setVal] = useState(0);
   useEffect(() => {
@@ -38,6 +56,9 @@ function useCountUp(target, duration = 1600, start = false) {
   return val;
 }
 
+// ─────────────────────────────────────────
+// FADE-IN ON SCROLL
+// ─────────────────────────────────────────
 function useFadeIn() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -52,27 +73,25 @@ function useFadeIn() {
   return { ref, visible };
 }
 
+// ─────────────────────────────────────────
+// PLACEMENT TEST DATA
+// ─────────────────────────────────────────
 const PT_QUESTIONS = [
-  // Foundation
-  { id:1,  level:"Foundation",        emoji:"🌱", q:"She ___ to school every day.",                                        opts:["go","goes","going","gone"],                                      ans:"goes"                    },
-  { id:2,  level:"Foundation",        emoji:"🌱", q:"There ___ many students in the class.",                               opts:["is","are","was","been"],                                         ans:"are"                     },
-  { id:3,  level:"Foundation",        emoji:"🌱", q:"Choose the correct spelling:",                                         opts:["recieve","receive","receve","receeve"],                          ans:"receive"                 },
-  // Pre-Intermediate
-  { id:4,  level:"Pre-Intermediate",  emoji:"📗", q:"By tomorrow morning, she ___ the report.",                            opts:["finish","will finish","will have finished","finished"],          ans:"will have finished"       },
-  { id:5,  level:"Pre-Intermediate",  emoji:"📗", q:"The project ___ by the team last week.",                              opts:["completed","was completed","has completed","completes"],         ans:"was completed"            },
-  { id:6,  level:"Pre-Intermediate",  emoji:"📗", q:"'Abundant' is closest in meaning to:",                                opts:["rare","plentiful","limited","costly"],                           ans:"plentiful"               },
-  // Intermediate
-  { id:7,  level:"Intermediate",      emoji:"📘", q:"If I ___ you, I would study harder.",                                 opts:["am","was","were","be"],                                          ans:"were"                    },
-  { id:8,  level:"Intermediate",      emoji:"📘", q:"The results ___ to several different causes.",                        opts:["attributed","were attributed","have attributed","are attributing"], ans:"were attributed"         },
-  { id:9,  level:"Intermediate",      emoji:"📘", q:"Most academic: 'The study ___ a link between diet and disease.'",    opts:["showed","demonstrated","proved","found"],                        ans:"demonstrated"            },
-  // Upper-Intermediate
-  { id:10, level:"Upper-Intermediate",emoji:"📙", q:"Scarcely ___ down when the phone rang.",                             opts:["I had sat","had I sat","I sat","did I sit"],                     ans:"had I sat"               },
-  { id:11, level:"Upper-Intermediate",emoji:"📙", q:"The policy was ___ due to public opposition.",                       opts:["withdrawn","withheld","withstood","withheld"],                   ans:"withdrawn"               },
-  { id:12, level:"Upper-Intermediate",emoji:"📙", q:"'Mitigate' means:",                                                   opts:["worsen","ignore","reduce the severity of","highlight"],         ans:"reduce the severity of"  },
-  // Advanced
+  { id:1,  level:"Foundation",        emoji:"🌱", q:"She ___ to school every day.",                                        opts:["go","goes","going","gone"],                                                                        ans:"goes"                    },
+  { id:2,  level:"Foundation",        emoji:"🌱", q:"There ___ many students in the class.",                               opts:["is","are","was","been"],                                                                           ans:"are"                     },
+  { id:3,  level:"Foundation",        emoji:"🌱", q:"Choose the correct spelling:",                                         opts:["recieve","receive","receve","receeve"],                                                            ans:"receive"                 },
+  { id:4,  level:"Pre-Intermediate",  emoji:"📗", q:"By tomorrow morning, she ___ the report.",                            opts:["finish","will finish","will have finished","finished"],                                           ans:"will have finished"       },
+  { id:5,  level:"Pre-Intermediate",  emoji:"📗", q:"The project ___ by the team last week.",                              opts:["completed","was completed","has completed","completes"],                                          ans:"was completed"            },
+  { id:6,  level:"Pre-Intermediate",  emoji:"📗", q:"'Abundant' is closest in meaning to:",                                opts:["rare","plentiful","limited","costly"],                                                             ans:"plentiful"               },
+  { id:7,  level:"Intermediate",      emoji:"📘", q:"If I ___ you, I would study harder.",                                 opts:["am","was","were","be"],                                                                           ans:"were"                    },
+  { id:8,  level:"Intermediate",      emoji:"📘", q:"The results ___ to several different causes.",                        opts:["attributed","were attributed","have attributed","are attributing"],                               ans:"were attributed"         },
+  { id:9,  level:"Intermediate",      emoji:"📘", q:"Most academic: 'The study ___ a link between diet and disease.'",    opts:["showed","demonstrated","proved","found"],                                                         ans:"demonstrated"            },
+  { id:10, level:"Upper-Intermediate",emoji:"📙", q:"Scarcely ___ down when the phone rang.",                             opts:["I had sat","had I sat","I sat","did I sit"],                                                      ans:"had I sat"               },
+  { id:11, level:"Upper-Intermediate",emoji:"📙", q:"The policy was ___ due to public opposition.",                       opts:["withdrawn","withheld","withstood","withheld"],                                                    ans:"withdrawn"               },
+  { id:12, level:"Upper-Intermediate",emoji:"📙", q:"'Mitigate' means:",                                                   opts:["worsen","ignore","reduce the severity of","highlight"],                                          ans:"reduce the severity of"  },
   { id:13, level:"Advanced",          emoji:"🏆", q:"Not until recently ___ the true scale of the problem.",              opts:["scientists understood","did scientists understand","scientists did understand","understood scientists"], ans:"did scientists understand" },
-  { id:14, level:"Advanced",          emoji:"🏆", q:"The findings are ___ with previous research.",                       opts:["consistent","coherent","compatible","compliant"],                ans:"consistent"              },
-  { id:15, level:"Advanced",          emoji:"🏆", q:"'The government should ___ greater transparency in spending.'",      opts:["mandate","suggest","hope for","want"],                           ans:"mandate"                 },
+  { id:14, level:"Advanced",          emoji:"🏆", q:"The findings are ___ with previous research.",                       opts:["consistent","coherent","compatible","compliant"],                                                 ans:"consistent"              },
+  { id:15, level:"Advanced",          emoji:"🏆", q:"'The government should ___ greater transparency in spending.'",      opts:["mandate","suggest","hope for","want"],                                                            ans:"mandate"                 },
 ];
 
 const LVL_COLORS = {
@@ -92,8 +111,11 @@ function ptBand(correct, total) {
   return               { band:"4.0–4.5", label:"Foundation",           emoji:"🌱", color:"#0d7c59" };
 }
 
+// ─────────────────────────────────────────
+// MINI PLACEMENT TEST
+// ─────────────────────────────────────────
 function MiniPlacementTest() {
-  const [, navigate]   = useLocation();
+  const [, navigate]          = useLocation();
   const [step, setStep]       = useState("intro");
   const [idx,  setIdx]        = useState(0);
   const [answers, setAnswers] = useState({});
@@ -117,22 +139,21 @@ function MiniPlacementTest() {
   const score  = PT_QUESTIONS.filter((q) => answers[q.id] === q.ans).length;
   const result = ptBand(score, PT_QUESTIONS.length);
 
-  
   if (step === "intro") return (
     <div style={{ textAlign:"center" }}>
-      <div style={{ fontSize:"3rem", marginBottom:14 }}>🎓</div>
-      <h3 style={{ fontFamily:"'Playfair Display',serif", fontSize:"1.45rem", fontWeight:800, color:"#0c1f4a", marginBottom:10 }}>
+      <div style={{ fontSize:"2.5rem", marginBottom:12 }}>🎓</div>
+      <h3 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.1rem,4vw,1.45rem)", fontWeight:800, color:"#0c1f4a", marginBottom:10 }}>
         Find Your IELTS Level
       </h3>
-      <p style={{ color:"#475569", fontSize:"0.9rem", lineHeight:1.7, marginBottom:20, maxWidth:380, margin:"0 auto 20px" }}>
+      <p style={{ color:"#475569", fontSize:"clamp(0.8rem,2.5vw,0.9rem)", lineHeight:1.7, margin:"0 auto 16px" }}>
         15 questions · Foundation → Advanced · ~5 minutes
       </p>
-      <div style={{ display:"flex", justifyContent:"center", gap:6, flexWrap:"wrap", marginBottom:24 }}>
+      <div style={{ display:"flex", justifyContent:"center", gap:5, flexWrap:"wrap", marginBottom:20 }}>
         {Object.entries(LVL_COLORS).map(([l, c]) => (
-          <span key={l} style={{ fontSize:"0.65rem", fontWeight:700, background:c.bg, color:c.color, border:`1px solid ${c.border}`, padding:"3px 10px", borderRadius:999 }}>{l}</span>
+          <span key={l} style={{ fontSize:"0.6rem", fontWeight:700, background:c.bg, color:c.color, border:`1px solid ${c.border}`, padding:"3px 8px", borderRadius:999 }}>{l}</span>
         ))}
       </div>
-      <button className="btn-primary" style={{ padding:"13px 32px" }} onClick={() => setStep("test")}>
+      <button className="btn-primary" style={{ padding:"12px 28px", fontSize:"0.9rem" }} onClick={() => setStep("test")}>
         ⚡ Start Free Test
       </button>
       <p style={{ marginTop:10, fontSize:"0.72rem", color:"#94a3b8" }}>No sign-up required</p>
@@ -141,26 +162,26 @@ function MiniPlacementTest() {
 
   if (step === "result") return (
     <div style={{ textAlign:"center" }}>
-      <div style={{ fontSize:"2.8rem", marginBottom:10 }}>{result.emoji}</div>
-      <p style={{ fontSize:"0.68rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"2px", color:"#94a3b8", marginBottom:6 }}>Estimated Band</p>
-      <div style={{ fontFamily:"'Playfair Display',serif", fontSize:"3.2rem", fontWeight:800, color:result.color, lineHeight:1, marginBottom:8 }}>{result.band}</div>
-      <span style={{ display:"inline-block", background:LVL_COLORS[result.label]?.bg, color:result.color, border:`1px solid ${LVL_COLORS[result.label]?.border}`, padding:"4px 14px", borderRadius:999, fontSize:"0.75rem", fontWeight:700, marginBottom:18 }}>
+      <div style={{ fontSize:"2.4rem", marginBottom:8 }}>{result.emoji}</div>
+      <p style={{ fontSize:"0.65rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"2px", color:"#94a3b8", marginBottom:4 }}>Estimated Band</p>
+      <div style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(2rem,8vw,3.2rem)", fontWeight:800, color:result.color, lineHeight:1, marginBottom:6 }}>{result.band}</div>
+      <span style={{ display:"inline-block", background:LVL_COLORS[result.label]?.bg, color:result.color, border:`1px solid ${LVL_COLORS[result.label]?.border}`, padding:"4px 14px", borderRadius:999, fontSize:"0.72rem", fontWeight:700, marginBottom:14 }}>
         {result.label}
       </span>
-      <div style={{ background:"var(--bg2)", borderRadius:10, padding:"12px 16px", marginBottom:20 }}>
-        <p style={{ fontSize:"0.82rem", fontWeight:700, color:"#0c1f4a", marginBottom:8 }}>✅ {score} / {PT_QUESTIONS.length} correct</p>
+      <div style={{ background:"var(--bg2)", borderRadius:10, padding:"10px 14px", marginBottom:16 }}>
+        <p style={{ fontSize:"0.8rem", fontWeight:700, color:"#0c1f4a", marginBottom:6 }}>✅ {score} / {PT_QUESTIONS.length} correct</p>
         <div style={{ height:5, background:"var(--border)", borderRadius:999, overflow:"hidden" }}>
           <div style={{ height:"100%", width:`${Math.round((score/PT_QUESTIONS.length)*100)}%`, background:`linear-gradient(90deg,${result.color}88,${result.color})`, borderRadius:999 }} />
         </div>
       </div>
       <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
-        <button className="btn-primary" style={{ width:"100%", justifyContent:"center" }} onClick={() => navigate("/placement")}>
+        <button className="btn-primary" style={{ width:"100%", justifyContent:"center", fontSize:"0.85rem" }} onClick={() => navigate("/placement")}>
           📋 Take Full Placement Test
         </button>
-        <button className="btn-secondary" style={{ width:"100%", justifyContent:"center" }} onClick={() => navigate("/practice")}>
+        <button className="btn-secondary" style={{ width:"100%", justifyContent:"center", fontSize:"0.85rem" }} onClick={() => navigate("/practice")}>
           🚀 Start Practicing
         </button>
-        <button onClick={() => { setStep("intro"); setIdx(0); setAnswers({}); setSel(null); setConf(false); }} style={{ background:"none", border:"none", color:"#94a3b8", fontSize:"0.78rem", cursor:"pointer", marginTop:2 }}>
+        <button onClick={() => { setStep("intro"); setIdx(0); setAnswers({}); setSel(null); setConf(false); }} style={{ background:"none", border:"none", color:"#94a3b8", fontSize:"0.75rem", cursor:"pointer", marginTop:2 }}>
           ↺ Retry
         </button>
       </div>
@@ -169,10 +190,9 @@ function MiniPlacementTest() {
 
   return (
     <div>
-      {/* Progress bar */}
-      <div style={{ marginBottom:18 }}>
-        <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5, fontSize:"0.72rem", fontWeight:700 }}>
-          <span style={{ color:lc.color, display:"flex", alignItems:"center", gap:5 }}>{q.emoji} {q.level}</span>
+      <div style={{ marginBottom:14 }}>
+        <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5, fontSize:"0.7rem", fontWeight:700 }}>
+          <span style={{ color:lc.color, display:"flex", alignItems:"center", gap:4 }}>{q.emoji} {q.level}</span>
           <span style={{ color:"#94a3b8" }}>{idx+1} / {PT_QUESTIONS.length}</span>
         </div>
         <div style={{ height:5, background:"var(--bg2)", borderRadius:999, overflow:"hidden" }}>
@@ -180,16 +200,13 @@ function MiniPlacementTest() {
         </div>
       </div>
 
-      {/* Level badge */}
-      <span style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"1px", padding:"3px 10px", borderRadius:999, background:lc.bg, color:lc.color, border:`1px solid ${lc.border}`, display:"inline-block", marginBottom:14 }}>
+      <span style={{ fontSize:"0.58rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"1px", padding:"3px 9px", borderRadius:999, background:lc.bg, color:lc.color, border:`1px solid ${lc.border}`, display:"inline-block", marginBottom:10 }}>
         {q.level}
       </span>
 
-      {/* Question */}
-      <p style={{ fontSize:"0.95rem", fontWeight:600, color:"#0c1f4a", lineHeight:1.65, marginBottom:14 }}>{q.q}</p>
+      <p style={{ fontSize:"clamp(0.82rem,2.5vw,0.95rem)", fontWeight:600, color:"#0c1f4a", lineHeight:1.6, marginBottom:12 }}>{q.q}</p>
 
-      {/* Options */}
-      <div style={{ display:"flex", flexDirection:"column", gap:7, marginBottom:16 }}>
+      <div style={{ display:"flex", flexDirection:"column", gap:6, marginBottom:14 }}>
         {q.opts.map((opt) => {
           const isSel  = selected === opt;
           const isCorr = confirmed && opt === q.ans;
@@ -197,11 +214,11 @@ function MiniPlacementTest() {
           return (
             <button key={opt} onClick={() => { if (!confirmed) setSel(opt); }}
               style={{
-                textAlign:"left", padding:"10px 13px", borderRadius:9,
+                textAlign:"left", padding:"9px 12px", borderRadius:9,
                 border:`1.5px solid ${isCorr?"rgba(13,124,89,0.5)":isWrng?"rgba(168,16,17,0.4)":isSel?lc.border:"var(--border)"}`,
                 background:isCorr?"#edfaf5":isWrng?"#fff0f0":isSel?lc.bg:"#fff",
                 color:isCorr?"#0d7c59":isWrng?"#a81011":isSel?lc.color:"var(--navy)",
-                fontWeight:isSel||isCorr?700:400, fontSize:"0.86rem",
+                fontWeight:isSel||isCorr?700:400, fontSize:"clamp(0.78rem,2vw,0.86rem)",
                 cursor:confirmed?"default":"pointer", transition:"all 0.15s",
                 display:"flex", alignItems:"center", justifyContent:"space-between",
               }}>
@@ -214,11 +231,11 @@ function MiniPlacementTest() {
       </div>
 
       {!confirmed ? (
-        <button className="btn-primary" style={{ width:"100%", justifyContent:"center", opacity:selected?1:0.45 }} disabled={!selected} onClick={confirm}>
+        <button className="btn-primary" style={{ width:"100%", justifyContent:"center", opacity:selected?1:0.45, fontSize:"0.88rem" }} disabled={!selected} onClick={confirm}>
           Confirm →
         </button>
       ) : (
-        <div style={{ textAlign:"center", padding:"9px", borderRadius:9, background:answers[q.id]===q.ans?"#edfaf5":"#fff0f0", border:`1px solid ${answers[q.id]===q.ans?"rgba(13,124,89,0.3)":"rgba(168,16,17,0.2)"}`, fontSize:"0.8rem", fontWeight:700, color:answers[q.id]===q.ans?"#0d7c59":"#a81011" }}>
+        <div style={{ textAlign:"center", padding:"9px", borderRadius:9, background:answers[q.id]===q.ans?"#edfaf5":"#fff0f0", border:`1px solid ${answers[q.id]===q.ans?"rgba(13,124,89,0.3)":"rgba(168,16,17,0.2)"}`, fontSize:"0.78rem", fontWeight:700, color:answers[q.id]===q.ans?"#0d7c59":"#a81011" }}>
           {answers[q.id]===q.ans ? "✅ Correct! Next..." : `❌ Correct: "${q.ans}"`}
         </div>
       )}
@@ -226,45 +243,56 @@ function MiniPlacementTest() {
   );
 }
 
+// ─────────────────────────────────────────
+// STAT COUNTER
+// ─────────────────────────────────────────
 function StatCounter({ value, suffix, label, icon, started }) {
   const num = useCountUp(value, 1600, started);
   return (
-    <div style={{ textAlign:"center", padding:"20px 14px", background:"#f9fafb", borderRadius:14 }}>
-      <p style={{ fontSize:"1.9rem", margin:"0 0 8px" }}>{icon}</p>
-      <p style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,4vw,2.4rem)", fontWeight:800, color:"#a81011", margin:"0 0 5px", lineHeight:1 }}>
+    <div style={{ textAlign:"center", padding:"18px 12px", background:"#f9fafb", borderRadius:14 }}>
+      <p style={{ fontSize:"1.7rem", margin:"0 0 6px" }}>{icon}</p>
+      <p style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.5rem,5vw,2.4rem)", fontWeight:800, color:"#a81011", margin:"0 0 4px", lineHeight:1 }}>
         {suffix==="+" ? `${num.toLocaleString()}+` : suffix==="%" ? `${num}%` : `${num}${suffix}`}
       </p>
-      <p style={{ color:"#475569", fontSize:"0.85rem", fontWeight:600, margin:0 }}>{label}</p>
+      <p style={{ color:"#475569", fontSize:"clamp(0.75rem,2vw,0.85rem)", fontWeight:600, margin:0 }}>{label}</p>
     </div>
   );
 }
 
+// ─────────────────────────────────────────
+// FEATURE CARD
+// ─────────────────────────────────────────
 function FeatureCard({ icon, title, desc, color, highlights, link, hovered, onHover }) {
   const [, navigate] = useLocation();
   return (
     <div onClick={() => navigate(link)} onMouseEnter={onHover} onMouseLeave={() => onHover(false)}
-      style={{ background:"#fff", border:`1.5px solid ${hovered?`${color}40`:"#e2e8f0"}`, borderRadius:16, padding:"24px 20px", cursor:"pointer", transition:"all 0.25s", transform:hovered?"translateY(-6px)":"none", boxShadow:hovered?`0 14px 36px ${color}22`:"0 2px 8px rgba(15,23,42,0.06)" }}>
-      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:12 }}>
-        <span style={{ fontSize:"2rem", transition:"transform 0.3s", transform:hovered?"scale(1.15) rotate(-5deg)":"none" }}>{icon}</span>
-        <div style={{ width:3, height:34, background:color, borderRadius:2, opacity:hovered?1:0.2, transition:"opacity 0.3s" }} />
+      style={{ background:"#fff", border:`1.5px solid ${hovered?`${color}40`:"#e2e8f0"}`, borderRadius:16, padding:"20px 18px", cursor:"pointer", transition:"all 0.25s", transform:hovered?"translateY(-6px)":"none", boxShadow:hovered?`0 14px 36px ${color}22`:"0 2px 8px rgba(15,23,42,0.06)" }}>
+      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:10 }}>
+        <span style={{ fontSize:"1.8rem", transition:"transform 0.3s", transform:hovered?"scale(1.15) rotate(-5deg)":"none" }}>{icon}</span>
+        <div style={{ width:3, height:30, background:color, borderRadius:2, opacity:hovered?1:0.2, transition:"opacity 0.3s" }} />
       </div>
-      <h3 style={{ fontSize:"1rem", fontWeight:700, color:"#0f172a", marginBottom:6 }}>{title}</h3>
-      <p style={{ color:"#475569", fontSize:"0.83rem", marginBottom:12, lineHeight:1.6 }}>{desc}</p>
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
-        {highlights.map((h) => <span key={h} style={{ background:`${color}15`, color, padding:"3px 9px", borderRadius:999, fontSize:"0.68rem", fontWeight:700 }}>{h}</span>)}
+      <h3 style={{ fontSize:"0.95rem", fontWeight:700, color:"#0f172a", marginBottom:5 }}>{title}</h3>
+      <p style={{ color:"#475569", fontSize:"0.8rem", marginBottom:10, lineHeight:1.6 }}>{desc}</p>
+      <div style={{ display:"flex", gap:5, flexWrap:"wrap" }}>
+        {highlights.map((h) => <span key={h} style={{ background:`${color}15`, color, padding:"2px 8px", borderRadius:999, fontSize:"0.65rem", fontWeight:700 }}>{h}</span>)}
       </div>
     </div>
   );
 }
 
+// ─────────────────────────────────────────
+// MAIN
+// ─────────────────────────────────────────
 export default function Home() {
-  const [, navigate]       = useLocation();
-  const user               = useAuthStore((s) => s.user);
-  const isAuth             = !!user;
+  const [, navigate]  = useLocation();
+  const user          = useAuthStore((s) => s.user);
+  const isAuth        = !!user;
+  const isMobile      = useIsMobile();
 
   const [hoveredFeat, setHoveredFeat] = useState(null);
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [scrollProg,  setScrollProg]  = useState(0);
+  const [showMiniTest, setShowMiniTest] = useState(false); // mobile: toggle mini test
 
   useEffect(() => {
     const fn = () => {
@@ -292,14 +320,13 @@ export default function Home() {
     { icon:"🎧", title:"Listening Tests",     desc:"Full mock tests with 4 authentic parts and auto-scoring",  color:"#06b6d4", highlights:["4 Parts","Auto-Score","Timer"],          link:"/listening" },
   ];
 
-
   const FAQS = [
-    { q:"How does Oxbridge help me prepare for IELTS?",                  a:"50+ interactive tools including vocabulary builders, grammar checkers, essay templates, reading trainers, and mock tests. Our score predictor gives realistic band estimates and personalised study plans optimise your prep." },
-    { q:"Can I start for free?",                                         a:"Yes! Create a free account for instant access to practice tests, basic vocabulary, grammar fundamentals, and our community forum. No credit card needed." },
-    { q:"How accurate is the band score prediction?",                    a:"Our algorithm analyses thousands of real test results to predict your band with strong accuracy. It gives per-skill breakdowns so you know exactly where to focus." },
-    { q:"What's the difference between student and teacher accounts?",   a:"Students access practice tests, study tools, and personal dashboards. Teachers get a dashboard to create sessions, assign specific test parts via a join code, and monitor student results in real time." },
-    { q:"Can I take individual test sections?",                          a:"Yes. Teachers create sessions for specific parts and share a code. Students join at /jointest, enter their name and code, and start that section immediately." },
-    { q:"How do I track my progress?",                                   a:"Your dashboard shows test history, band trends per skill, streaks, and a 7-day progress chart. Every test is saved and visible from your Profile." },
+    { q:"How does Oxbridge help me prepare for IELTS?",                a:"50+ interactive tools including vocabulary builders, grammar checkers, essay templates, reading trainers, and mock tests. Our score predictor gives realistic band estimates and personalised study plans optimise your prep." },
+    { q:"Can I start for free?",                                       a:"Yes! Create a free account for instant access to practice tests, basic vocabulary, grammar fundamentals, and our community forum. No credit card needed." },
+    { q:"How accurate is the band score prediction?",                  a:"Our algorithm analyses thousands of real test results to predict your band with strong accuracy. It gives per-skill breakdowns so you know exactly where to focus." },
+    { q:"What's the difference between student and teacher accounts?", a:"Students access practice tests, study tools, and personal dashboards. Teachers get a dashboard to create sessions, assign specific test parts via a join code, and monitor student results in real time." },
+    { q:"Can I take individual test sections?",                        a:"Yes. Teachers create sessions for specific parts and share a code. Students join at /jointest, enter their name and code, and start that section immediately." },
+    { q:"How do I track my progress?",                                 a:"Your dashboard shows test history, band trends per skill, streaks, and a 7-day progress chart. Every test is saved and visible from your Profile." },
   ];
 
   return (
@@ -308,62 +335,90 @@ export default function Home() {
       <style>{`
         @keyframes floatBob {
           0%,100% { transform:translateY(0) rotate(0deg); }
-          33%      { transform:translateY(-14px) rotate(4deg); }
-          66%      { transform:translateY(-6px) rotate(-3deg); }
+          33%      { transform:translateY(-12px) rotate(4deg); }
+          66%      { transform:translateY(-5px) rotate(-3deg); }
         }
         @keyframes heroSlide { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
         @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
         .sec-fade { opacity:0; transform:translateY(20px); transition:opacity 0.65s ease,transform 0.65s ease; }
         .sec-fade.vis { opacity:1; transform:translateY(0); }
+
+        /* ── MOBILE UTILITIES ── */
+        @media (max-width: 768px) {
+          .hide-mobile { display: none !important; }
+          .stack-mobile { flex-direction: column !important; }
+          .full-mobile  { width: 100% !important; }
+          .center-mobile { text-align: center !important; justify-content: center !important; }
+          .pt-grid { grid-template-columns: 1fr 1fr !important; }
+          .feat-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+        }
+        @media (max-width: 480px) {
+          .feat-grid { grid-template-columns: 1fr !important; }
+          .pt-grid   { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+
+        /* Tap highlight removal on mobile */
+        @media (hover: none) {
+          button { -webkit-tap-highlight-color: transparent; }
+        }
       `}</style>
 
-      {/* Scroll bar */}
+      {/* Scroll progress bar */}
       <div style={{ position:"fixed", top:0, left:0, height:3, background:"linear-gradient(90deg,#a81011,#d42022)", width:`${scrollProg}%`, zIndex:9999, transition:"width 0.1s linear" }} />
 
-      {/* Notification */}
-      <div style={{ background:"linear-gradient(90deg,#a81011,#d42022)", color:"#fff", padding:"11px 24px", textAlign:"center", fontSize:"0.88rem", fontWeight:600 }}>
+      {/* Notification banner */}
+      <div style={{ background:"linear-gradient(90deg,#a81011,#d42022)", color:"#fff", padding:"10px 16px", textAlign:"center", fontSize:"clamp(0.75rem,2.5vw,0.88rem)", fontWeight:600 }}>
         🎉 New: 200+ Grammar Exercises & Full Mock Tests! — Start free, no credit card needed
       </div>
 
       {/* ══════════ HERO ══════════ */}
-      <section style={{ background:"linear-gradient(135deg,#fdf0f0 0%,#f4f6fb 50%,#fff 100%)", padding:"100px 28px 80px", textAlign:"center", position:"relative", overflow:"hidden" }}>
+      <section style={{ background:"linear-gradient(135deg,#fdf0f0 0%,#f4f6fb 50%,#fff 100%)", padding:isMobile?"70px 20px 56px":"100px 28px 80px", textAlign:"center", position:"relative", overflow:"hidden" }}>
 
-        <FloatingSticker emoji="🎧" style={{ top:"12%",  left:"6%",   animationDelay:"0s",   animationDuration:"4.5s" }} />
-        <FloatingSticker emoji="📖" style={{ top:"18%",  right:"8%",  animationDelay:"0.8s", animationDuration:"5s"   }} />
-        <FloatingSticker emoji="✍️" style={{ top:"55%",  left:"4%",   animationDelay:"1.2s", animationDuration:"4.2s" }} />
-        <FloatingSticker emoji="🎯" style={{ top:"60%",  right:"5%",  animationDelay:"0.4s", animationDuration:"5.5s" }} />
-        <FloatingSticker emoji="🏆" style={{ top:"80%",  left:"9%",   animationDelay:"1.8s", animationDuration:"4.8s" }} />
-        <FloatingSticker emoji="💡" style={{ top:"85%",  right:"10%", animationDelay:"0.6s", animationDuration:"4s"   }} />
-        <FloatingSticker emoji="🌍" style={{ top:"30%",  left:"2%",   animationDelay:"2.0s", animationDuration:"6s"   }} />
-        <FloatingSticker emoji="⭐" style={{ top:"35%",  right:"3%",  animationDelay:"1.5s", animationDuration:"5.2s" }} />
+        {/* Fewer stickers on mobile to avoid clutter */}
+        <FloatingSticker emoji="🎧" style={{ top:"10%", left:"4%",  animationDelay:"0s",   animationDuration:"4.5s" }} />
+        <FloatingSticker emoji="📖" style={{ top:"15%", right:"5%", animationDelay:"0.8s", animationDuration:"5s"   }} />
+        {!isMobile && <>
+          <FloatingSticker emoji="✍️" style={{ top:"55%", left:"4%",   animationDelay:"1.2s", animationDuration:"4.2s" }} />
+          <FloatingSticker emoji="🎯" style={{ top:"60%", right:"5%",  animationDelay:"0.4s", animationDuration:"5.5s" }} />
+          <FloatingSticker emoji="🏆" style={{ top:"80%", left:"9%",   animationDelay:"1.8s", animationDuration:"4.8s" }} />
+          <FloatingSticker emoji="💡" style={{ top:"85%", right:"10%", animationDelay:"0.6s", animationDuration:"4s"   }} />
+          <FloatingSticker emoji="🌍" style={{ top:"30%", left:"2%",   animationDelay:"2.0s", animationDuration:"6s"   }} />
+          <FloatingSticker emoji="⭐" style={{ top:"35%", right:"3%",  animationDelay:"1.5s", animationDuration:"5.2s" }} />
+        </>}
 
-        <div style={{ position:"absolute", top:-80,  left:-80,  width:300, height:300, background:"radial-gradient(circle,rgba(168,16,17,0.08) 0%,transparent 70%)", borderRadius:"50%", pointerEvents:"none" }} />
-        <div style={{ position:"absolute", bottom:-40,right:-40, width:260, height:260, background:"radial-gradient(circle,rgba(201,162,39,0.08) 0%,transparent 70%)", borderRadius:"50%", pointerEvents:"none" }} />
+        <div style={{ position:"absolute", top:-80, left:-80, width:300, height:300, background:"radial-gradient(circle,rgba(168,16,17,0.08) 0%,transparent 70%)", borderRadius:"50%", pointerEvents:"none" }} />
+        <div style={{ position:"absolute", bottom:-40, right:-40, width:260, height:260, background:"radial-gradient(circle,rgba(201,162,39,0.08) 0%,transparent 70%)", borderRadius:"50%", pointerEvents:"none" }} />
 
         <div style={{ maxWidth:900, margin:"0 auto", position:"relative", zIndex:1, animation:"heroSlide 0.7s ease-out both" }}>
-          <div style={{ display:"inline-block", background:"#fff", border:"1px solid rgba(168,16,17,0.2)", borderRadius:50, padding:"9px 20px", marginBottom:24, fontSize:"0.85rem", fontWeight:700, color:"#a81011" }}>
+          <div style={{ display:"inline-block", background:"#fff", border:"1px solid rgba(168,16,17,0.2)", borderRadius:50, padding:"8px 18px", marginBottom:20, fontSize:"clamp(0.75rem,2.5vw,0.85rem)", fontWeight:700, color:"#a81011" }}>
             ✨ Join 10,000+ students succeeding in IELTS
           </div>
-          <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(2.2rem,6vw,4rem)", fontWeight:800, color:"#0c1f4a", marginBottom:18, lineHeight:1.15 }}>
-            Your Friendly IELTS <br/>
+
+          <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.9rem,6vw,4rem)", fontWeight:800, color:"#0c1f4a", marginBottom:16, lineHeight:1.15 }}>
+            Your Friendly IELTS{isMobile ? " " : <br/>}
             <span style={{ color:"#a81011", display:"inline-block", animation:"pulse 3s ease-in-out infinite" }}>Study Companion</span>
           </h1>
-          <p style={{ fontSize:"clamp(0.95rem,2vw,1.15rem)", color:"#475569", maxWidth:580, margin:"0 auto 36px", lineHeight:1.8 }}>
-            Master IELTS with 50+ interactive tools, expert-designed courses, and a supportive global community. Track your progress and achieve your target band with confidence.
+
+          <p style={{ fontSize:"clamp(0.9rem,2.5vw,1.15rem)", color:"#475569", maxWidth:580, margin:"0 auto 28px", lineHeight:1.8 }}>
+            Master IELTS with 50+ interactive tools, expert-designed courses, and a supportive global community.
           </p>
-          <div style={{ display:"flex", gap:14, justifyContent:"center", flexWrap:"wrap", marginBottom:36 }}>
-            <button onClick={() => navigate(isAuth?"/practice":"/register")} className="btn-primary" style={{ padding:"15px 44px", fontSize:"1rem" }}>
+
+          <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap", marginBottom:28 }}>
+            <button onClick={() => navigate(isAuth?"/practice":"/register")} className="btn-primary"
+              style={{ padding:isMobile?"13px 28px":"15px 44px", fontSize:isMobile?"0.92rem":"1rem", width:isMobile?"100%":"auto", maxWidth:320, justifyContent:"center" }}>
               🚀 {isAuth ? "Continue Practice" : "Start Free"}
             </button>
-            <button onClick={() => navigate("/about")} style={{ padding:"15px 40px", background:"#fff", color:"#a81011", border:"2px solid #a81011", borderRadius:12, fontSize:"1rem", fontWeight:700, cursor:"pointer", transition:"all 0.2s" }}
+            <button onClick={() => navigate("/about")}
+              style={{ padding:isMobile?"12px 24px":"15px 40px", background:"#fff", color:"#a81011", border:"2px solid #a81011", borderRadius:12, fontSize:isMobile?"0.92rem":"1rem", fontWeight:700, cursor:"pointer", transition:"all 0.2s", width:isMobile?"100%":"auto", maxWidth:320 }}
               onMouseEnter={(e) => e.currentTarget.style.background="#fdf0f0"}
               onMouseLeave={(e) => e.currentTarget.style.background="#fff"}>
               📚 Explore More
             </button>
           </div>
-          <div style={{ display:"flex", justifyContent:"center", gap:24, flexWrap:"wrap", paddingTop:22, borderTop:"1px solid rgba(226,232,240,0.5)" }}>
-            {["No credit card needed","Instant access","Free to start"].map((t) => (
-              <p key={t} style={{ fontSize:"0.87rem", color:"#475569", fontWeight:600, margin:0, display:"flex", alignItems:"center", gap:7 }}>
+
+          <div style={{ display:"flex", justifyContent:"center", gap:isMobile?12:24, flexWrap:"wrap", paddingTop:18, borderTop:"1px solid rgba(226,232,240,0.5)" }}>
+            {["No credit card","Instant access","Free to start"].map((t) => (
+              <p key={t} style={{ fontSize:"clamp(0.78rem,2vw,0.87rem)", color:"#475569", fontWeight:600, margin:0, display:"flex", alignItems:"center", gap:6 }}>
                 <span style={{ color:"#10b981", fontWeight:800 }}>✓</span> {t}
               </p>
             ))}
@@ -373,29 +428,30 @@ export default function Home() {
 
       {/* ══════════ STATS ══════════ */}
       <div ref={statsRef} className={`sec-fade${statsVis?" vis":""}`}>
-        <section style={{ background:"#fff", padding:"52px 28px", borderTop:"1px solid #e2e8f0" }}>
-          <div style={{ maxWidth:1100, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:18 }}>
+        <section style={{ background:"#fff", padding:isMobile?"36px 16px":"52px 28px", borderTop:"1px solid #e2e8f0" }}>
+          <div style={{ maxWidth:1100, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:12 }}
+            className="pt-grid">
             <StatCounter value={6500} suffix="+" label="Happy Students" icon="👥" started={statsVis} />
-            <StatCounter value={50}    suffix="+" label="Study Tools"    icon="🛠️" started={statsVis} />
-            <StatCounter value={90}    suffix="%" label="Success Rate"   icon="🎯" started={statsVis} />
-            <StatCounter value={13}    suffix="+" label="Years Teaching" icon="📅" started={statsVis} />
+            <StatCounter value={50}   suffix="+" label="Study Tools"    icon="🛠️" started={statsVis} />
+            <StatCounter value={90}   suffix="%" label="Success Rate"   icon="🎯" started={statsVis} />
+            <StatCounter value={13}   suffix="+" label="Years Teaching" icon="📅" started={statsVis} />
           </div>
         </section>
       </div>
 
       {/* ══════════ FEATURES ══════════ */}
       <div ref={featRef} className={`sec-fade${featVis?" vis":""}`}>
-        <section style={{ background:"linear-gradient(180deg,#f9fafb 0%,#fff 100%)", padding:"80px 28px", borderTop:"1px solid #e2e8f0" }}>
+        <section style={{ background:"linear-gradient(180deg,#f9fafb 0%,#fff 100%)", padding:isMobile?"56px 16px":"80px 28px", borderTop:"1px solid #e2e8f0" }}>
           <div style={{ maxWidth:1280, margin:"0 auto" }}>
-            <div style={{ textAlign:"center", marginBottom:48 }}>
-              <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,4vw,2.8rem)", fontWeight:800, color:"#0c1f4a", marginBottom:12 }}>
+            <div style={{ textAlign:"center", marginBottom:isMobile?32:48 }}>
+              <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.5rem,5vw,2.8rem)", fontWeight:800, color:"#0c1f4a", marginBottom:10 }}>
                 Your Complete Learning Toolkit 🛠️
               </h2>
-              <p style={{ fontSize:"1rem", color:"#475569", maxWidth:520, margin:"0 auto" }}>
+              <p style={{ fontSize:"clamp(0.85rem,2.5vw,1rem)", color:"#475569", maxWidth:520, margin:"0 auto" }}>
                 Everything you need to master IELTS — in one platform
               </p>
             </div>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(290px,1fr))", gap:18 }}>
+            <div className="feat-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))", gap:14 }}>
               {FEATURES.map((f, i) => (
                 <FeatureCard key={f.title} {...f}
                   hovered={hoveredFeat===i}
@@ -409,36 +465,43 @@ export default function Home() {
 
       {/* ══════════ PLACEMENT TEST SECTION ══════════ */}
       <div ref={testRef} className={`sec-fade${testVis?" vis":""}`}>
-        <section style={{ background:"linear-gradient(135deg,#f0f4ff 0%,#e8f0fb 100%)", padding:"90px 28px", borderTop:"1px solid #e2e8f0", position:"relative", overflow:"hidden" }}>
+        <section style={{ background:"linear-gradient(135deg,#f0f4ff 0%,#e8f0fb 100%)", padding:isMobile?"56px 16px":"90px 28px", borderTop:"1px solid #e2e8f0", position:"relative", overflow:"hidden" }}>
 
-          <FloatingSticker emoji="🤔" style={{ top:"10%", left:"4%",   animationDelay:"0s",   animationDuration:"5s"   }} />
-          <FloatingSticker emoji="💭" style={{ top:"20%", right:"5%",  animationDelay:"1s",   animationDuration:"4.5s" }} />
-          <FloatingSticker emoji="📊" style={{ top:"65%", left:"3%",   animationDelay:"0.5s", animationDuration:"5.5s" }} />
-          <FloatingSticker emoji="🌟" style={{ top:"72%", right:"4%",  animationDelay:"1.5s", animationDuration:"4.2s" }} />
+          {!isMobile && <>
+            <FloatingSticker emoji="🤔" style={{ top:"10%", left:"4%",   animationDelay:"0s",   animationDuration:"5s"   }} />
+            <FloatingSticker emoji="💭" style={{ top:"20%", right:"5%",  animationDelay:"1s",   animationDuration:"4.5s" }} />
+            <FloatingSticker emoji="📊" style={{ top:"65%", left:"3%",   animationDelay:"0.5s", animationDuration:"5.5s" }} />
+            <FloatingSticker emoji="🌟" style={{ top:"72%", right:"4%",  animationDelay:"1.5s", animationDuration:"4.2s" }} />
+          </>}
 
-          <div style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1fr", gap:52, alignItems:"center" }}>
-
+          <div style={{
+            maxWidth:1000, margin:"0 auto",
+            display:"grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: isMobile ? 28 : 52,
+            alignItems:"center"
+          }}>
             {/* Left copy */}
-            <div>
-              <span style={{ display:"inline-block", background:"#fff", color:"#a81011", padding:"7px 18px", borderRadius:999, fontSize:"0.75rem", fontWeight:800, letterSpacing:"0.5px", boxShadow:"0 4px 12px rgba(0,0,0,0.06)", marginBottom:20 }}>
+            <div style={{ textAlign: isMobile ? "center" : "left" }}>
+              <span style={{ display:"inline-block", background:"#fff", color:"#a81011", padding:"6px 16px", borderRadius:999, fontSize:"0.72rem", fontWeight:800, letterSpacing:"0.5px", boxShadow:"0 4px 12px rgba(0,0,0,0.06)", marginBottom:16 }}>
                 NOT SURE WHERE TO START? 🤔
               </span>
-              <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.7rem,3.5vw,2.5rem)", fontWeight:800, color:"#0c1f4a", marginBottom:14, lineHeight:1.2 }}>
+              <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.5rem,5vw,2.5rem)", fontWeight:800, color:"#0c1f4a", marginBottom:12, lineHeight:1.2 }}>
                 Find Your Current IELTS Level
               </h2>
-              <p style={{ color:"#475569", fontSize:"0.97rem", lineHeight:1.75, marginBottom:26 }}>
-                Take our free 15-question diagnostic — Foundation to Advanced — and get your estimated band in under 5 minutes.
+              <p style={{ color:"#475569", fontSize:"clamp(0.85rem,2.5vw,0.97rem)", lineHeight:1.75, marginBottom:20 }}>
+                Take our free 15-question diagnostic — Foundation to Advanced — get your estimated band in under 5 minutes.
               </p>
 
-              <div style={{ display:"flex", flexDirection:"column", gap:10, marginBottom:28 }}>
+              <div style={{ display:"flex", flexDirection:"column", gap:8, marginBottom:22, alignItems: isMobile ? "center" : "flex-start" }}>
                 {[
-                  { icon:"🌱", label:"Foundation",         desc:"Basic grammar & everyday vocabulary" },
-                  { icon:"📘", label:"Intermediate",       desc:"Complex tenses & academic vocabulary" },
-                  { icon:"🏆", label:"Advanced",           desc:"Inverted conditionals & formal register" },
+                  { icon:"🌱", label:"Foundation",   desc:"Basic grammar & everyday vocabulary" },
+                  { icon:"📘", label:"Intermediate",  desc:"Complex tenses & academic vocabulary" },
+                  { icon:"🏆", label:"Advanced",      desc:"Inverted conditionals & formal register" },
                 ].map((l) => (
-                  <div key={l.label} style={{ display:"flex", alignItems:"center", gap:11 }}>
-                    <span style={{ fontSize:"1.15rem" }}>{l.icon}</span>
-                    <span style={{ fontSize:"0.86rem" }}>
+                  <div key={l.label} style={{ display:"flex", alignItems:"center", gap:10 }}>
+                    <span style={{ fontSize:"1rem" }}>{l.icon}</span>
+                    <span style={{ fontSize:"clamp(0.78rem,2vw,0.86rem)" }}>
                       <strong style={{ color:"#0c1f4a" }}>{l.label}</strong>
                       <span style={{ color:"#94a3b8" }}> — {l.desc}</span>
                     </span>
@@ -446,59 +509,70 @@ export default function Home() {
                 ))}
               </div>
 
+              {/* On mobile: toggle button instead of side-by-side */}
+              {isMobile ? (
+                <button onClick={() => setShowMiniTest(v => !v)}
+                  style={{ padding:"13px 28px", background:"#0c1f4a", color:"#fff", border:"none", borderRadius:12, fontSize:"0.9rem", fontWeight:700, cursor:"pointer", width:"100%", marginBottom: showMiniTest ? 20 : 0 }}>
+                  {showMiniTest ? "✕ Close Test" : "⚡ Try Free Mini Test"}
+                </button>
+              ) : (
+                <button onClick={() => navigate("/placement")}
+                  style={{ padding:"14px 30px", background:"#0c1f4a", color:"#fff", border:"none", borderRadius:12, fontSize:"0.92rem", fontWeight:700, cursor:"pointer", transition:"all 0.25s", boxShadow:"0 8px 24px rgba(12,31,74,0.2)" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform="translateY(-3px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(12,31,74,0.3)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 8px 24px rgba(12,31,74,0.2)"; }}>
+                  Take Full Placement Test ⚡
+                </button>
+              )}
+            </div>
+
+            {/* Right: mini test — always visible on desktop, toggle on mobile */}
+            {(!isMobile || showMiniTest) && (
+              <div style={{ background:"rgba(255,255,255,0.92)", backdropFilter:"blur(14px)", borderRadius:20, padding:isMobile?"20px 16px":"30px 26px", border:"1px solid rgba(255,255,255,0.9)", boxShadow:"0 20px 60px rgba(0,0,0,0.08)", minHeight:isMobile?0:380 }}>
+                <MiniPlacementTest />
+              </div>
+            )}
+
+            {/* Mobile: full test CTA below */}
+            {isMobile && (
               <button onClick={() => navigate("/placement")}
-                style={{ padding:"14px 30px", background:"#0c1f4a", color:"#fff", border:"none", borderRadius:12, fontSize:"0.92rem", fontWeight:700, cursor:"pointer", transition:"all 0.25s", boxShadow:"0 8px 24px rgba(12,31,74,0.2)" }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform="translateY(-3px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(12,31,74,0.3)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 8px 24px rgba(12,31,74,0.2)"; }}>
-                Take Full Placement Test ⚡
+                style={{ padding:"13px 24px", background:"transparent", color:"#0c1f4a", border:"2px solid #0c1f4a", borderRadius:12, fontSize:"0.88rem", fontWeight:700, cursor:"pointer", width:"100%", marginTop:-12 }}>
+                📋 Take Full Placement Test
               </button>
-            </div>
-
-            {/* Right: mini test */}
-            <div style={{ background:"rgba(255,255,255,0.88)", backdropFilter:"blur(14px)", borderRadius:24, padding:"30px 26px", border:"1px solid rgba(255,255,255,0.9)", boxShadow:"0 20px 60px rgba(0,0,0,0.08)", minHeight:400 }}>
-              <MiniPlacementTest />
-            </div>
-
+            )}
           </div>
         </section>
       </div>
 
-{/* ══════════ TESTIMONIALS ══════════ */}
-<div ref={testitRef} className={`sec-fade${testitVis?" vis":""}`}>
-  <section style={{ background:"linear-gradient(180deg,#fff 0%,#f9fafb 100%)", padding:"80px 28px", borderTop:"1px solid #e2e8f0" }}>
-    <div style={{ maxWidth:1280, margin:"0 auto" }}>
-      <div style={{ textAlign:"center", marginBottom:48 }}>
-        <section style={{ padding: "80px 20px" }}>
-          <h2 style={{ textAlign: "center", marginBottom: 30 }}>
-            Loved by Students ❤️
-          </h2>
-
-          <VerticalTestimonials />
+      {/* ══════════ TESTIMONIALS ══════════ */}
+      <div ref={testitRef} className={`sec-fade${testitVis?" vis":""}`}>
+        <section style={{ background:"linear-gradient(180deg,#fff 0%,#f9fafb 100%)", padding:isMobile?"56px 16px":"80px 28px", borderTop:"1px solid #e2e8f0" }}>
+          <div style={{ maxWidth:1280, margin:"0 auto" }}>
+            <h2 style={{ textAlign:"center", fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.5rem,5vw,2.4rem)", fontWeight:800, color:"#0c1f4a", marginBottom:isMobile?24:36 }}>
+              Loved by Students ❤️
+            </h2>
+            <VerticalTestimonials />
+          </div>
         </section>
       </div>
-    </div>
-  </section>
-</div>
+
       {/* ══════════ FAQ ══════════ */}
       <div ref={faqRef} className={`sec-fade${faqVis?" vis":""}`}>
-        <section style={{ background:"linear-gradient(135deg,#f9fafb 0%,#fff 100%)", padding:"80px 28px", borderTop:"1px solid #e2e8f0" }}>
+        <section style={{ background:"linear-gradient(135deg,#f9fafb 0%,#fff 100%)", padding:isMobile?"56px 16px":"80px 28px", borderTop:"1px solid #e2e8f0" }}>
           <div style={{ maxWidth:840, margin:"0 auto" }}>
-            <div style={{ textAlign:"center", marginBottom:48 }}>
-              <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,4vw,2.8rem)", fontWeight:800, color:"#0c1f4a", marginBottom:12 }}>
-                Frequently Asked Questions 🤔
-              </h2>
-            </div>
-            <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
+            <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.5rem,5vw,2.8rem)", fontWeight:800, color:"#0c1f4a", marginBottom:isMobile?24:48, textAlign:"center" }}>
+              Frequently Asked Questions 🤔
+            </h2>
+            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
               {FAQS.map((f, i) => (
                 <div key={i} style={{ background:"#fff", border:`1px solid ${expandedFaq===i?"rgba(168,16,17,0.25)":"#e2e8f0"}`, borderRadius:14, overflow:"hidden", transition:"border-color 0.2s", boxShadow:"0 2px 8px rgba(15,23,42,0.04)" }}>
                   <button onClick={() => setExpandedFaq(expandedFaq===i?null:i)}
-                    style={{ width:"100%", display:"flex", justifyContent:"space-between", alignItems:"center", padding:"17px 20px", background:"none", border:"none", cursor:"pointer", textAlign:"left" }}>
-                    <span style={{ fontSize:"0.93rem", fontWeight:700, color:"#0f172a", paddingRight:14 }}>{f.q}</span>
+                    style={{ width:"100%", display:"flex", justifyContent:"space-between", alignItems:"center", padding:"15px 18px", background:"none", border:"none", cursor:"pointer", textAlign:"left" }}>
+                    <span style={{ fontSize:"clamp(0.82rem,2.5vw,0.93rem)", fontWeight:700, color:"#0f172a", paddingRight:12 }}>{f.q}</span>
                     <span style={{ color:"#a81011", fontSize:"1rem", flexShrink:0, transform:expandedFaq===i?"rotate(45deg)":"none", transition:"transform 0.25s" }}>+</span>
                   </button>
                   {expandedFaq===i && (
-                    <div style={{ padding:"0 20px 16px", borderTop:"1px solid #f1f5f9" }}>
-                      <p style={{ color:"#475569", fontSize:"0.88rem", lineHeight:1.7, marginTop:12 }}>{f.a}</p>
+                    <div style={{ padding:"0 18px 14px", borderTop:"1px solid #f1f5f9" }}>
+                      <p style={{ color:"#475569", fontSize:"clamp(0.8rem,2vw,0.88rem)", lineHeight:1.7, marginTop:10 }}>{f.a}</p>
                     </div>
                   )}
                 </div>
@@ -509,29 +583,32 @@ export default function Home() {
       </div>
 
       {/* ══════════ FINAL CTA ══════════ */}
-      <section style={{ background:"linear-gradient(135deg,#a81011 0%,#d42022 100%)", padding:"90px 28px 80px", color:"#fff", textAlign:"center", position:"relative", overflow:"hidden" }}>
-        <FloatingSticker emoji="🎓" style={{ top:"15%", left:"8%",   animationDelay:"0s",   animationDuration:"4s"   }} />
-        <FloatingSticker emoji="🚀" style={{ top:"20%", right:"8%",  animationDelay:"1.2s", animationDuration:"5s"   }} />
-        <FloatingSticker emoji="⭐" style={{ top:"65%", left:"5%",   animationDelay:"0.7s", animationDuration:"4.5s" }} />
-        <FloatingSticker emoji="🏆" style={{ top:"70%", right:"6%",  animationDelay:"1.8s", animationDuration:"5.5s" }} />
+      <section style={{ background:"linear-gradient(135deg,#a81011 0%,#d42022 100%)", padding:isMobile?"64px 20px":"90px 28px 80px", color:"#fff", textAlign:"center", position:"relative", overflow:"hidden" }}>
+        {!isMobile && <>
+          <FloatingSticker emoji="🎓" style={{ top:"15%", left:"8%",  animationDelay:"0s",   animationDuration:"4s"   }} />
+          <FloatingSticker emoji="🚀" style={{ top:"20%", right:"8%", animationDelay:"1.2s", animationDuration:"5s"   }} />
+          <FloatingSticker emoji="⭐" style={{ top:"65%", left:"5%",  animationDelay:"0.7s", animationDuration:"4.5s" }} />
+          <FloatingSticker emoji="🏆" style={{ top:"70%", right:"6%", animationDelay:"1.8s", animationDuration:"5.5s" }} />
+        </>}
         <div style={{ position:"absolute", top:-50, right:-50, width:280, height:280, background:"radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%)", borderRadius:"50%", pointerEvents:"none" }} />
+
         <div style={{ maxWidth:700, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <div style={{ fontSize:"3rem", marginBottom:16, animation:"pulse 3s ease-in-out infinite" }}>🎯</div>
-          <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,4vw,2.8rem)", fontWeight:800, marginBottom:16 }}>
+          <div style={{ fontSize:"2.5rem", marginBottom:14, animation:"pulse 3s ease-in-out infinite" }}>🎯</div>
+          <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.5rem,5vw,2.8rem)", fontWeight:800, marginBottom:14 }}>
             Ready to Achieve Your Target Band?
           </h2>
-          <p style={{ fontSize:"1.02rem", marginBottom:32, opacity:0.9, lineHeight:1.7 }}>
+          <p style={{ fontSize:"clamp(0.88rem,2.5vw,1.02rem)", marginBottom:28, opacity:0.9, lineHeight:1.7 }}>
             Join thousands of successful students. Start free today — no credit card required.
           </p>
-          <div style={{ display:"flex", gap:14, justifyContent:"center", flexWrap:"wrap" }}>
+          <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" }}>
             <button onClick={() => navigate(isAuth?"/practice":"/register")}
-              style={{ padding:"15px 40px", background:"#fff", color:"#a81011", border:"none", borderRadius:12, fontSize:"1rem", fontWeight:700, cursor:"pointer", transition:"all 0.25s", boxShadow:"0 8px 24px rgba(0,0,0,0.2)" }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform="translateY(-3px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.3)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 8px 24px rgba(0,0,0,0.2)"; }}>
+              style={{ padding:isMobile?"13px 28px":"15px 40px", background:"#fff", color:"#a81011", border:"none", borderRadius:12, fontSize:isMobile?"0.92rem":"1rem", fontWeight:700, cursor:"pointer", transition:"all 0.25s", boxShadow:"0 8px 24px rgba(0,0,0,0.2)", width:isMobile?"100%":"auto", maxWidth:320 }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform="translateY(-3px)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform="none"; }}>
               {isAuth ? "Continue Practice →" : "Start Free Trial →"}
             </button>
             <button onClick={() => navigate("/placement")}
-              style={{ padding:"15px 36px", background:"transparent", color:"#fff", border:"2px solid rgba(255,255,255,0.5)", borderRadius:12, fontSize:"1rem", fontWeight:700, cursor:"pointer", transition:"all 0.25s" }}
+              style={{ padding:isMobile?"13px 24px":"15px 36px", background:"transparent", color:"#fff", border:"2px solid rgba(255,255,255,0.5)", borderRadius:12, fontSize:isMobile?"0.92rem":"1rem", fontWeight:700, cursor:"pointer", transition:"all 0.25s", width:isMobile?"100%":"auto", maxWidth:320 }}
               onMouseEnter={(e) => e.currentTarget.style.borderColor="rgba(255,255,255,0.9)"}
               onMouseLeave={(e) => e.currentTarget.style.borderColor="rgba(255,255,255,0.5)"}>
               ⚡ Try Placement Test
