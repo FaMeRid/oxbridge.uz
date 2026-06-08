@@ -1661,3 +1661,289 @@ html, body {
     display: none !important;
   }
 }
+/* ==========================================================================
+   MOBILE RESPONSIVE — комплексная адаптация под телефоны
+   ========================================================================== */
+
+/* ── ПЛАНШЕТ И БОЛЬШИЕ ТЕЛЕФОНЫ ≤ 768px ── */
+@media (max-width: 768px) {
+  /* Top nav */
+  .nav-inner {
+    padding: 0 14px;
+    height: 60px;
+    gap: 8px;
+  }
+  .nav-left { gap: 12px; }
+  .nav-right { gap: 6px; }
+
+  .logo-crest { width: 36px; height: 36px; font-size: 1.1rem; border-radius: 9px; }
+  .logo-main { font-size: 1.05rem; }
+  .logo-sub  { display: none; }
+
+  .coins-badge {
+    padding: 4px 10px;
+    font-size: 0.78rem;
+  }
+
+  .notif-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+
+  .user-button {
+    padding: 4px 10px 4px 4px;
+    gap: 6px;
+  }
+  .user-name { display: none; }
+  .arrow { display: none; }
+  .avatar-circle { width: 28px; height: 28px; font-size: 12px; }
+
+  .dropdown {
+    width: 200px;
+    top: 48px;
+  }
+
+  /* Page wrap */
+  .page-wrap {
+    padding: 24px 16px 48px;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    padding: 11px 20px;
+    font-size: 0.85rem;
+  }
+  .btn-primary.big {
+    padding: 12px 22px;
+    font-size: 0.9rem;
+  }
+  .btn-secondary {
+    padding: 10px 18px;
+    font-size: 0.82rem;
+  }
+
+  /* About */
+  .about-hero {
+    padding: 32px 22px;
+    border-radius: 16px;
+    margin-bottom: 28px;
+  }
+  .about-hero p { font-size: 0.95rem; }
+
+  .about-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .about-card { padding: 24px 20px; border-radius: 14px; }
+
+  .about-connect h2 { font-size: 1.3rem; }
+
+  .social-links { gap: 10px; margin-bottom: 32px; }
+  .social-link {
+    min-width: 0;
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    gap: 12px;
+  }
+  .social-link-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+  }
+
+  /* Profile */
+  .profile-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 28px 22px;
+    border-radius: 16px;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .profile-avatar-big {
+    width: 64px;
+    height: 64px;
+    font-size: 1.5rem;
+  }
+  .profile-hero-info h2 { font-size: 1.3rem; }
+
+  .profile-card {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+  .profile-field {
+    padding: 12px 0;
+    gap: 10px;
+  }
+  .profile-field-icon { font-size: 1.05rem; width: 28px; }
+  .profile-field span { font-size: 0.9rem; }
+
+  .logout-button {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  /* Tools page */
+  .tools-page { padding: 24px 16px 48px; }
+  .tools-search-wrap { max-width: 100%; }
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .tool-card {
+    padding: 22px 20px;
+    border-radius: 14px;
+  }
+
+  /* Auth card */
+  .auth-page { padding: 16px; }
+  .auth-card {
+    padding: 32px 22px;
+    border-radius: 16px;
+  }
+  .auth-title { font-size: 1.55rem; }
+  .auth-logo-icon { width: 52px; height: 52px; font-size: 1.5rem; }
+
+  /* Form input */
+  .form-input {
+    padding: 12px 14px;
+    font-size: 0.92rem;
+  }
+
+  /* Fullmock */
+  .fullmock-info-card {
+    padding: 20px 18px;
+    border-radius: 16px;
+  }
+  .fullmock-info-row { gap: 12px; }
+  .fullmock-breakdown {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .fullmock-part-card {
+    padding: 16px;
+    border-radius: 14px;
+    gap: 12px;
+  }
+  .fullmock-part-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 11px;
+  }
+  .fullmock-actions {
+    width: 100%;
+    align-items: stretch;
+  }
+  .fullmock-actions .btn-primary,
+  .fullmock-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Modal */
+  .modal-overlay { padding: 12px; }
+  .modal-box {
+    padding: 24px 20px 28px;
+    border-radius: 20px;
+  }
+  .modal-title { font-size: 1.3rem; }
+  .modal-info-row {
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  .modal-instructions {
+    padding-left: 18px;
+    font-size: 0.85rem;
+  }
+
+  /* Notfound */
+  .notfound-page { padding: 40px 16px; min-height: 70vh; }
+}
+
+/* ── МАЛЕНЬКИЕ ТЕЛЕФОНЫ ≤ 480px ── */
+@media (max-width: 480px) {
+  .nav-inner {
+    padding: 0 10px;
+    height: 56px;
+  }
+  .logo-main { font-size: 0.95rem; }
+
+  .coins-badge {
+    padding: 3px 8px;
+    font-size: 0.72rem;
+    gap: 3px;
+  }
+  .notif-btn { width: 32px; height: 32px; }
+
+  .page-wrap { padding: 18px 12px 40px; }
+
+  /* About hero */
+  .about-hero {
+    padding: 26px 18px;
+    border-radius: 14px;
+  }
+  .about-hero-eyebrow { font-size: 0.65rem; letter-spacing: 1.8px; }
+  .about-hero p { font-size: 0.9rem; line-height: 1.65; }
+
+  /* Profile */
+  .profile-hero { padding: 22px 18px; }
+  .profile-hero-info h2 { font-size: 1.18rem; }
+  .profile-card { padding: 18px 14px; }
+
+  /* Auth */
+  .auth-card { padding: 26px 18px; border-radius: 14px; }
+  .auth-title { font-size: 1.4rem; }
+  .auth-subtitle { font-size: 0.85rem; margin-bottom: 24px; }
+  .auth-submit {
+    padding: 13px;
+    font-size: 0.92rem;
+  }
+
+  /* Tool cards */
+  .tool-card { padding: 18px 16px; }
+  .tool-icon { font-size: 1.9rem; }
+  .tool-name { font-size: 0.95rem; }
+
+  /* Modal */
+  .modal-box {
+    padding: 20px 16px 24px;
+    border-radius: 18px;
+  }
+  .modal-icon { font-size: 2.4rem; margin-bottom: 12px; }
+  .modal-title { font-size: 1.18rem; }
+  .modal-close {
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  /* Buttons */
+  .btn-primary,
+  .btn-primary.big {
+    padding: 11px 18px;
+    font-size: 0.85rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── СОВСЕМ УЗКИЕ ≤ 360px ── */
+@media (max-width: 360px) {
+  .logo-main { font-size: 0.88rem; }
+  .coins-badge { display: none; }
+  .nav-left { gap: 8px; }
+}

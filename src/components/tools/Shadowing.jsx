@@ -248,9 +248,9 @@ export default function ShadowingPractice() {
   if (!lesson) return null;
 
   return (
-    <div style={S.root}>
+    <div style={S.root} className="sp-root">
       {/* SIDEBAR */}
-      <aside style={S.sidebar}>
+      <aside style={S.sidebar} className="sp-sidebar">
         <div style={S.sidebarHead}>
           <div style={S.logo}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
@@ -261,7 +261,7 @@ export default function ShadowingPractice() {
           </div>
         </div>
 
-        <div style={S.searchWrap}>
+        <div style={S.searchWrap} className="sp-search">
           <input
             style={S.searchInput}
             value={query}
@@ -279,7 +279,7 @@ export default function ShadowingPractice() {
           </div>
         </div>
 
-        <div style={S.lessonList}>
+        <div style={S.lessonList} className="sp-lesson-list">
           {filteredLessons.map((l) => {
             const c = LEVEL_COLOR[l.level];
             const active = l.id === lessonId;
@@ -301,15 +301,15 @@ export default function ShadowingPractice() {
       </aside>
 
       {/* MAIN */}
-      <main style={S.main}>
+      <main style={S.main} className="sp-main">
         {/* Header */}
-        <div style={S.mainHeader}>
+        <div style={S.mainHeader} className="sp-main-header">
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
               <span style={{ ...S.levelBadge, background: lc.bg, color: lc.text, fontSize: 12 }}>{lesson.level}</span>
               <span style={S.topicChip}>{lesson.topic}</span>
             </div>
-            <h1 style={S.mainTitle}>{lesson.title}</h1>
+            <h1 style={S.mainTitle} className="sp-main-title">{lesson.title}</h1>
           </div>
           <div style={S.progressBig}>
             <svg viewBox="0 0 36 36" width="52" height="52" style={{ transform: "rotate(-90deg)" }}>
@@ -323,7 +323,7 @@ export default function ShadowingPractice() {
         </div>
 
         {/* Player */}
-        <div style={S.playerOuter}>
+        <div style={S.playerOuter} className="sp-player">
           <YouTube
             videoId={lesson.videoId}
             onReady={onReady}
@@ -335,8 +335,8 @@ export default function ShadowingPractice() {
         </div>
 
         {/* Controls */}
-        <div style={S.controls}>
-          <div style={S.controlsRow}>
+        <div style={S.controls} className="sp-controls">
+          <div style={S.controlsRow} className="sp-controls-row">
             <div style={S.btnGroup}>
               <button style={S.btnPrimary} onClick={togglePlay}>
                 {isPlaying ? (
@@ -374,7 +374,7 @@ export default function ShadowingPractice() {
           </div>
 
           {abLoop && (
-            <div style={S.abRow}>
+            <div style={S.abRow} className="sp-ab-row">
               <span style={S.controlLabel}>A/B loop:</span>
               {["A", "B"].map((lbl, i) => (
                 <label key={lbl} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
@@ -392,9 +392,9 @@ export default function ShadowingPractice() {
         </div>
 
         {/* Bottom: transcript + tips */}
-        <div style={S.bottomGrid}>
+        <div style={S.bottomGrid} className="sp-bottom-grid">
           {/* Transcript */}
-          <div style={S.transcriptCard}>
+          <div style={S.transcriptCard} className="sp-transcript-card">
             <div style={S.cardHead}>
               <span style={S.cardTitle}>Transcript</span>
               <label style={S.toggleLabel}>
@@ -402,7 +402,7 @@ export default function ShadowingPractice() {
                 Auto-scroll
               </label>
             </div>
-            <div ref={transcriptRef} style={S.transcriptList}>
+            <div ref={transcriptRef} style={S.transcriptList} className="sp-transcript-list">
               {lesson.lines.map((ln, i) => {
                 const active = i === activeIdx;
                 return (
@@ -419,7 +419,7 @@ export default function ShadowingPractice() {
           </div>
 
           {/* Tips */}
-          <div style={S.tipsCard}>
+          <div style={S.tipsCard} className="sp-tips-card">
             <div style={S.cardHead}><span style={S.cardTitle}>How to shadow</span></div>
             {[
               ["1. Listen", "Play the full clip once without shadowing. Focus on rhythm and tone."],
@@ -448,6 +448,135 @@ export default function ShadowingPractice() {
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+
+        /* ════════════════════════════════════════
+           ПЛАНШЕТ ≤ 980px — sidebar сверху
+           ════════════════════════════════════════ */
+        @media (max-width: 980px) {
+          .sp-root {
+            flex-direction: column !important;
+            min-height: auto !important;
+          }
+
+          .sp-sidebar {
+            width: 100% !important;
+            min-height: auto !important;
+            border-right: none !important;
+            border-bottom: 1px solid #f3f4f6 !important;
+            padding: 14px 0 !important;
+          }
+
+          .sp-lesson-list {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            gap: 8px;
+            padding: 4px 12px 8px !important;
+            -webkit-overflow-scrolling: touch;
+          }
+          .sp-lesson-list > button {
+            flex: 0 0 220px;
+            margin-bottom: 0 !important;
+            border: 1px solid #e5e7eb !important;
+          }
+
+          .sp-main {
+            max-width: 100% !important;
+            padding: 18px 20px !important;
+          }
+
+          .sp-bottom-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+
+        /* ════════════════════════════════════════
+           МОБИЛА ≤ 640px
+           ════════════════════════════════════════ */
+        @media (max-width: 640px) {
+          .sp-main {
+            padding: 14px 12px !important;
+          }
+
+          .sp-main-header {
+            gap: 12px;
+            margin-bottom: 14px !important;
+          }
+          .sp-main-title {
+            font-size: 17px !important;
+            line-height: 1.3 !important;
+          }
+
+          .sp-player {
+            border-radius: 10px !important;
+            margin-bottom: 12px !important;
+          }
+
+          .sp-controls {
+            padding: 10px 12px !important;
+            border-radius: 10px !important;
+          }
+          .sp-controls-row {
+            gap: 10px !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          .sp-controls-row > div {
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px !important;
+          }
+          .sp-controls-row button {
+            flex: 1 1 auto;
+            justify-content: center;
+            font-size: 12px !important;
+            padding: 8px 10px !important;
+          }
+
+          .sp-ab-row {
+            gap: 10px !important;
+          }
+          .sp-ab-row input[type="number"] {
+            width: 70px !important;
+          }
+
+          .sp-transcript-card,
+          .sp-tips-card {
+            border-radius: 10px !important;
+          }
+          .sp-tips-card {
+            padding: 14px !important;
+          }
+          .sp-transcript-list {
+            max-height: 280px !important;
+            padding: 6px !important;
+          }
+          .sp-transcript-list button {
+            padding: 9px 8px !important;
+          }
+          .sp-transcript-list span:last-child {
+            font-size: 13px !important;
+          }
+
+          .sp-sidebar > div:first-child {
+            padding: 0 16px 14px !important;
+          }
+
+          .sp-search {
+            padding: 10px 12px 6px !important;
+          }
+        }
+
+        /* Очень маленькие — ≤ 380px */
+        @media (max-width: 380px) {
+          .sp-lesson-list > button {
+            flex: 0 0 180px;
+          }
+          .sp-main-title {
+            font-size: 16px !important;
+          }
+        }
       `}</style>
     </div>
   );

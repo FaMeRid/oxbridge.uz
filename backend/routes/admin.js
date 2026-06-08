@@ -1,35 +1,20 @@
+// backend/routes/admin.js
 const express = require("express");
 const router = express.Router();
-const adminController = require("../controllers/adminController");
-const authMiddleware = require("../middleware/auth");
+
+const auth = require("../middleware/auth");
 const authorize = require("../middleware/authorize");
+const ctrl = require("../controllers/adminController");
 
-router.get(
-  "/users",
-  authMiddleware,
-  authorize("read:all_users"),
-  adminController.getAllUsers
-);
+// Все роуты требуют JWT + роль admin
+router.use(auth);
+router.use(authorize("manage_users", "view_analytics", "admin"));
+// ☝️ Если в твоём constants/roles.js нет таких permissions —
+// замени на конкретный permission, который у админа в PERMISSIONS.admin
 
-router.put(
-  "/users/:userId/role",
-  authMiddleware,
-  authorize("update:user_role"),
-  adminController.updateUserRole
-);
-
-router.delete(
-  "/users/:userId",
-  authMiddleware,
-  authorize("delete:user"),
-  adminController.deleteUser
-);
-
-router.get(
-  "/analytics",
-  authMiddleware,
-  authorize("read:system_analytics"),
-  adminController.getSystemAnalytics
-);
+router.get("/users",                ctrl.getAllUsers);
+router.patch("/users/:userId/role", ctrl.updateUserRole);
+router.delete("/users/:userId",     ctrl.deleteUser);
+router.get("/analytics",            ctrl.getSystemAnalytics);
 
 module.exports = router;
